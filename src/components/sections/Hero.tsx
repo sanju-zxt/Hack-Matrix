@@ -1,4 +1,4 @@
-import { useMemo, type CSSProperties } from "react";
+﻿import { useMemo, type CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ChevronRight } from "lucide-react";
 import {
@@ -65,7 +65,7 @@ function StatTiles({ items }: StatTilesProps) {
           <span className="font-mono text-sm font-semibold tracking-wide text-violet-bright sm:text-base">
             {s.value}
           </span>
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/45">
+          <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/60">
             {s.caption}
           </span>
         </li>
@@ -91,7 +91,7 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden pb-16 pt-28 sm:pt-32 lg:pb-24">
-      {/* particles — lightweight CSS, GPU-friendly */}
+      {/* particles â€” lightweight CSS, GPU-friendly */}
       {!reduce && (
         <div aria-hidden className="absolute inset-0 overflow-hidden">
           {particles.map((p, i) => (
@@ -114,7 +114,7 @@ export function Hero() {
       )}
 
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.25fr_1fr] lg:gap-10">
-        {/* Left — copy */}
+        {/* Left â€” copy */}
         <motion.div
           variants={container}
           initial={reduce ? undefined : "hidden"}
@@ -123,7 +123,13 @@ export function Hero() {
           <motion.div variants={item} className="flex flex-wrap items-center gap-4">
             {flags.showLogo && (
               <span className="glass inline-flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4">
-                <Logo size={28} />
+                <span className="relative">
+                  <Logo size={28} ring />
+                  <span
+                    aria-hidden
+                    className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-olive shadow-[0_0_8px_rgba(198,201,95,0.9)]"
+                  />
+                </span>
                 <span className="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-white/70">
                   {event.institution}
                 </span>
@@ -185,24 +191,48 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right — countdown */}
+        {/* Right â€” countdown */}
         <motion.div
           initial={reduce ? undefined : { opacity: 0, x: 28 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
           className="flex flex-col items-center lg:items-end"
         >
-          <div className="glass-strong w-full max-w-md rounded-3xl p-7 sm:p-9 lg:max-w-none">
-            <Countdown />
-            <div className="mt-7 border-t border-white/5 pt-6">
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/50">
-                {scheduleDates.dateLabel} · {scheduleDates.startTime} – {scheduleDates.endTime} {scheduleDates.timeZone}
-              </p>
-              <p className="mt-2 text-sm text-white/60">{venue.name}</p>
-              <p className="mt-1 flex items-center gap-2 text-sm text-white/45">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                {scheduleDates.format} · {registration.fee} {registration.feePer}
-              </p>
+          <div className="relative w-full max-w-md lg:max-w-none">
+            {/* rotating emblem ornaments */}
+            <span
+              aria-hidden
+              className="spin-slow pointer-events-none absolute -inset-6 hidden rounded-[2.5rem] border border-dashed border-white/10 sm:block"
+            />
+            <span
+              aria-hidden
+              className="spin-rev pointer-events-none absolute -inset-12 hidden rounded-full border border-dotted border-violet/20 sm:block"
+            />
+            <span
+              aria-hidden
+              className="absolute -left-5 -top-5 hidden h-10 w-10 rounded-full border border-violet/30 bg-ink-900/70 md:block"
+            >
+              <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-bright shadow-[0_0_10px_rgba(154,139,255,0.9)]" />
+            </span>
+
+            <div className="glass-strong relative rounded-3xl p-7 sm:p-9">
+              {/* corner brackets */}
+              <span aria-hidden className="absolute left-3 top-3 h-4 w-4 border-l-2 border-t-2 border-violet-bright/60 rounded-tl" />
+              <span aria-hidden className="absolute right-3 top-3 h-4 w-4 border-r-2 border-t-2 border-violet-bright/60 rounded-tr" />
+              <span aria-hidden className="absolute bottom-3 left-3 h-4 w-4 border-b-2 border-l-2 border-leaf-light/60 rounded-bl" />
+              <span aria-hidden className="absolute bottom-3 right-3 h-4 w-4 border-b-2 border-r-2 border-leaf-light/60 rounded-br" />
+
+              <Countdown />
+              <div className="mt-7 border-t border-white/5 pt-6">
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/60">
+                  {scheduleDates.dateLabel} Â· {scheduleDates.startTime} â€“ {scheduleDates.endTime} {scheduleDates.timeZone}
+                </p>
+                <p className="mt-2 text-sm text-white/60">{venue.name}</p>
+                <p className="mt-1 flex items-center gap-2 text-sm text-white/60">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-leaf-light shadow-[0_0_8px_rgba(98,201,135,0.9)]" />
+                  {scheduleDates.format} Â· {registration.fee} {registration.feePer}
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -212,7 +242,7 @@ export function Hero() {
       <motion.a
         href="#about"
         aria-label="Scroll to details"
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-white/35 transition-colors hover:text-violet-bright sm:block"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-white/55 transition-colors hover:text-violet-bright sm:block"
         initial={reduce ? undefined : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}

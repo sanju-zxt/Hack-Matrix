@@ -1,4 +1,4 @@
-import type { ElementType } from "react";
+﻿import type { ElementType } from "react";
 import { Link } from "react-router-dom";
 import {
   CalendarDays,
@@ -47,7 +47,7 @@ const regSteps = [
   {
     n: "02",
     title: "Pay the fee",
-    desc: `${registration.fee} ${registration.feePer} — payment instructions are inside the form.`,
+    desc: `${registration.fee} ${registration.feePer} â€” payment instructions are inside the form.`,
   },
   {
     n: "03",
@@ -64,7 +64,7 @@ export default function RegisterPage() {
   usePageMeta({
     title: "Register",
     description:
-      "Register for HACK-MATRIX 2026 — the 8-hour inter-collegiate hackathon at VVIT, Bengaluru.",
+      "Register for HACK-MATRIX 2026 â€” the 8-hour inter-collegiate hackathon at VVIT, Bengaluru.",
     canonicalPath: "/register",
   });
 
@@ -96,7 +96,7 @@ export default function RegisterPage() {
             />
             <div className="relative">
               <RegisterButton size="lg" label="REGISTER FOR HACK-MATRIX" />
-              <p className="mt-4 text-sm text-white/50">
+              <p className="mt-4 text-sm text-white/60">
                 Opens the official registration form in a new tab.
               </p>
             </div>
@@ -106,7 +106,7 @@ export default function RegisterPage() {
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <Reveal delay={0.05}>
             <div className="glass h-full rounded-2xl p-6 sm:p-8">
-              <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                 Registration details
               </p>
               <h2 className="mt-2 font-display text-xl font-semibold text-white sm:text-2xl">
@@ -140,7 +140,7 @@ export default function RegisterPage() {
 
           <Reveal delay={0.1}>
             <div className="glass h-full rounded-2xl p-6 sm:p-8">
-              <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                 Preparation
               </p>
               <h2 className="mt-2 font-display text-xl font-semibold text-white sm:text-2xl">
@@ -192,17 +192,17 @@ export default function RegisterPage() {
 
         <Reveal delay={0.05}>
           <div className="glass mx-auto mt-14 max-w-2xl rounded-2xl p-6 sm:p-8">
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
               Event snapshot
             </p>
             <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
-              {event.name} {event.edition} · {scheduleDates.dateLabel} ·{" "}
-              {scheduleDates.startTime}–{scheduleDates.endTime}{" "}
+              {event.name} {event.edition} Â· {scheduleDates.dateLabel} Â·{" "}
+              {scheduleDates.startTime}â€“{scheduleDates.endTime}{" "}
               {scheduleDates.timeZone}
             </p>
             <p className="mt-1.5 text-sm text-white/55">{venue.name}</p>
             <p className="mt-1.5 text-sm text-white/55">
-              {scheduleDates.format} · {registration.fee} {registration.feePer}
+              {scheduleDates.format} Â· {registration.fee} {registration.feePer}
             </p>
           </div>
         </Reveal>
@@ -210,7 +210,7 @@ export default function RegisterPage() {
         <Reveal delay={0.1}>
           <div className="mt-12 text-center">
             <RegisterButton size="lg" label="REGISTER FOR HACK-MATRIX" />
-            <p className="mt-4 text-sm text-white/50">
+            <p className="mt-4 text-sm text-white/60">
               Opens the official registration form in a new tab.
             </p>
           </div>

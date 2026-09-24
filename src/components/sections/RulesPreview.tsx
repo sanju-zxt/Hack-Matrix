@@ -1,4 +1,4 @@
-import { ShieldCheck } from "lucide-react";
+﻿import { ShieldCheck } from "lucide-react";
 import { rules } from "../../data/eventConfig";
 import { Button } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
@@ -14,7 +14,7 @@ export function RulesPreview() {
         <SectionHeading
           eyebrow="Rules"
           title="Built to be fair"
-          description="Ground rules at a glance — the complete list is one click away."
+          description="Ground rules at a glance â€” the complete list is one click away."
         />
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -44,8 +44,8 @@ export function RulesPreview() {
             <Button variant="outline" size="lg" to="/rules">
               VIEW FULL RULES
             </Button>
-            <p className="max-w-2xl text-center font-mono text-xs uppercase tracking-[0.2em] text-white/35">
-              All rules are configurable — the organizing team finalizes them
+            <p className="max-w-2xl text-center font-mono text-xs uppercase tracking-[0.2em] text-white/55">
+              All rules are configurable â€” the organizing team finalizes them
               before registration closes.
             </p>
           </div>

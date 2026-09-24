@@ -1,0 +1,658 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: site.spec.ts >> content & interactions >> hero shows headline, tagline and live countdown
+- Location: tests\site.spec.ts:66:3
+
+# Error details
+
+```
+Test timeout of 45000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - link "Skip to content" [ref=e4] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e5]:
+    - navigation "Main" [ref=e6]:
+      - link "HACK-MATRIX home" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e8]:
+          - img "Vijaya Vittala Institute of Technology logo" [ref=e9]
+          - generic [ref=e10]:
+            - generic [ref=e11]: HACK-MATRIX
+            - generic [ref=e12]: 2026 Â· 8 Hour Inter Collegiate Hackathon
+      - generic [ref=e13]:
+        - link "Home" [ref=e14] [cursor=pointer]:
+          - /url: /
+        - link "About" [ref=e15] [cursor=pointer]:
+          - /url: /#about
+        - link "Themes" [ref=e16] [cursor=pointer]:
+          - /url: /#themes
+        - link "Timeline" [ref=e17] [cursor=pointer]:
+          - /url: /#timeline
+        - link "Rules" [ref=e18] [cursor=pointer]:
+          - /url: /rules
+        - link "FAQ" [ref=e19] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=e20] [cursor=pointer]:
+          - /url: /#contact
+        - button "FORM LINK SOON" [ref=e21]
+  - main [ref=e22]:
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e45]:
+              - img "Vijaya Vittala Institute of Technology logo" [ref=e47]
+              - generic [ref=e49]: Vijaya Vittala Institute of Technology
+            - heading "HACK-MATRIX 2026" [level=1] [ref=e50]:
+              - text: HACK-MATRIX
+              - generic [ref=e51]: "2026"
+            - paragraph [ref=e52]:
+              - generic [ref=e53]:
+                - text: BUILD
+                - generic [aria-hidden] [ref=e54]: /
+              - generic [ref=e55]:
+                - text: SOLVE
+                - generic [aria-hidden] [ref=e56]: /
+              - generic [ref=e57]:
+                - text: INNOVATE
+                - generic [aria-hidden] [ref=e58]: /
+            - paragraph [ref=e59]: An intense 8-hour build-from-zero hackathon where teams receive the problem statement at the start of the event and turn ideas into working solutions.
+            - generic [ref=e60]:
+              - button "FORM LINK SOON" [ref=e61]
+              - button "VIEW DETAILS" [ref=e62]
+            - list [ref=e66]:
+              - listitem [ref=e67]:
+                - generic [ref=e68]: 8 HOURS
+                - generic [ref=e69]: build from zero
+              - listitem [ref=e70]:
+                - generic [ref=e71]: INTER-COLLEGIATE
+                - generic [ref=e72]: open to all colleges
+              - listitem [ref=e73]:
+                - generic [ref=e74]: BENGALURU
+                - generic [ref=e75]: on-campus event
+              - listitem [ref=e76]:
+                - generic [ref=e77]: TEAM 4
+                - generic [ref=e78]: 2 – 4 members per team
+          - generic [ref=e83]:
+            - generic [ref=e88]:
+              - paragraph [ref=e89]: EVENT STARTS IN
+              - generic [ref=e91]:
+                - generic [ref=e92]:
+                  - generic [ref=e93]: "20"
+                  - generic [ref=e96]: days
+                - generic [aria-hidden] [ref=e97]: ":"
+                - generic [ref=e98]:
+                  - generic [ref=e99]: "17"
+                  - generic [ref=e102]: hours
+                - generic [aria-hidden] [ref=e103]: ":"
+                - generic [ref=e104]:
+                  - generic [ref=e105]: "02"
+                  - generic [ref=e108]: minutes
+                - generic [aria-hidden] [ref=e109]: ":"
+                - generic [ref=e110]:
+                  - generic [ref=e111]: "51"
+                  - generic [ref=e114]: seconds
+              - paragraph [ref=e115]: Check-in opens at 09:00 IST · times may be fine-tuned by the organizing team
+            - generic [ref=e116]:
+              - paragraph [ref=e117]: 15 October 2026 Â· 09:00 â€“ 19:00 IST
+              - paragraph [ref=e118]: Vijaya Vittala Institute of Technology
+              - paragraph [ref=e119]: Offline + Hybrid Â· ₹399 per team
+        - link "Scroll to details" [ref=e121] [cursor=pointer]:
+          - /url: "#about"
+      - generic [aria-hidden] [ref=e124]:
+        - paragraph [ref=e125]: HACK-MATRIX 2026 â€” BUILD. SOLVE. INNOVATE.. 8 Hours,Bengaluru.
+        - generic [ref=e126]:
+          - generic [ref=e127]:
+            - generic [ref=e128]:
+              - generic [ref=e129]: BUILD
+              - generic [aria-hidden] [ref=e130]: â—†
+            - generic [ref=e131]:
+              - generic [ref=e132]: SOLVE
+              - generic [aria-hidden] [ref=e133]: â—†
+            - generic [ref=e134]:
+              - generic [ref=e135]: INNOVATE
+              - generic [aria-hidden] [ref=e136]: â—†
+            - generic [ref=e137]:
+              - generic [ref=e138]: 8 HOURS SPRINT
+              - generic [aria-hidden] [ref=e139]: â—†
+            - generic [ref=e140]:
+              - generic [ref=e141]: HACK-MATRIX 2026
+              - generic [aria-hidden] [ref=e142]: â—†
+            - generic [ref=e143]:
+              - generic [ref=e144]: VIJAYA VITTALA INSTITUTE OF TECHNOLOGY BENGALURU
+              - generic [aria-hidden] [ref=e145]: â—†
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - generic [ref=e148]: BUILD
+              - generic [aria-hidden] [ref=e149]: â—†
+            - generic [ref=e150]:
+              - generic [ref=e151]: SOLVE
+              - generic [aria-hidden] [ref=e152]: â—†
+            - generic [ref=e153]:
+              - generic [ref=e154]: INNOVATE
+              - generic [aria-hidden] [ref=e155]: â—†
+            - generic [ref=e156]:
+              - generic [ref=e157]: 8 HOURS SPRINT
+              - generic [aria-hidden] [ref=e158]: â—†
+            - generic [ref=e159]:
+              - generic [ref=e160]: HACK-MATRIX 2026
+              - generic [aria-hidden] [ref=e161]: â—†
+            - generic [ref=e162]:
+              - generic [ref=e163]: VIJAYA VITTALA INSTITUTE OF TECHNOLOGY BENGALURU
+              - generic [aria-hidden] [ref=e164]: â—†
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - paragraph [ref=e168]: Event Overview
+          - heading "Everything you need to know" [level=2] [ref=e171]
+          - paragraph [ref=e173]: The essential details at a glance â€” all controlled from the central configuration.
+        - list [ref=e174]:
+          - listitem [ref=e175]:
+            - generic [ref=e177]:
+              - paragraph [ref=e182]: Date
+              - paragraph [ref=e183]: 15 October 2026
+              - paragraph [ref=e184]: Mark your calendars
+          - listitem [ref=e185]:
+            - generic [ref=e187]:
+              - paragraph [ref=e193]: Time
+              - paragraph [ref=e194]: 09:00 â€“ 19:00
+              - paragraph [ref=e195]: IST timezone
+          - listitem [ref=e196]:
+            - generic [ref=e198]:
+              - paragraph [ref=e204]: Venue
+              - paragraph [ref=e205]: Vijaya Vittala Institute of Technology
+              - paragraph [ref=e206]: Bengaluru, Karnataka, India
+          - listitem [ref=e207]:
+            - generic [ref=e209]:
+              - paragraph [ref=e215]: Duration
+              - paragraph [ref=e216]: 8 Hours
+              - paragraph [ref=e217]: of pure build time
+          - listitem [ref=e218]:
+            - generic [ref=e220]:
+              - paragraph [ref=e229]: Format
+              - paragraph [ref=e230]: Offline + Hybrid
+              - paragraph [ref=e231]: on-campus Â· hybrid slots
+          - listitem [ref=e232]:
+            - generic [ref=e234]:
+              - paragraph [ref=e242]: Team Size
+              - paragraph [ref=e243]: 2 – 4 members per team
+              - paragraph [ref=e244]: leader + members
+          - listitem [ref=e245]:
+            - generic [ref=e247]:
+              - paragraph [ref=e253]: Registration Fee
+              - paragraph [ref=e254]: ₹399 per team
+              - paragraph [ref=e255]: payable via registration form
+      - generic [ref=e258]:
+        - generic [ref=e259]:
+          - generic [ref=e260]:
+            - paragraph [ref=e261]: About the Event
+            - heading "An 8-hour sprint from zero to shipped" [level=2] [ref=e262]
+          - paragraph [ref=e265]: HACK-MATRIX is an 8-hour innovation sprint where participants receive the challenge / problem statements at the beginning of the event. Teams must ideate, design, develop, deploy and present a working solution within the given time.
+          - paragraph [ref=e267]: No pre-built projects, no prepared pitches — everything starts from zero on event day. What matters is how fast your team can think, prototype and ship.
+          - generic [ref=e269]:
+            - generic [ref=e273]: HM
+            - generic [ref=e275]: 7 pillars guide the build Â· powered by VVIT Bengaluru
+        - generic [ref=e276]:
+          - generic [ref=e278]:
+            - paragraph [ref=e284]: "01"
+            - heading "Build from zero" [level=3] [ref=e285]
+            - paragraph [ref=e286]: Ideate, build and ship within the event window.
+          - generic [ref=e288]:
+            - paragraph [ref=e295]: "02"
+            - heading "Real-world problem solving" [level=3] [ref=e296]
+            - paragraph [ref=e297]: Tackle practical challenges that matter.
+          - generic [ref=e299]:
+            - paragraph [ref=e307]: "03"
+            - heading "Rapid prototyping" [level=3] [ref=e308]
+            - paragraph [ref=e309]: Turn an idea into a working demo — fast.
+          - generic [ref=e311]:
+            - paragraph [ref=e326]: "04"
+            - heading "AI & emerging tech" [level=3] [ref=e327]
+            - paragraph [ref=e328]: Experiment with the stacks that define tomorrow.
+          - generic [ref=e330]:
+            - paragraph [ref=e336]: "05"
+            - heading "Deployment" [level=3] [ref=e337]
+            - paragraph [ref=e338]: Ship something that actually runs and works.
+          - generic [ref=e340]:
+            - paragraph [ref=e346]: "06"
+            - heading "Final demonstration" [level=3] [ref=e347]
+            - paragraph [ref=e348]: Present your solution live to judges.
+          - generic [ref=e350]:
+            - paragraph [ref=e356]: "07"
+            - heading "Industry exposure" [level=3] [ref=e357]
+            - paragraph [ref=e358]: Interact with peers, mentors and reviewers.
+      - generic [ref=e360]:
+        - generic [ref=e361]:
+          - paragraph [ref=e362]: How it works
+          - heading "Seven steps from registration to results" [level=2] [ref=e365]
+          - paragraph [ref=e367]: A sharp, predictable journey â€” so your team can focus entirely on building.
+        - list [ref=e370]:
+          - listitem [ref=e371]:
+            - generic [aria-hidden] [ref=e372]: "01"
+            - generic [ref=e374]:
+              - paragraph [ref=e375]: Step 01
+              - heading "Register" [level=3] [ref=e376]
+              - paragraph [ref=e377]: Complete your team registration.
+          - listitem [ref=e378]:
+            - generic [aria-hidden] [ref=e379]: "02"
+            - generic [ref=e381]:
+              - paragraph [ref=e382]: Step 02
+              - heading "Check In" [level=3] [ref=e383]
+              - paragraph [ref=e384]: Arrive at the venue and complete verification.
+          - listitem [ref=e385]:
+            - generic [aria-hidden] [ref=e386]: "03"
+            - generic [ref=e388]:
+              - paragraph [ref=e389]: Step 03
+              - heading "Problem Reveal" [level=3] [ref=e390]
+              - paragraph [ref=e391]: Problem statements are released at the beginning of the event.
+          - listitem [ref=e392]:
+            - generic [aria-hidden] [ref=e393]: "04"
+            - generic [ref=e395]:
+              - paragraph [ref=e396]: Step 04
+              - heading "Build" [level=3] [ref=e397]
+              - paragraph [ref=e398]: Teams have 8 hours to build their solution.
+          - listitem [ref=e399]:
+            - generic [aria-hidden] [ref=e400]: "05"
+            - generic [ref=e402]:
+              - paragraph [ref=e403]: Step 05
+              - heading "Submit" [level=3] [ref=e404]
+              - paragraph [ref=e405]: Submit project, repository and required documentation before the deadline.
+          - listitem [ref=e406]:
+            - generic [aria-hidden] [ref=e407]: "06"
+            - generic [ref=e409]:
+              - paragraph [ref=e410]: Step 06
+              - heading "Demo" [level=3] [ref=e411]
+              - paragraph [ref=e412]: Shortlisted teams present their solutions to the judges.
+          - listitem [ref=e413]:
+            - generic [aria-hidden] [ref=e414]: "07"
+            - generic [ref=e416]:
+              - paragraph [ref=e417]: Step 07
+              - heading "Results" [level=3] [ref=e418]
+              - paragraph [ref=e419]: Winners are announced during the closing ceremony.
+      - generic [ref=e421]:
+        - generic [ref=e422]:
+          - paragraph [ref=e423]: Themes
+          - heading "Choose your battlefield" [level=2] [ref=e426]
+          - paragraph [ref=e428]: Problem statements fall across these domains. Final problem statements will be revealed at the beginning of the hackathon.
+        - list [ref=e429]:
+          - listitem [ref=e430]:
+            - generic [ref=e432]:
+              - heading "Artificial Intelligence" [level=3] [ref=e443]
+              - paragraph [ref=e444]: Intelligent systems, reasoning, agents and generative AI.
+          - listitem [ref=e445]:
+            - generic [ref=e447]:
+              - heading "Machine Learning" [level=3] [ref=e452]
+              - paragraph [ref=e453]: Models, predictions and data-driven decision making.
+          - listitem [ref=e454]:
+            - generic [ref=e456]:
+              - heading "Data Science" [level=3] [ref=e463]
+              - paragraph [ref=e464]: Extracting insight from data and building analytics tools.
+          - listitem [ref=e465]:
+            - generic [ref=e467]:
+              - heading "Web & Full-Stack" [level=3] [ref=e473]
+              - paragraph [ref=e474]: Modern applications, APIs and complete product builds.
+          - listitem [ref=e475]:
+            - generic [ref=e477]:
+              - heading "Automation" [level=3] [ref=e482]
+              - paragraph [ref=e483]: Tools and bots that reduce human effort and error.
+          - listitem [ref=e484]:
+            - generic [ref=e486]:
+              - heading "Cybersecurity" [level=3] [ref=e492]
+              - paragraph [ref=e493]: Protecting systems, data and privacy in a connected world.
+          - listitem [ref=e494]:
+            - generic [ref=e496]:
+              - heading "Cloud & DevOps" [level=3] [ref=e501]
+              - paragraph [ref=e502]: Infrastructure, deployment, scaling and reliability.
+          - listitem [ref=e503]:
+            - generic [ref=e505]:
+              - heading "Social Impact" [level=3] [ref=e510]
+              - paragraph [ref=e511]: Technology that solves problems for communities.
+          - listitem [ref=e512]:
+            - generic [ref=e514]:
+              - heading "Open Innovation" [level=3] [ref=e520]
+              - paragraph [ref=e521]: Anything bold, novel and unexpected — build it.
+        - paragraph [ref=e526]:
+          - strong [ref=e527]: "Heads up:"
+          - text: Final problem statements will be revealed at the beginning of the hackathon. Themes shown here are categories to guide preparation — not the final specifications.
+      - generic [ref=e529]:
+        - generic [ref=e530]:
+          - paragraph [ref=e531]: Eligibility
+          - heading "Who can participate?" [level=2] [ref=e534]
+          - paragraph [ref=e536]: If you study tech â€” or just love building â€” you belong here.
+        - list [ref=e537]:
+          - listitem [ref=e538]:
+            - generic [ref=e544]:
+              - paragraph [ref=e545]: Engineering students
+              - paragraph [ref=e546]: All branches — B.E. / B.Tech
+          - listitem [ref=e547]:
+            - generic [ref=e553]:
+              - paragraph [ref=e554]: Computer Science
+              - paragraph [ref=e555]: CSE / ISE / AI & DS / ML
+          - listitem [ref=e556]:
+            - generic [ref=e562]:
+              - paragraph [ref=e563]: AI / ML students
+              - paragraph [ref=e564]: Core & applied AI programs
+          - listitem [ref=e565]:
+            - generic [ref=e571]:
+              - paragraph [ref=e572]: Data Science students
+              - paragraph [ref=e573]: Analytics, engineering & statistics
+          - listitem [ref=e574]:
+            - generic [ref=e580]:
+              - paragraph [ref=e581]: Electronics & other disciplines
+              - paragraph [ref=e582]: ECE, EEE, mechanical, civil…
+          - listitem [ref=e583]:
+            - generic [ref=e589]:
+              - paragraph [ref=e590]: Anyone passionate about tech & innovation
+              - paragraph [ref=e591]: Interest matters more than the degree
+        - paragraph [ref=e593]: Configurable — entry criteria, year bands and any college restrictions are controlled by the organizing team.
+      - generic [ref=e598]:
+        - generic [ref=e599]:
+          - paragraph [ref=e601]: Registration open
+          - heading "Ready to ship something extraordinary?" [level=2] [ref=e604]
+          - paragraph [ref=e606]: ₹399 per team Â· teams of 2â€“4. Registering takes about 5 minutes â€” the form opens in a new tab.
+          - generic [ref=e608]:
+            - button "FORM LINK SOON" [ref=e609]
+            - link "Registration guide" [ref=e610] [cursor=pointer]:
+              - /url: /register
+          - generic [ref=e615]:
+            - generic [ref=e616]: "Deadline: To be announced"
+            - generic [ref=e619]: 2 – 4 members per team
+            - generic [ref=e625]: Questions? Email the organizing team
+        - generic [ref=e630]:
+          - heading "How registration works" [level=3] [ref=e631]
+          - list [ref=e632]:
+            - listitem [ref=e633]:
+              - generic [ref=e638]:
+                - paragraph [ref=e639]: 1 Â· Fill the registration form
+                - paragraph [ref=e640]: Complete all team + member details in the official form.
+            - listitem [ref=e641]:
+              - generic [ref=e646]:
+                - paragraph [ref=e647]: 2 Â· Complete the fee payment
+                - paragraph [ref=e648]: ₹399 per team Â· instructions inside the form.
+            - listitem [ref=e649]:
+              - generic [ref=e653]:
+                - paragraph [ref=e654]: 3 Â· Get confirmed
+                - paragraph [ref=e655]: Receive your confirmation with check-in details before event day.
+          - generic [ref=e656]:
+            - paragraph [ref=e657]: Event snapshot
+            - paragraph [ref=e658]: HACK-MATRIX 2026 Â· 15 October 2026 Â· 09:00â€“19:00 IST
+            - paragraph [ref=e659]: Vijaya Vittala Institute of Technology
+            - paragraph [ref=e660]: Offline + Hybrid Â· ₹399 per team
+      - generic [ref=e662]:
+        - generic [ref=e663]:
+          - paragraph [ref=e664]: Partners & Sponsors
+          - heading "Backed by great partners" [level=2] [ref=e667]
+          - paragraph [ref=e669]: We're partnering with organizations that believe in student innovation.
+        - generic [ref=e672]:
+          - paragraph [ref=e679]: PARTNERS WILL BE ANNOUNCED SOON
+          - paragraph [ref=e680]: Category slots are reserved below â€” official logos and details will appear here as partnerships are finalized.
+        - list [ref=e682]:
+          - listitem [ref=e683]:
+            - generic [ref=e685]: Title Partner
+          - listitem [ref=e686]:
+            - generic [ref=e688]: Technology Partner
+          - listitem [ref=e689]:
+            - generic [ref=e691]: AI Partner
+          - listitem [ref=e692]:
+            - generic [ref=e694]: Cloud Partner
+          - listitem [ref=e695]:
+            - generic [ref=e697]: Developer Partner
+          - listitem [ref=e698]:
+            - generic [ref=e700]: Community Partner
+      - generic [ref=e702]:
+        - generic [ref=e703]:
+          - paragraph [ref=e704]: Prizes
+          - heading "What's worth building for" [level=2] [ref=e707]
+          - paragraph [ref=e709]: Rewards for the best builds across the day.
+        - generic [ref=e712]:
+          - paragraph [ref=e720]: PRIZES & SPECIAL AWARDS — TO BE ANNOUNCED
+          - paragraph [ref=e721]: Prize tiers are being finalized. When announced, categories like the ones below will light up â€” keep an eye on our social channels.
+        - list [ref=e723]:
+          - listitem [ref=e724]:
+            - generic [ref=e729]: Winner
+          - listitem [ref=e730]:
+            - generic [ref=e735]: Runner Up
+          - listitem [ref=e736]:
+            - generic [ref=e741]: Best AI Solution
+          - listitem [ref=e742]:
+            - generic [ref=e747]: Best Use of APIs
+          - listitem [ref=e748]:
+            - generic [ref=e753]: Best Automation
+          - listitem [ref=e754]:
+            - generic [ref=e759]: Best Cloud Deployment
+          - listitem [ref=e760]:
+            - generic [ref=e765]: Special Jury Award
+      - generic [ref=e767]:
+        - generic [ref=e768]:
+          - paragraph [ref=e769]: Event Timeline
+          - heading "The day, hour by hour" [level=2] [ref=e772]
+          - paragraph [ref=e774]: Key milestones planned around the event. Fine-tuned timing is published closer to the day.
+        - list [ref=e775]:
+          - listitem [ref=e776]:
+            - generic [ref=e778]:
+              - paragraph [ref=e781]: Registration Opens
+              - paragraph [ref=e782]: To be announced
+              - generic [ref=e783]: TBA
+          - listitem [ref=e784]:
+            - generic [ref=e786]:
+              - paragraph [ref=e789]: Registration Closes
+              - paragraph [ref=e790]: To be announced
+              - generic [ref=e791]: TBA
+          - listitem [ref=e792]:
+            - generic [ref=e794]:
+              - paragraph [ref=e797]: Event Day
+              - paragraph [ref=e798]: 15 October 2026
+          - listitem [ref=e799]:
+            - generic [ref=e801]:
+              - paragraph [ref=e804]: Problem Statement Reveal
+              - paragraph [ref=e805]: At event start · 09:00 IST
+          - listitem [ref=e806]:
+            - generic [ref=e808]:
+              - paragraph [ref=e811]: Submission Deadline
+              - paragraph [ref=e812]: Announced at the event
+              - generic [ref=e813]: TBA
+          - listitem [ref=e814]:
+            - generic [ref=e816]:
+              - paragraph [ref=e819]: Final Presentations
+              - paragraph [ref=e820]: Announced at the event
+              - generic [ref=e821]: TBA
+          - listitem [ref=e822]:
+            - generic [ref=e824]:
+              - paragraph [ref=e827]: Results & Closing
+              - paragraph [ref=e828]: Announced at the event
+              - generic [ref=e829]: TBA
+        - paragraph [ref=e831]: All times in IST Â· [TBA] slots are confirmed by the organizing team
+      - generic [ref=e835]:
+        - generic [ref=e836]:
+          - paragraph [ref=e837]: Rules
+          - heading "Built to be fair" [level=2] [ref=e840]
+          - paragraph [ref=e842]: Ground rules at a glance â€” the complete list is one click away.
+        - list [ref=e843]:
+          - listitem [ref=e844]:
+            - generic [ref=e851]:
+              - paragraph [ref=e852]: Eligibility
+              - paragraph [ref=e853]: "Open to currently enrolled college students. Team members must provide valid institutional email / college details. [Organizers: finalize eligible colleges & year bands]"
+          - listitem [ref=e854]:
+            - generic [ref=e861]:
+              - paragraph [ref=e862]: Team size
+              - paragraph [ref=e863]: Teams of 2–4 members. Each participant may be part of only one team.
+          - listitem [ref=e864]:
+            - generic [ref=e871]:
+              - paragraph [ref=e872]: Originality
+              - paragraph [ref=e873]: All work must be original and created during the event. Pre-built or submitted-elsewhere projects are not permitted.
+          - listitem [ref=e874]:
+            - generic [ref=e881]:
+              - paragraph [ref=e882]: AI usage
+              - paragraph [ref=e883]: "AI-assisted development is permitted and encouraged — but the understanding of your solution must be demonstrated during evaluation. [Organizers: finalize AI-tool policy]"
+        - generic [ref=e885]:
+          - link "VIEW FULL RULES" [ref=e886] [cursor=pointer]:
+            - /url: /rules
+          - paragraph [ref=e887]: All rules are configurable â€” the organizing team finalizes them before registration closes.
+      - generic [ref=e889]:
+        - generic [ref=e890]:
+          - paragraph [ref=e891]: FAQ
+          - heading "Frequently asked questions" [level=2] [ref=e894]
+          - paragraph [ref=e896]: Everything teams usually ask — answered before you need to ask.
+        - generic [ref=e898]:
+          - generic [ref=e899]:
+            - heading [level=3] [ref=e900]:
+              - button "What is HACK-MATRIX?" [expanded] [ref=e901]
+            - region "What is HACK-MATRIX?" [ref=e906]:
+              - paragraph [ref=e907]: HACK-MATRIX is an 8-hour inter-collegiate hackathon at VVIT, Bengaluru, where teams receive the problem statement at the start and build a working solution within the event window.
+          - heading [level=3] [ref=e909]:
+            - button "Who can participate?" [ref=e910]
+          - heading [level=3] [ref=e916]:
+            - button "How many members can be in a team?" [ref=e917]
+          - heading [level=3] [ref=e923]:
+            - button "Is the event online or offline?" [ref=e924]
+          - heading [level=3] [ref=e930]:
+            - button "What should participants bring?" [ref=e931]
+          - heading [level=3] [ref=e937]:
+            - button "Will the problem statement be provided beforehand?" [ref=e938]
+          - heading [level=3] [ref=e944]:
+            - button "Can we use AI tools?" [ref=e945]
+          - heading [level=3] [ref=e951]:
+            - button "Can we use external APIs?" [ref=e952]
+          - heading [level=3] [ref=e958]:
+            - button "Is GitHub required?" [ref=e959]
+          - heading [level=3] [ref=e965]:
+            - button "What happens after registration?" [ref=e966]
+          - heading [level=3] [ref=e972]:
+            - button "Is food provided?" [ref=e973]
+          - heading [level=3] [ref=e979]:
+            - button "Are certificates provided?" [ref=e980]
+          - heading [level=3] [ref=e986]:
+            - button "What are the judging criteria?" [ref=e987]
+          - heading [level=3] [ref=e993]:
+            - button "How will teams submit their projects?" [ref=e994]
+        - generic [ref=e1000]:
+          - paragraph [ref=e1001]:
+            - text: Still have questions? Email the organizing team —
+            - link "hackmatrix@vvit.edu.in" [ref=e1002] [cursor=pointer]:
+              - /url: mailto:hackmatrix@vvit.edu.in
+          - link "Open the full FAQ page" [ref=e1003] [cursor=pointer]:
+            - /url: /faq
+      - generic [ref=e1007]:
+        - generic [ref=e1008]:
+          - generic [ref=e1009]:
+            - generic [ref=e1010]:
+              - paragraph [ref=e1011]: Contact
+              - heading "Talk to the organizing team" [level=2] [ref=e1012]
+            - generic [ref=e1014]:
+              - link "Email hackmatrix@vvit.edu.in" [ref=e1016] [cursor=pointer]:
+                - /url: mailto:hackmatrix@vvit.edu.in
+                - generic [ref=e1021]:
+                  - generic [ref=e1022]: Email
+                  - generic [ref=e1023]: hackmatrix@vvit.edu.in
+              - link "Phone +91 XXXXX XXXXX" [ref=e1025] [cursor=pointer]:
+                - /url: tel:+91
+                - generic [ref=e1029]:
+                  - generic [ref=e1030]: Phone
+                  - generic [ref=e1031]: +91 XXXXX XXXXX
+              - generic [ref=e1038]:
+                - generic [ref=e1039]: Venue
+                - generic [ref=e1040]: Vijaya Vittala Institute of Technology
+                - generic [ref=e1041]: Bengaluru, Karnataka, India
+              - generic [ref=e1043]:
+                - link "Instagram" [ref=e1044] [cursor=pointer]:
+                  - /url: https://instagram.com/vvithackmatrix
+                - link "LinkedIn" [ref=e1047] [cursor=pointer]:
+                  - /url: https://linkedin.com/in/vvit-bengaluru
+              - link "View on Google Maps" [ref=e1051] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=Vijaya%20Vittala%20Institute%20of%20Technology%20Bengaluru
+          - generic [ref=e1056]:
+            - heading "Send a message" [level=3] [ref=e1057]
+            - paragraph [ref=e1058]: Your email app opens with everything pre-filled â€” just hit send.
+            - generic [ref=e1059]:
+              - generic [ref=e1060]:
+                - generic [ref=e1061]:
+                  - generic [ref=e1062]: Name
+                  - textbox "Name" [ref=e1063]:
+                    - /placeholder: Your full name
+                - generic [ref=e1064]:
+                  - generic [ref=e1065]: Email
+                  - textbox "Email" [ref=e1066]:
+                    - /placeholder: you@example.com
+              - generic [ref=e1067]:
+                - generic [ref=e1068]: Phone (optional)
+                - textbox "Phone (optional)" [ref=e1069]:
+                  - /placeholder: +91 â€¦
+              - generic [ref=e1070]:
+                - generic [ref=e1071]: Subject
+                - textbox "Subject" [ref=e1072]: HACK-MATRIX 2026 enquiry
+              - generic [ref=e1073]:
+                - generic [ref=e1074]: Message
+                - textbox "Message" [ref=e1075]:
+                  - /placeholder: Tell us how we can helpâ€¦
+              - button "Send message" [ref=e1076]
+              - paragraph [ref=e1080]: Opens your email app â€” no data is stored.
+        - iframe [ref=e1083]
+  - contentinfo [ref=e1084]:
+    - generic [ref=e1085]:
+      - generic [ref=e1086]:
+        - generic [ref=e1087]:
+          - generic [ref=e1088]:
+            - img "Vijaya Vittala Institute of Technology logo" [ref=e1089]
+            - generic [ref=e1090]:
+              - generic [ref=e1091]: HACK-MATRIX
+              - generic [ref=e1092]: 2026 Â· 8 Hour Inter Collegiate Hackathon
+          - paragraph [ref=e1093]: 8-Hour Inter-Collegiate Hackathon at Vijaya Vittala Institute of Technology, Bengaluru. BUILD. SOLVE. INNOVATE..
+          - generic [ref=e1094]:
+            - generic [ref=e1095]: 15 October 2026
+            - generic [ref=e1098]: Vijaya Vittala Institute of Technology
+        - navigation "Footer quick links" [ref=e1102]:
+          - heading "Quick Links" [level=3] [ref=e1103]
+          - list [ref=e1104]:
+            - listitem [ref=e1105]:
+              - link "Home" [ref=e1106] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e1110]:
+              - link "About" [ref=e1111] [cursor=pointer]:
+                - /url: /#about
+            - listitem [ref=e1112]:
+              - link "Themes" [ref=e1113] [cursor=pointer]:
+                - /url: /#themes
+            - listitem [ref=e1114]:
+              - link "Timeline" [ref=e1115] [cursor=pointer]:
+                - /url: /#timeline
+            - listitem [ref=e1116]:
+              - link "Rules" [ref=e1117] [cursor=pointer]:
+                - /url: /rules
+            - listitem [ref=e1121]:
+              - link "FAQ" [ref=e1122] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e1126]:
+              - link "Register" [ref=e1127] [cursor=pointer]:
+                - /url: /register
+            - listitem [ref=e1131]:
+              - link "Contact" [ref=e1132] [cursor=pointer]:
+                - /url: /#contact
+        - generic [ref=e1133]:
+          - heading "Get in touch" [level=3] [ref=e1134]
+          - list [ref=e1135]:
+            - listitem [ref=e1136]:
+              - link "hackmatrix@vvit.edu.in" [ref=e1137] [cursor=pointer]:
+                - /url: mailto:hackmatrix@vvit.edu.in
+            - listitem [ref=e1141]:
+              - link "+91 XXXXX XXXXX" [ref=e1142] [cursor=pointer]:
+                - /url: tel:+91
+            - listitem [ref=e1145]: Bengaluru, Karnataka, India
+          - generic [ref=e1149]:
+            - link "Instagram" [ref=e1150] [cursor=pointer]:
+              - /url: https://instagram.com/vvithackmatrix
+            - link "LinkedIn" [ref=e1153] [cursor=pointer]:
+              - /url: https://linkedin.com/in/vvit-bengaluru
+      - generic [ref=e1156]:
+        - paragraph [ref=e1157]: Â© 2026 HACK-MATRIX. All rights reserved.
+        - paragraph [ref=e1158]: HACK-MATRIX 2026 Â· 2 – 4 members per team
+```

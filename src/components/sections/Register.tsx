@@ -1,4 +1,4 @@
-import {
+﻿import {
   ArrowUpRight,
   CalendarDays,
   ClipboardList,
@@ -21,17 +21,17 @@ import { Link } from "react-router-dom";
 const steps = [
   {
     icon: ClipboardList,
-    title: "1 · Fill the registration form",
+    title: "1 Â· Fill the registration form",
     desc: "Complete all team + member details in the official form.",
   },
   {
     icon: Wallet,
-    title: "2 · Complete the fee payment",
-    desc: `${registration.fee} ${registration.feePer} · instructions inside the form.`,
+    title: "2 Â· Complete the fee payment",
+    desc: `${registration.fee} ${registration.feePer} Â· instructions inside the form.`,
   },
   {
     icon: Ticket,
-    title: "3 · Get confirmed",
+    title: "3 Â· Get confirmed",
     desc: "Receive your confirmation with check-in details before event day.",
   },
 ];
@@ -69,10 +69,10 @@ export function Register() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="mt-4 max-w-lg text-base leading-relaxed text-white/65">
-                  {registration.fee} {registration.feePer} · teams of{" "}
-                  {registration.teamSize.min}–
+                  {registration.fee} {registration.feePer} Â· teams of{" "}
+                  {registration.teamSize.min}â€“
                   {registration.teamSize.max}. Registering takes about 5 minutes
-                  — the form opens in a new tab.
+                  â€” the form opens in a new tab.
                 </p>
               </Reveal>
 
@@ -133,17 +133,17 @@ export function Register() {
                 </ol>
 
                 <div className="mt-8 rounded-xl border border-white/5 bg-white/[0.02] p-4">
-                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                     Event snapshot
                   </p>
                   <p className="mt-2 text-sm text-white/65">
-                    {event.name} {event.edition} · {scheduleDates.dateLabel} ·{" "}
-                    {scheduleDates.startTime}–{scheduleDates.endTime}{" "}
+                    {event.name} {event.edition} Â· {scheduleDates.dateLabel} Â·{" "}
+                    {scheduleDates.startTime}â€“{scheduleDates.endTime}{" "}
                     {scheduleDates.timeZone}
                   </p>
-                  <p className="mt-1 text-sm text-white/50">{venue.name}</p>
-                  <p className="mt-1 text-sm text-white/50">
-                    {scheduleDates.format} · {registration.fee} {registration.feePer}
+                  <p className="mt-1 text-sm text-white/60">{venue.name}</p>
+                  <p className="mt-1 text-sm text-white/60">
+                    {scheduleDates.format} Â· {registration.fee} {registration.feePer}
                   </p>
                 </div>
               </div>

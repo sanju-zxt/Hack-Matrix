@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+﻿import { Check } from "lucide-react";
 import { eligibility } from "../../data/eventConfig";
 import { Container, Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
@@ -11,7 +11,7 @@ export function Eligibility() {
         <SectionHeading
           eyebrow="Eligibility"
           title={eligibility.title}
-          description="If you study tech — or just love building — you belong here."
+          description="If you study tech â€” or just love building â€” you belong here."
         />
 
         <ul className="mx-auto grid max-w-4xl gap-3 sm:grid-cols-2">
@@ -39,7 +39,7 @@ export function Eligibility() {
         </ul>
 
         <Reveal delay={0.15}>
-          <p className="mx-auto mt-8 max-w-2xl text-center font-mono text-xs uppercase tracking-[0.2em] text-white/35">
+          <p className="mx-auto mt-8 max-w-2xl text-center font-mono text-xs uppercase tracking-[0.2em] text-white/55">
             {eligibility.note}
           </p>
         </Reveal>

@@ -18,6 +18,12 @@
   --color-blue: #5b8cff;
   --color-blue-bright: #7ea6ff;
 
+  /* VVIT emblem-derived accents (dark green → olive) used sparingly */
+  --color-leaf: #2e9e5b;
+  --color-leaf-light: #62c987;
+  --color-olive: #c6c95f;
+  --color-emerald-deep: #0e4a2e;
+
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, sans-serif;
   --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui,
@@ -215,4 +221,101 @@ body.has-sticky-cta {
   body.has-sticky-cta {
     padding-bottom: 0;
   }
+}
+
+/* ── Brand visuals (emblem-inspired + own design) ────────────────────────── */
+
+/* green → olive gradient ring for logo chips (echoes the VVIT emblem) */
+.logo-ring {
+  box-shadow:
+    0 0 0 2px var(--color-ink-950),
+    0 0 0 4px var(--color-leaf),
+    0 0 12px rgba(46, 158, 91, 0.55);
+}
+
+/* thin gradient hairline used on top of cards/sections */
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 108, 255, 0.5),
+    rgba(46, 158, 91, 0.4),
+    transparent
+  );
+}
+
+/* spinning dashed emblem ring decoration (hero) */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 40s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow {
+    animation: none;
+  }
+}
+
+/* dotted data-planet ring (second decorative ring) */
+@keyframes spin-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.spin-rev {
+  animation: spin-rev 60s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin-rev {
+    animation: none;
+  }
+}
+
+/* marquee ticker */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-speed, 36s) linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* soft "sheen" sweep on card hover */
+.card-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.card-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+.card-sheen:hover::after {
+  transform: translateX(120%);
 }

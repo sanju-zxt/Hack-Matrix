@@ -1,4 +1,4 @@
-import { Gift, Trophy } from "lucide-react";
+﻿import { Gift, Trophy } from "lucide-react";
 import { prizes } from "../../data/eventConfig";
 import { Container, Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
@@ -28,7 +28,7 @@ export function Prizes() {
                 </p>
                 <p className="max-w-md text-sm leading-relaxed text-white/55">
                   Prize tiers are being finalized. When announced, categories
-                  like the ones below will light up — keep an eye on our social
+                  like the ones below will light up â€” keep an eye on our social
                   channels.
                 </p>
               </div>
@@ -44,7 +44,7 @@ export function Prizes() {
                   key={category}
                   className="glass flex items-center gap-2.5 rounded-2xl px-4 py-3.5 transition-colors duration-300 hover:border-violet/40"
                 >
-                  <Gift size={16} className="shrink-0 text-white/35" />
+                  <Gift size={16} className="shrink-0 text-white/55" />
                   <span className="text-sm text-white/60">{category}</span>
                 </li>
               ))}
@@ -65,7 +65,7 @@ export function Prizes() {
                   <p className="mt-4 font-display text-lg font-semibold text-white">
                     {category}
                   </p>
-                  <p className="mt-1 text-sm text-white/50">
+                  <p className="mt-1 text-sm text-white/60">
                     Details announced by the organizing team.
                   </p>
                 </div>

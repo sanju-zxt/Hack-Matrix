@@ -1,4 +1,4 @@
-import {
+﻿import {
   Blocks,
   BrainCircuit,
   Briefcase,
@@ -12,7 +12,6 @@ import { about, flags } from "../../data/eventConfig";
 import { Container, Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
-import { Logo } from "../ui/Logo";
 
 const pillarIcons: LucideIcon[] = [
   Blocks,
@@ -45,14 +44,26 @@ export function About() {
               </Reveal>
             ))}
             <Reveal delay={0.2}>
-              <div className="mt-6 flex items-center gap-4">
-                {flags.showLogo && (
-                  <span className="hidden shrink-0 sm:block">
-                    <Logo size={52} />
+              <div className="mt-8 flex items-center gap-5">
+                <span
+                  aria-hidden
+                  className="relative inline-flex h-20 w-20 shrink-0 items-center justify-center"
+                >
+                  <span className="spin-slow absolute inset-0 rounded-full border border-dashed border-violet/30" />
+                  <span className="spin-rev absolute inset-2 rounded-full border border-dotted border-leaf/40" />
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-violet/40 bg-ink-800 font-mono text-[0.7rem] font-semibold tracking-widest text-violet-bright">
+                    HM
                   </span>
-                )}
-                <span className="font-mono text-sm text-white/40">
-                  {about.pillars.length} pillars guide the build · more below
+                  <span className="absolute -right-0.5 top-2 h-2 w-2 rounded-full bg-leaf-light shadow-[0_0_8px_rgba(98,201,135,0.9)]" />
+                </span>
+                <span className="font-mono text-sm text-white/55">
+                  {about.pillars.length} pillars guide the build
+                  {flags.showLogo && (
+                    <>
+                      {" Â· "}
+                      <span className="text-white/60">powered by VVIT Bengaluru</span>
+                    </>
+                  )}
                 </span>
               </div>
             </Reveal>
@@ -64,12 +75,12 @@ export function About() {
               const Icon = pillarIcons[i % pillarIcons.length];
               return (
                 <Reveal key={pillar.title} delay={(i % 2) * 0.07} y={20}>
-                  <div className="glass group h-full rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40">
+                  <div className="glass card-sheen group h-full overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40">
                     <div className="flex items-center gap-3">
                       <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-violet/10 text-violet-bright transition-colors duration-300 group-hover:bg-violet/20">
                         <Icon size={19} strokeWidth={1.75} />
                       </span>
-                      <p className="font-mono text-xs text-white/35">
+                      <p className="font-mono text-xs text-white/55">
                         0{i + 1}
                       </p>
                     </div>

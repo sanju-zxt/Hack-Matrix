@@ -1,4 +1,4 @@
-import { howItWorks } from "../../data/eventConfig";
+﻿import { howItWorks } from "../../data/eventConfig";
 import { Container, Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
@@ -10,7 +10,7 @@ export function HowItWorks() {
         <SectionHeading
           eyebrow="How it works"
           title="Seven steps from registration to results"
-          description="A sharp, predictable journey — so your team can focus entirely on building."
+          description="A sharp, predictable journey â€” so your team can focus entirely on building."
         />
 
         <div className="relative mx-auto max-w-3xl">
@@ -39,8 +39,8 @@ export function HowItWorks() {
                       even ? "sm:mr-auto sm:text-right" : "sm:ml-auto"
                     }`}
                   >
-                    <div className="glass rounded-2xl p-5 transition-all duration-300 hover:border-violet/40">
-                      <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-white/40">
+                    <div className="glass card-sheen relative overflow-hidden rounded-2xl p-5 transition-all duration-300 hover:border-violet/40">
+                      <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-white/55">
                         Step {step.step}
                       </p>
                       <h3 className="mt-1.5 font-display text-lg font-semibold text-white">

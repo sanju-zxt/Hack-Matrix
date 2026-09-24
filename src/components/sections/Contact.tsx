@@ -1,4 +1,4 @@
-import { lazy, Suspense, type FormEvent } from "react";
+﻿import { lazy, Suspense, type FormEvent } from "react";
 import { ArrowUpRight, Mail, MapPin, Phone, Send } from "lucide-react";
 import { contact, event, venue } from "../../data/eventConfig";
 import { cn } from "../../lib/cn";
@@ -23,7 +23,7 @@ const socials = [
 ].filter((s) => s.show && s.href.length > 0);
 
 const inputClass =
-  "w-full rounded-xl border border-white/10 bg-ink-900/60 px-4 py-3 text-white placeholder:text-white/30 focus:border-violet/60 focus:outline-none";
+  "w-full rounded-xl border border-white/10 bg-ink-900/60 px-4 py-3 text-white placeholder:text-white/60 focus:border-violet/60 focus:outline-none";
 
 const defaultSubject = `${event.name} ${event.edition} enquiry`;
 
@@ -78,7 +78,7 @@ export function Contact() {
                     <Mail size={19} strokeWidth={1.75} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+                    <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                       Email
                     </span>
                     <span className="block truncate font-medium text-white transition-colors group-hover:text-violet-bright">
@@ -97,7 +97,7 @@ export function Contact() {
                     <Phone size={19} strokeWidth={1.75} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+                    <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                       Phone
                     </span>
                     <span className="block truncate font-medium text-white transition-colors group-hover:text-violet-bright">
@@ -113,13 +113,13 @@ export function Contact() {
                     <MapPin size={19} strokeWidth={1.75} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+                    <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                       Venue
                     </span>
                     <span className="block truncate font-medium text-white">
                       {venue.name}
                     </span>
-                    <span className="block truncate text-sm text-white/50">
+                    <span className="block truncate text-sm text-white/60">
                       {venue.addressLine1}
                     </span>
                   </span>
@@ -168,8 +168,8 @@ export function Contact() {
               <h3 className="font-display text-lg font-semibold text-white">
                 Send a message
               </h3>
-              <p className="mt-1 text-sm text-white/50">
-                Your email app opens with everything pre-filled — just hit send.
+              <p className="mt-1 text-sm text-white/60">
+                Your email app opens with everything pre-filled â€” just hit send.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -212,13 +212,13 @@ export function Contact() {
                     htmlFor="contact-phone"
                     className="mb-1.5 block text-sm font-medium text-white/70"
                   >
-                    Phone <span className="text-white/35">(optional)</span>
+                    Phone <span className="text-white/55">(optional)</span>
                   </label>
                   <input
                     id="contact-phone"
                     name="phone"
                     type="tel"
-                    placeholder="+91 …"
+                    placeholder="+91 â€¦"
                     className={inputClass}
                   />
                 </div>
@@ -250,7 +250,7 @@ export function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us how we can help…"
+                    placeholder="Tell us how we can helpâ€¦"
                     className={cn(inputClass, "resize-none")}
                   />
                 </div>
@@ -259,8 +259,8 @@ export function Contact() {
                   Send message
                   <Send size={17} />
                 </Button>
-                <p className="text-center font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/35">
-                  Opens your email app — no data is stored.
+                <p className="text-center font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/55">
+                  Opens your email app â€” no data is stored.
                 </p>
               </form>
             </div>
@@ -272,8 +272,8 @@ export function Contact() {
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/10">
             <Suspense
               fallback={
-                <div className="glass flex h-72 items-center justify-center text-sm text-white/50">
-                  Loading map…
+                <div className="glass flex h-72 items-center justify-center text-sm text-white/60">
+                  Loading mapâ€¦
                 </div>
               }
             >

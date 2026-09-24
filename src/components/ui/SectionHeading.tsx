@@ -44,6 +44,11 @@ export function SectionHeading({
       >
         {title}
       </h2>
+      <span
+        aria-hidden
+        className="mt-4 block h-0.5 w-16 rounded-full bg-gradient-to-r from-violet via-violet/60 to-leaf/60"
+        style={{ marginInline: align === "center" ? "auto" : undefined }}
+      />
       {description && (
         <p className="mt-4 text-base leading-relaxed text-white/60 sm:text-lg">
           {description}

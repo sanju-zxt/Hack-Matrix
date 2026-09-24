@@ -44,7 +44,7 @@ export function Themes() {
             return (
               <li key={theme.title}>
                 <Reveal delay={(i % 3) * 0.07} y={20}>
-                  <div className="glass group relative h-full overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40">
+                  <div className="glass card-sheen group relative h-full overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40">
                     <span
                       aria-hidden
                       className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-blue/5 blur-2xl transition-all duration-500 group-hover:bg-violet/15"

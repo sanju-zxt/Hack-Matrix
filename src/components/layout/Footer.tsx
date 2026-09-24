@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   CalendarDays,
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Quick links */}
           <nav aria-label="Footer quick links">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/40">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/55">
               Quick Links
             </h3>
             <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3">
@@ -95,7 +95,7 @@ export function Footer() {
 
           {/* Contact + social */}
           <div>
-            <h3 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/40">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/55">
               Get in touch
             </h3>
             <ul className="mt-5 space-y-3 text-sm text-white/70">
@@ -142,10 +142,10 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-white/5 pt-7 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} HACK-MATRIX. All rights reserved.</p>
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/5 pt-7 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+          <p>Â© {new Date().getFullYear()} HACK-MATRIX. All rights reserved.</p>
           <p className="font-mono tracking-wide">
-            {event.name} {event.edition} · {registration.teamSize.label}
+            {event.name} {event.edition} Â· {registration.teamSize.label}
           </p>
         </div>
       </Container>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import { countdown } from "../../data/eventConfig";
 import { cn } from "../../lib/cn";
 import { Reveal } from "./Reveal";
@@ -35,7 +35,7 @@ function Cell({ value, label }: { value: number; label: string }) {
         </span>
         <span aria-hidden className="absolute inset-x-0 top-1/2 h-px bg-white/5" />
       </div>
-      <span className="font-mono text-[0.6rem] uppercase tracking-[0.25em] text-white/50 sm:text-[0.65rem]">
+      <span className="font-mono text-[0.6rem] uppercase tracking-[0.25em] text-white/60 sm:text-[0.65rem]">
         {label}
       </span>
     </div>
@@ -72,14 +72,14 @@ export function Countdown({ className, size = "lg" }: { className?: string; size
   if (!countdown.enabled || Number.isNaN(target)) {
     return (
       <div className={className}>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/50">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/60">
           {countdown.label}
         </p>
         <div className="mt-4">
           <LivePulse label="Date to be confirmed" />
         </div>
         {countdown.note && (
-          <p className="mt-4 text-sm text-white/40">{countdown.note}</p>
+          <p className="mt-4 text-sm text-white/55">{countdown.note}</p>
         )}
       </div>
     );
@@ -88,14 +88,14 @@ export function Countdown({ className, size = "lg" }: { className?: string; size
   if (left.over) {
     return (
       <div className={className}>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/50">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/60">
           {countdown.label}
         </p>
         <div className="mt-4">
           <LivePulse label="Event is live" />
         </div>
         {countdown.note && (
-          <p className="mt-4 text-sm text-white/40">{countdown.note}</p>
+          <p className="mt-4 text-sm text-white/55">{countdown.note}</p>
         )}
       </div>
     );
@@ -107,7 +107,7 @@ export function Countdown({ className, size = "lg" }: { className?: string; size
     <div className={className}>
       <p
         className={cn(
-          "font-mono uppercase tracking-[0.3em] text-white/50",
+          "font-mono uppercase tracking-[0.3em] text-white/60",
           small ? "text-[0.65rem]" : "text-xs"
         )}
       >
@@ -131,7 +131,7 @@ export function Countdown({ className, size = "lg" }: { className?: string; size
               <span className="font-mono text-xl font-semibold tabular-nums text-white">
                 {String(v).padStart(2, "0")}
               </span>
-              <span className="font-mono text-[0.6rem] uppercase tracking-widest text-white/50">
+              <span className="font-mono text-[0.6rem] uppercase tracking-widest text-white/60">
                 {l}
               </span>
             </div>
@@ -158,7 +158,7 @@ export function Countdown({ className, size = "lg" }: { className?: string; size
       )}
 
       {countdown.note && (
-        <p className={cn("mt-5 max-w-lg text-white/40", small ? "text-xs" : "text-sm")}>
+        <p className={cn("mt-5 max-w-lg text-white/55", small ? "text-xs" : "text-sm")}>
           {countdown.note}
         </p>
       )}

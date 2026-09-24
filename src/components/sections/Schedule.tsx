@@ -1,4 +1,4 @@
-import { CalendarDays } from "lucide-react";
+﻿import { CalendarDays } from "lucide-react";
 import { schedule, scheduleDates } from "../../data/eventConfig";
 import { Container, Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
@@ -43,7 +43,7 @@ export function Schedule() {
                   </div>
                   <p
                     className={`text-right font-mono text-xs sm:text-sm ${
-                      item.highlight ? "text-violet-bright" : "text-white/50"
+                      item.highlight ? "text-violet-bright" : "text-white/60"
                     }`}
                   >
                     {item.value}
@@ -60,9 +60,9 @@ export function Schedule() {
         </ol>
 
         <Reveal delay={0.15}>
-          <p className="mx-auto mt-8 flex max-w-2xl items-center justify-center gap-2 text-center font-mono text-xs uppercase tracking-[0.2em] text-white/35">
+          <p className="mx-auto mt-8 flex max-w-2xl items-center justify-center gap-2 text-center font-mono text-xs uppercase tracking-[0.2em] text-white/55">
             <CalendarDays size={14} className="text-violet-bright" />
-            All times in {scheduleDates.timeZone} · [TBA] slots are confirmed by the
+            All times in {scheduleDates.timeZone} Â· [TBA] slots are confirmed by the
             organizing team
           </p>
         </Reveal>

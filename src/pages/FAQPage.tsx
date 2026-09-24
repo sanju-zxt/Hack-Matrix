@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+﻿import { ArrowRight } from "lucide-react";
 import { faqs } from "../data/eventConfig";
 import { usePageMeta } from "../lib/seo";
 import { Container } from "../components/ui/Section";
@@ -11,7 +11,7 @@ export default function FAQPage() {
   usePageMeta({
     title: "FAQ",
     description:
-      "Frequently asked questions about HACK-MATRIX 2026 — eligibility, teams, judging, submissions and more.",
+      "Frequently asked questions about HACK-MATRIX 2026 â€” eligibility, teams, judging, submissions and more.",
     canonicalPath: "/faq",
   });
 
@@ -33,7 +33,7 @@ export default function FAQPage() {
               className="absolute inset-0 bg-grid opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]"
             />
             <div className="relative">
-              <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/40">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                 Still unsure?
               </p>
               <h2 className="mt-3 font-display text-2xl font-semibold text-white sm:text-3xl">

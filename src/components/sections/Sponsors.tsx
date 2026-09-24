@@ -1,4 +1,4 @@
-import { Handshake, Plus } from "lucide-react";
+﻿import { Handshake, Plus } from "lucide-react";
 import { sponsors } from "../../data/eventConfig";
 import { Container, Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
@@ -27,7 +27,7 @@ export function Sponsors() {
                   {sponsors.notice}
                 </p>
                 <p className="max-w-md text-sm leading-relaxed text-white/55">
-                  Category slots are reserved below — official logos and details
+                  Category slots are reserved below â€” official logos and details
                   will appear here as partnerships are finalized.
                 </p>
               </div>
@@ -43,7 +43,7 @@ export function Sponsors() {
                   key={category}
                   className="glass flex min-h-[7.5rem] flex-col items-center justify-center gap-2 rounded-2xl border-dashed border-white/10 p-4 text-center transition-colors duration-300 hover:border-violet/40"
                 >
-                  <Plus size={18} className="text-white/30" />
+                  <Plus size={18} className="text-white/60" />
                   <span className="font-mono text-xs leading-snug text-white/55">
                     {category}
                   </span>
@@ -71,7 +71,7 @@ export function Sponsors() {
                     <p className="font-display font-semibold text-white">
                       {partner.name}
                     </p>
-                    <p className="font-mono text-xs uppercase tracking-widest text-white/45">
+                    <p className="font-mono text-xs uppercase tracking-widest text-white/60">
                       {partner.category}
                     </p>
                   </div>

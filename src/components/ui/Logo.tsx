@@ -1,13 +1,15 @@
-import { event, flags } from "../../data/eventConfig";
+﻿import { event, flags } from "../../data/eventConfig";
 import { cn } from "../../lib/cn";
 
 /** VVIT logo presented in a white circular chip (the emblem's native ground). */
 export function Logo({
   size = 40,
+  ring = false,
   className,
   imgClassName,
 }: {
   size?: number;
+  ring?: boolean;
   className?: string;
   imgClassName?: string;
 }) {
@@ -24,6 +26,7 @@ export function Logo({
       role="img"
       className={cn(
         "inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-white shadow-[0_0_0_1px_rgba(255,255,255,0.12),0_4px_20px_-4px_rgba(0,0,0,0.6)]",
+        ring && "logo-ring",
         className
       )}
       style={{ width: size, height: size }}
@@ -38,7 +41,7 @@ export function Logo({
   );
 }
 
-/** Wordmark + optional logo chip — used in navbar & footer. */
+/** Wordmark + optional logo chip â€” used in navbar & footer. */
 export function Brand({
   withLogo = true,
   logoSize = 38,
@@ -55,8 +58,8 @@ export function Brand({
         <span className="font-display text-lg font-bold leading-none tracking-wide text-white">
           HACK<span className="text-violet-bright">-MATRIX</span>
         </span>
-        <span className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-white/45">
-          {event.edition} · {event.subtitle.replace(/-/g, " ")}
+        <span className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-white/60">
+          {event.edition} Â· {event.subtitle.replace(/-/g, " ")}
         </span>
       </span>
     </span>

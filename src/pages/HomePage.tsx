@@ -1,5 +1,6 @@
-import { lazy, Suspense } from "react";
+﻿import { lazy, Suspense } from "react";
 import { Hero } from "../components/sections/Hero";
+import { Ticker } from "../components/sections/Ticker";
 import { usePageMeta } from "../lib/seo";
 
 const EventInformation = lazy(() =>
@@ -58,8 +59,8 @@ const Contact = lazy(() =>
 );
 
 const loading = (
-  <section className="py-24 text-center font-mono text-xs uppercase tracking-[0.3em] text-white/40">
-    Loading…
+  <section className="py-24 text-center font-mono text-xs uppercase tracking-[0.3em] text-white/55">
+    Loadingâ€¦
   </section>
 );
 
@@ -69,6 +70,7 @@ export default function HomePage() {
   return (
     <div>
       <Hero />
+      <Ticker />
       <Suspense fallback={loading}>
         <EventInformation />
         <About />
