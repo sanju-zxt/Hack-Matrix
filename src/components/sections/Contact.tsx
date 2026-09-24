@@ -58,7 +58,7 @@ export function Contact() {
   return (
     <Section id="contact">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           {/* Contact channels */}
           <div>
             <SectionHeading
@@ -173,7 +173,7 @@ export function Contact() {
               </p>
 
               <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label
                       htmlFor="contact-name"

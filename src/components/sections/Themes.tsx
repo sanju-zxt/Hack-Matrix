@@ -38,7 +38,7 @@ export function Themes() {
           description={`Problem statements fall across these domains. ${themesNote}`}
         />
 
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {themes.map((theme, i) => {
             const Icon = iconMap[theme.icon] ?? Sparkles;
             return (

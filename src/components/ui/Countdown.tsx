@@ -28,14 +28,14 @@ function calc(target: number): TimeLeft {
 function Cell({ value, label }: { value: number; label: string }) {
   const padded = String(value).padStart(2, "0");
   return (
-    <div className="flex flex-col items-center gap-1.5 sm:gap-2">
-      <div className="glass relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl sm:h-24 sm:w-24 sm:rounded-2xl">
-        <span className="font-mono text-2xl font-semibold tabular-nums text-white sm:text-4xl">
+    <div className="flex min-w-0 flex-col items-center gap-1.5 sm:gap-2">
+      <div className="glass relative flex h-14 w-14 max-w-full items-center justify-center overflow-hidden rounded-xl sm:h-24 sm:w-24 sm:rounded-2xl">
+        <span className="font-mono text-xl font-semibold tabular-nums text-white sm:text-4xl">
           {padded}
         </span>
         <span aria-hidden className="absolute inset-x-0 top-1/2 h-px bg-white/5" />
       </div>
-      <span className="font-mono text-[0.6rem] uppercase tracking-[0.25em] text-white/60 sm:text-[0.65rem]">
+      <span className="font-mono text-[0.55rem] uppercase tracking-[0.2em] text-white/60 sm:text-[0.65rem]">
         {label}
       </span>
     </div>
@@ -139,17 +139,17 @@ export function Countdown({ className, size = "lg" }: { className?: string; size
         </div>
       ) : (
         <Reveal delay={0.3} y={16}>
-          <div className="mt-6 flex items-center gap-3 sm:gap-5">
+          <div className="mt-6 flex items-center gap-2 sm:gap-5">
             <Cell value={left.days} label="days" />
-            <span aria-hidden className="font-mono text-2xl text-white/25 sm:text-3xl">
+            <span aria-hidden className="hidden font-mono text-2xl text-white/25 sm:inline sm:text-3xl">
               :
             </span>
             <Cell value={left.hours} label="hours" />
-            <span aria-hidden className="font-mono text-2xl text-white/25 sm:text-3xl">
+            <span aria-hidden className="hidden font-mono text-2xl text-white/25 sm:inline sm:text-3xl">
               :
             </span>
             <Cell value={left.minutes} label="minutes" />
-            <span aria-hidden className="font-mono text-2xl text-white/25 sm:text-3xl">
+            <span aria-hidden className="hidden font-mono text-2xl text-white/25 sm:inline sm:text-3xl">
               :
             </span>
             <Cell value={left.seconds} label="seconds" />

@@ -114,7 +114,7 @@ export default function RegisterPage() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Reveal delay={0.05}>
             <div className="glass h-full rounded-2xl p-6 sm:p-8">
               <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
@@ -182,7 +182,7 @@ export default function RegisterPage() {
               Three quick steps from sign-up to a confirmed slot.
             </p>
           </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {regSteps.map((step, i) => (
               <Reveal key={step.n} delay={i * 0.07}>
                 <div className="glass h-full rounded-2xl p-6">

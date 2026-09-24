@@ -17,7 +17,7 @@ export function Schedule() {
           description="Key milestones planned around the event. Fine-tuned timing is published closer to the day."
         />
 
-        <ol className="mx-auto grid max-w-3xl">
+        <ol className="mx-auto grid max-w-3xl grid-cols-1">
           {schedule.map((item, i) => (
             <li key={item.key} className="relative pb-3 last:pb-0">
               <Reveal delay={i * 0.03} y={14}>

@@ -114,12 +114,13 @@ export function Hero() {
         </div>
       )}
 
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.25fr_1fr] lg:gap-10">
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.25fr_1fr] lg:gap-10">
         {/* Left â€” copy */}
         <motion.div
           variants={container}
           initial={reduce ? undefined : "hidden"}
           animate="show"
+          className="min-w-0"
         >
           <motion.div variants={item} className="pb-5">
           <StatusPill />
@@ -201,9 +202,9 @@ export function Hero() {
           initial={reduce ? undefined : { opacity: 0, x: 28 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
-          className="flex flex-col items-center lg:items-end"
+          className="min-w-0 flex flex-col items-center lg:items-end"
         >
-          <div className="relative w-full max-w-md lg:max-w-none">
+          <div className="relative w-full max-w-md min-w-0 lg:max-w-none">
             {/* rotating emblem ornaments */}
             <span
               aria-hidden

@@ -27,7 +27,7 @@ export function About() {
   return (
     <Section id="about">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           {/* Sticky narrative column */}
           <div className="lg:sticky lg:top-32 lg:self-start">
             <SectionHeading

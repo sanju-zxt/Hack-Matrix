@@ -14,7 +14,7 @@ export function Eligibility() {
           description="If you study tech â€” or just love building â€” you belong here."
         />
 
-        <ul className="mx-auto grid max-w-4xl gap-3 sm:grid-cols-2">
+        <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2">
           {eligibility.groups.map((group, i) => (
             <li key={group.label}>
               <Reveal delay={(i % 2) * 0.07} y={16}>

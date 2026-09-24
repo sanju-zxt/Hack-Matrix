@@ -65,6 +65,20 @@ test.describe("layout & responsiveness", () => {
     await expect(page.getByRole("navigation", { name: "Main" })).toBeVisible();
     await expect(page.getByRole("link", { name: /REGISTER/i }).first()).toBeVisible();
   });
+
+  test.skip(({ isMobile }) => !isMobile, "hero countdown card fits on mobile");
+  test("hero countdown card never overflows the viewport on mobile", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.waitForTimeout(1200);
+    const width = await page.evaluate(() => ({
+      vw: document.documentElement.clientWidth,
+      card: document
+        .querySelector("main section .glass-strong.rounded-3xl")
+        ?.getBoundingClientRect().right ?? -1,
+    }));
+    expect(width.card).toBeGreaterThanOrEqual(0);
+    expect(width.card).toBeLessThanOrEqual(width.vw + 1);
+  });
 });
 
 test.describe("content & interactions", () => {

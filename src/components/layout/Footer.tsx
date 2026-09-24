@@ -44,7 +44,7 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/5 bg-ink-900/40">
       <Container className="pb-10 pt-16 sm:pt-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand */}
           <div>
             <Brand logoSize={44} />
