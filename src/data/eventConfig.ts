@@ -20,7 +20,61 @@ export const event = {
   city: "Bengaluru",
   heroDescription:
     "An intense 8-hour build-from-zero hackathon where teams receive the problem statement at the start of the event and turn ideas into working solutions.",
+  /**
+   * Live status windows (absolute IST timestamps). The status pill switches
+   * between REGISTRATIONS OPEN SOON → REGISTRATIONS OPEN → LIVE NOW → EVENT
+   * ENDED based on these gates.
+   */
+  date: "2026-10-15T09:00:00+05:30",
+  registrationsOpenAt: "2026-09-15T00:00:00+05:30",
+  liveAt: "2026-10-15T09:00:00+05:30",
+  endsAt: "2026-10-15T19:00:00+05:30",
 } as const;
+
+/* ── LIVE STATUS HELPER ───────────────────────────────────────────────────── */
+type EventKind = "soon" | "open" | "live" | "ended";
+
+export interface EventStatus {
+  kind: EventKind;
+  label: string;
+  detail: string;
+}
+
+const STATUS_GATES = {
+  opens: Date.parse(event.registrationsOpenAt),
+  live: Date.parse(event.liveAt),
+  ends: Date.parse(event.endsAt),
+} as const;
+
+export function getEventStatus(now: Date = new Date()): EventStatus {
+  const t = now.getTime();
+  if (t < STATUS_GATES.opens) {
+    return {
+      kind: "soon",
+      label: "REGISTRATIONS OPEN SOON",
+      detail: `Registrations open ${scheduleDates.dateLabel}`,
+    };
+  }
+  if (t < STATUS_GATES.live) {
+    return {
+      kind: "open",
+      label: "REGISTRATIONS OPEN",
+      detail: `Build day ${scheduleDates.dateLabel} · ${scheduleDates.startTime} ${scheduleDates.timeZone}`,
+    };
+  }
+  if (t < STATUS_GATES.ends) {
+    return {
+      kind: "live",
+      label: "LIVE NOW",
+      detail: `Live until ${scheduleDates.endTime} ${scheduleDates.timeZone} · ${scheduleDates.dateLabel}`,
+    };
+  }
+  return {
+    kind: "ended",
+    label: "EVENT ENDED",
+    detail: `Event concluded ${scheduleDates.dateLabel}`,
+  };
+}
 
 /* ── EVENT DATE & TIME ────────────────────────────────────────────────────── */
 export const scheduleDates = {

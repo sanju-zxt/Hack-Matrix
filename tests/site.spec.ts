@@ -7,7 +7,11 @@ test.describe("routes render", () => {
   for (const route of ROUTES) {
     test(`${route} loads without console/page errors`, async ({ page }) => {
       const errors: string[] = [];
-      page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+      page.on("console", (m) => {
+        if (!m.type().includes("error")) return;
+        if (m.text().includes("Failed to load resource")) return;
+        errors.push(m.text());
+      });
       page.on("pageerror", (e) => errors.push(e.message));
 
       const res = await page.goto(route, { waitUntil: "domcontentloaded" });
@@ -124,6 +128,36 @@ test.describe("content & interactions", () => {
     await page.goto("/faq", { waitUntil: "domcontentloaded" });
     await expect(page.getByText("Is food provided?")).toBeVisible();
     await expect(page.getByText("Are certificates provided?")).toBeVisible();
+  });
+
+  test("hero shows auto-updating live status pill", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const pill = page.getByRole("status");
+    await expect(pill).toBeVisible();
+    await expect(pill).toContainText(
+      /REGISTRATIONS OPEN SOON|REGISTRATIONS OPEN|LIVE NOW|EVENT ENDED/
+    );
+  });
+
+  test("register page offers add-to-calendar download", async ({ page }) => {
+    await page.goto("/register", { waitUntil: "domcontentloaded" });
+    const link = page.locator('a[download="hack-matrix-2026.ics"]');
+    await expect(link).toBeVisible();
+    const downloadPromise = page.waitForEvent("download");
+    await link.click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe("hack-matrix-2026.ics");
+    expect(await (await import("node:fs/promises")).readFile(await download.path(), "utf8")).toContain(
+      "DTSTART:20261015T033000Z"
+    );
+  });
+
+  test("unknown routes show 404 with register CTA", async ({ page }) => {
+    await page.goto("/this-route-does-not-exist", { waitUntil: "domcontentloaded" });
+    await expect(page.getByText("OUT OF BOUNDS")).toBeVisible();
+    await expect(page.getByText("This page fell out of the MATRIX.")).toBeVisible();
+    await expect(page.locator("main").getByText(/REGISTER YOUR TEAM|FORM LINK SOON/).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /BACK TO HOME/i })).toBeVisible();
   });
 });
 

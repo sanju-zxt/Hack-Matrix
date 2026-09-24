@@ -18,6 +18,7 @@ import {
 import { usePageMeta } from "../lib/seo";
 import { Container } from "../components/ui/Section";
 import { RegisterButton } from "../components/ui/Button";
+import { AddToCalendarButton } from "../components/ui/AddToCalendarButton";
 import { Reveal } from "../components/ui/Reveal";
 
 interface DetailRow {
@@ -99,6 +100,16 @@ export default function RegisterPage() {
               <p className="mt-4 text-sm text-white/60">
                 Opens the official registration form in a new tab.
               </p>
+              <div className="mt-8 border-t border-white/10 pt-6">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
+                  Mark the date
+                </p>
+                <AddToCalendarButton />
+                <p className="mt-3 text-xs text-white/50">
+                  Downloads an .ics file you can open in Google, Apple or Outlook
+                  Calendar.
+                </p>
+              </div>
             </div>
           </div>
         </Reveal>

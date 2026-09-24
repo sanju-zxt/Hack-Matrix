@@ -11,6 +11,7 @@ import {
 import { Button, RegisterButton } from "../ui/Button";
 import { Countdown } from "../ui/Countdown";
 import { Logo } from "../ui/Logo";
+import { StatusPill } from "../ui/StatusPill";
 
 interface Particle {
   left: string;
@@ -120,7 +121,11 @@ export function Hero() {
           initial={reduce ? undefined : "hidden"}
           animate="show"
         >
-          <motion.div variants={item} className="flex flex-wrap items-center gap-4">
+          <motion.div variants={item} className="pb-5">
+          <StatusPill />
+        </motion.div>
+
+        <motion.div variants={item} className="flex flex-wrap items-center gap-4">
             {flags.showLogo && (
               <span className="glass inline-flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4">
                 <span className="relative">
