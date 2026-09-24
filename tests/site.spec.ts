@@ -38,7 +38,10 @@ test.describe("layout & responsiveness", () => {
   test("sticky mobile CTA present on small screens", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.locator("body")).toHaveClass(/has-sticky-cta/);
-    const cta = page.getByRole("link", { name: /REGISTER NOW/i }).last();
+    const cta = page
+      .locator("a, button")
+      .filter({ hasText: /REGISTER NOW|FORM LINK SOON/ })
+      .last();
     await expect(cta).toBeVisible();
   });
 

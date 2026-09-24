@@ -58,7 +58,7 @@ export function Brand({
         <span className="font-display text-lg font-bold leading-none tracking-wide text-white">
           HACK<span className="text-violet-bright">-MATRIX</span>
         </span>
-        <span className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-white/60">
+        <span className="mt-1 hidden font-mono text-[0.6rem] uppercase tracking-[0.3em] text-white/60 sm:block">
           {event.edition} Â· {event.subtitle.replace(/-/g, " ")}
         </span>
       </span>
