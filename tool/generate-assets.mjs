@@ -1,4 +1,4 @@
-import { mkdir } from "node:fs/promises";
+import { access, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -6,7 +6,16 @@ import sharp from "sharp";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const outDir = path.join(root, "public");
-const logoPath = process.env.LOGO || "C:\\Users\\Sanju\\Projects\\vvitlogo.jpg";
+
+/* Default source is repo-relative, so `npm run generate:assets` works from any
+   cwd. LOGO overrides it and is resolved against the cwd, like every other CLI. */
+const logoOverride = (process.env.LOGO ?? "").trim();
+const logoPath = logoOverride
+  ? path.resolve(process.cwd(), logoOverride)
+  : path.join(root, "public", "vvitlogo.jpg");
+const logoOrigin = logoOverride
+  ? `LOGO override (relative to ${process.cwd()})`
+  : "public/vvitlogo.jpg";
 
 async function logWritten(file, label) {
   const meta = await sharp(file).metadata();
@@ -16,6 +25,16 @@ async function logWritten(file, label) {
 
 async function generate() {
   await mkdir(outDir, { recursive: true });
+  console.log(`source   ${logoPath}  [${logoOrigin}]`);
+  try {
+    await access(logoPath);
+  } catch {
+    throw new Error(
+      logoOverride
+        ? `Source logo not found at ${logoPath} (LOGO resolved against ${process.cwd()}). Point LOGO at an existing image, or unset it to use ${logoOrigin}.`
+        : `Source logo not found at ${logoPath}. Place the emblem at public/vvitlogo.jpg, or set LOGO to a local image path (relative to ${process.cwd()}).`
+    );
+  }
 
   /* 1) favicon.png — trimmed logo, 64x64 */
   const faviconPath = path.join(outDir, "favicon.png");

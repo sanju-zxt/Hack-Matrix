@@ -23,7 +23,7 @@ export default function NotFound() {
 
       <Container>
         <motion.div
-          className="relative mx-auto max-w-3xl text-center"
+          className="relative mx-auto w-full max-w-3xl min-w-0 text-center"
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
           animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -36,19 +36,28 @@ export default function NotFound() {
             404
           </p>
 
-          <h1 className="mt-6 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+          <h1 className="mt-6 break-words font-display text-3xl font-bold text-pretty text-white sm:text-4xl lg:text-5xl">
             This page fell out of the MATRIX.
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-white/60 sm:text-lg">
             But your seat at HACK-MATRIX 2026 hasn&apos;t been taken yet.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <RegisterButton size="lg" label="REGISTER YOUR TEAM" />
-            <Button to="/" variant="outline" size="lg">
-              BACK TO HOME
-              <ChevronRight size={18} />
+          <div className="mx-auto mt-10 grid w-full max-w-xl grid-cols-1 gap-3 sm:flex sm:max-w-none sm:flex-wrap sm:justify-center sm:gap-4">
+            <RegisterButton
+              className="w-full sm:w-auto"
+              size="lg"
+              label="REGISTER YOUR TEAM"
+            />
+            <Button
+              className="w-full sm:w-auto"
+              to="/"
+              variant="outline"
+              size="lg"
+            >
+              <span className="min-w-0 text-center">BACK TO HOME</span>
+              <ChevronRight size={18} className="shrink-0" />
             </Button>
           </div>
         </motion.div>

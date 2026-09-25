@@ -37,7 +37,7 @@ const cards: InfoCard[] = [
   },
   {
     label: "Time",
-    value: `${scheduleDates.startTime} â€“ ${scheduleDates.endTime}`,
+    value: `${scheduleDates.startTime} – ${scheduleDates.endTime}`,
     sub: `${scheduleDates.timeZone} timezone`,
     icon: Clock,
   },
@@ -56,7 +56,7 @@ const cards: InfoCard[] = [
   {
     label: "Format",
     value: scheduleDates.format,
-    sub: "on-campus Â· hybrid slots",
+    sub: "on-campus · hybrid slots",
     icon: Radio,
   },
   {
@@ -80,14 +80,19 @@ export function EventInformation() {
         <SectionHeading
           eyebrow="Event Overview"
           title="Everything you need to know"
-          description="The essential details at a glance â€” all controlled from the central configuration."
+          description="The essential details at a glance — all controlled from the central configuration."
+          className="mb-8 break-words sm:mb-12"
         />
 
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid min-w-0 grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:gap-4 md:grid-cols-3">
           {cards.map((card, i) => (
-            <li key={card.label}>
-              <Reveal delay={(i % 3) * 0.08} y={20}>
-                <div className="glass card-sheen group relative h-full overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40">
+            <li key={card.label} className="min-w-0">
+              <Reveal
+                delay={(i % 3) * 0.08}
+                y={20}
+                className="h-full min-w-0"
+              >
+                <div className="glass card-sheen group relative h-full min-w-0 overflow-hidden rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40 sm:p-6">
                   <span aria-hidden className="hairline absolute inset-x-6 top-0 h-px opacity-60" />
                   <span
                     aria-hidden
@@ -102,18 +107,20 @@ export function EventInformation() {
                         : "text-violet-bright"
                     }
                   />
-                  <p className="mt-4 font-mono text-[0.7rem] uppercase tracking-[0.25em] text-white/60">
+                  <p className="mt-4 font-mono text-[0.6rem] uppercase leading-tight tracking-[0.16em] text-white/70 sm:text-[0.7rem] sm:tracking-[0.25em]">
                     {card.label}
                   </p>
-                  <p className="mt-1.5 font-display text-lg font-semibold leading-snug text-white">
+                  <p className="mt-1.5 break-words font-display text-base font-semibold leading-snug text-white [overflow-wrap:anywhere] sm:text-lg">
                     {card.value}
                   </p>
                   {card.sub && (
-                    <p className="mt-1 text-sm text-white/60">{card.sub}</p>
+                    <p className="mt-1 break-words text-xs leading-relaxed text-white/65 sm:text-sm">
+                      {card.sub}
+                    </p>
                   )}
                   {card.tba && isTba(card.value) && (
                     <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-amber-300">
-                      To be announced â€” configurable
+                      To be announced — configurable
                     </span>
                   )}
                 </div>

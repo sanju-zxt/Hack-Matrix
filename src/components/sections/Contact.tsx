@@ -23,28 +23,44 @@ const socials = [
 ].filter((s) => s.show && s.href.length > 0);
 
 const inputClass =
-  "w-full rounded-xl border border-white/10 bg-ink-900/60 px-4 py-3 text-white placeholder:text-white/60 focus:border-violet/60 focus:outline-none";
+  "min-h-11 w-full rounded-xl border border-white/10 bg-ink-900/60 px-4 py-3 text-base text-white placeholder:text-white/60 focus:border-violet focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-bright focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950";
 
 const defaultSubject = `${event.name} ${event.edition} enquiry`;
 
-function buildMailto(form: HTMLFormElement) {
-  const data = new FormData(form);
-  const subject =
-    String(data.get("subject") ?? "").trim() || defaultSubject;
-  const body = [
-    String(data.get("name") ?? "").trim(),
-    String(data.get("email") ?? "").trim(),
-    String(data.get("phone") ?? "").trim(),
-    "",
-    String(data.get("message") ?? "").trim(),
-  ]
-    .map((line) => (line.length > 0 ? line : "[BLANK]"))
-    .join("\n")
-    .replaceAll("[BLANK]\n", "")
-    .replace(/\n{2,}/g, "\n\n")
-    .trim();
+function cleanSingleLine(value: FormDataEntryValue | null, maxLength: number) {
+  return String(value ?? "")
+    .replace(/[\r\n]+/g, " ")
+    .trim()
+    .slice(0, maxLength);
+}
 
-  return `mailto:${contact.email}?subject=${encodeURIComponent(
+function getContactEmail() {
+  const email = contact.email.trim();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : "";
+}
+
+function buildMailto(form: HTMLFormElement) {
+  const recipient = getContactEmail();
+  if (!recipient) return "";
+
+  const data = new FormData(form);
+  const subject = cleanSingleLine(data.get("subject"), 120) || defaultSubject;
+  const message = String(data.get("message") ?? "")
+    .replace(/\r\n?/g, "\n")
+    .trim()
+    .slice(0, 5000);
+  const body = [
+    cleanSingleLine(data.get("name"), 120),
+    cleanSingleLine(data.get("email"), 254),
+    cleanSingleLine(data.get("phone"), 40),
+    "",
+    message,
+  ]
+    .filter((line) => line.length > 0)
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n");
+
+  return `mailto:${recipient}?subject=${encodeURIComponent(
     subject
   )}&body=${encodeURIComponent(body)}`;
 }
@@ -52,36 +68,37 @@ function buildMailto(form: HTMLFormElement) {
 export function Contact() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    window.location.href = buildMailto(e.currentTarget);
+    const mailto = buildMailto(e.currentTarget);
+    if (mailto) window.location.href = mailto;
   };
 
   return (
     <Section id="contact">
       <Container>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           {/* Contact channels */}
           <div>
             <SectionHeading
               align="left"
               eyebrow="Contact"
               title="Talk to the organizing team"
-              className="mb-8"
+              className="mb-6 sm:mb-8"
             />
 
             <div className="space-y-4">
               <Reveal delay={0.05} y={16}>
                 <a
-                  href={`mailto:${contact.email}`}
-                  className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:border-violet/40 hover:bg-violet/5"
+                  href={`mailto:${getContactEmail()}`}
+                  className="group flex min-h-11 items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-all duration-300 hover:border-violet/40 hover:bg-violet/5 sm:gap-4 sm:p-5"
                 >
                   <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet/10 text-violet-bright transition-colors duration-300 group-hover:bg-violet/20">
                     <Mail size={19} strokeWidth={1.75} />
                   </span>
-                  <span className="min-w-0">
+                  <span className="min-w-0 flex-1">
                     <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                       Email
                     </span>
-                    <span className="block truncate font-medium text-white transition-colors group-hover:text-violet-bright">
+                    <span className="block break-all font-medium text-white transition-colors group-hover:text-violet-bright">
                       {contact.email}
                     </span>
                   </span>
@@ -90,17 +107,17 @@ export function Contact() {
 
               <Reveal delay={0.1} y={16}>
                 <a
-                  href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`}
-                  className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:border-violet/40 hover:bg-violet/5"
+                  href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}
+                  className="group flex min-h-11 items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-all duration-300 hover:border-violet/40 hover:bg-violet/5 sm:gap-4 sm:p-5"
                 >
                   <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet/10 text-violet-bright transition-colors duration-300 group-hover:bg-violet/20">
                     <Phone size={19} strokeWidth={1.75} />
                   </span>
-                  <span className="min-w-0">
+                  <span className="min-w-0 flex-1">
                     <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                       Phone
                     </span>
-                    <span className="block truncate font-medium text-white transition-colors group-hover:text-violet-bright">
+                    <span className="block break-all font-medium text-white transition-colors group-hover:text-violet-bright">
                       {contact.phone}
                     </span>
                   </span>
@@ -108,18 +125,18 @@ export function Contact() {
               </Reveal>
 
               <Reveal delay={0.15} y={16}>
-                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5">
+                <div className="flex min-h-11 items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:gap-4 sm:p-5">
                   <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet/10 text-violet-bright">
                     <MapPin size={19} strokeWidth={1.75} />
                   </span>
-                  <span className="min-w-0">
+                  <span className="min-w-0 flex-1">
                     <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                       Venue
                     </span>
-                    <span className="block truncate font-medium text-white">
+                    <span className="block break-words font-medium text-white">
                       {venue.name}
                     </span>
-                    <span className="block truncate text-sm text-white/60">
+                    <span className="block break-words text-sm text-white/60">
                       {venue.addressLine1}
                     </span>
                   </span>
@@ -136,7 +153,7 @@ export function Contact() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={label}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-violet/50 hover:text-violet-bright"
+                        className="inline-flex h-11 w-11 min-h-11 sm:h-10 sm:w-10 sm:min-h-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-violet/50 hover:text-violet-bright"
                       >
                         <Icon size={17} />
                       </a>
@@ -151,6 +168,7 @@ export function Contact() {
                   href={venue.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
                 >
                   View on Google Maps
                   <ArrowUpRight
@@ -164,15 +182,15 @@ export function Contact() {
 
           {/* Message form */}
           <Reveal delay={0.1} y={24}>
-            <div className="glass rounded-3xl p-6 sm:p-8">
+            <div className="glass rounded-3xl p-5 sm:p-8">
               <h3 className="font-display text-lg font-semibold text-white">
                 Send a message
               </h3>
               <p className="mt-1 text-sm text-white/60">
-                Your email app opens with everything pre-filled â€” just hit send.
+                Your email app opens with everything pre-filled — just hit send.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+              <form onSubmit={handleSubmit} className="mt-5 space-y-4 sm:mt-6">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label
@@ -185,6 +203,8 @@ export function Contact() {
                       id="contact-name"
                       name="name"
                       required
+                      maxLength={120}
+                      autoComplete="name"
                       placeholder="Your full name"
                       className={inputClass}
                     />
@@ -201,6 +221,8 @@ export function Contact() {
                       name="email"
                       type="email"
                       required
+                      maxLength={254}
+                      autoComplete="email"
                       placeholder="you@example.com"
                       className={inputClass}
                     />
@@ -218,7 +240,10 @@ export function Contact() {
                     id="contact-phone"
                     name="phone"
                     type="tel"
-                    placeholder="+91 â€¦"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    maxLength={40}
+                    placeholder="+91 …"
                     className={inputClass}
                   />
                 </div>
@@ -234,6 +259,7 @@ export function Contact() {
                     id="contact-subject"
                     name="subject"
                     defaultValue={defaultSubject}
+                    maxLength={120}
                     className={inputClass}
                   />
                 </div>
@@ -250,8 +276,9 @@ export function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us how we can helpâ€¦"
-                    className={cn(inputClass, "resize-none")}
+                    maxLength={5000}
+                    placeholder="Tell us how we can help…"
+                    className={cn(inputClass, "min-h-32 resize-y")}
                   />
                 </div>
 
@@ -259,8 +286,8 @@ export function Contact() {
                   Send message
                   <Send size={17} />
                 </Button>
-                <p className="text-center font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/55">
-                  Opens your email app â€” no data is stored.
+                <p className="break-words text-center font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/55">
+                  Opens your email app — no data is stored.
                 </p>
               </form>
             </div>
@@ -269,11 +296,11 @@ export function Contact() {
 
         {/* Lazy-loaded campus map */}
         <Reveal delay={0.1} y={20}>
-          <div className="mt-12 overflow-hidden rounded-3xl border border-white/10">
+          <div className="mt-8 overflow-hidden rounded-3xl border border-white/10 sm:mt-12">
             <Suspense
               fallback={
-                <div className="glass flex h-72 items-center justify-center text-sm text-white/60">
-                  Loading mapâ€¦
+                <div className="glass flex min-h-64 max-h-[26rem] aspect-[16/9] sm:h-72 w-full items-center justify-center text-sm text-white/60">
+                  Loading map…
                 </div>
               }
             >

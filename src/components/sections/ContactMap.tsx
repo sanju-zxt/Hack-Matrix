@@ -8,7 +8,7 @@ export default function ContactMap() {
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"
       allowFullScreen
-      className="h-72 w-full border-0"
+      className="block min-h-64 max-h-[26rem] aspect-[16/9] sm:h-72 w-full max-w-full border-0"
     />
   );
 }

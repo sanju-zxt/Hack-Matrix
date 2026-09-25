@@ -14,7 +14,12 @@ export function Section({ id, className, children, bleed = false }: SectionProps
   return (
     <section
       id={id}
-      className={cn("relative scroll-mt-24", bleed ? "pt-16 sm:pt-24" : "py-20 sm:py-28", className)}
+      tabIndex={-1}
+      className={cn(
+        "relative scroll-target focus:outline-hidden",
+        bleed ? "pt-16 sm:pt-24" : "py-20 sm:py-28",
+        className
+      )}
     >
       {children}
     </section>
@@ -23,6 +28,6 @@ export function Section({ id, className, children, bleed = false }: SectionProps
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
   return (
-    <div className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8", className)}>{children}</div>
+    <div className={cn("shell-x", className)}>{children}</div>
   );
 }

@@ -10,25 +10,33 @@ interface Meta {
 /** Lightweight per-page SEO: sets <title>, meta description + canonical. */
 export function usePageMeta({ title, description, canonicalPath }: Meta = {}) {
   useEffect(() => {
-    const docTitle = title ? `${title} | HACK-MATRIX 2026` : seo.title;
-    document.title = docTitle;
+    const normalizedTitle = title?.trim();
+    document.title = normalizedTitle
+      ? `${normalizedTitle} | HACK-MATRIX 2026`
+      : seo.title;
 
-    const meta = document.querySelector<HTMLMetaElement>(
+    let meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]'
     );
-    if (meta && description) meta.content = description;
-
-    if (canonicalPath) {
-      const base = seo.siteUrl.replace(/\/$/, "");
-      let link = document.querySelector<HTMLLinkElement>(
-        'link[rel="canonical"]'
-      );
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "canonical";
-        document.head.appendChild(link);
-      }
-      link.href = `${base}${canonicalPath}`;
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
     }
+    meta.content = description?.trim() || seo.description;
+
+    const base = seo.siteUrl.replace(/\/+$/, "");
+    const requestedPath = canonicalPath?.trim();
+    const path = requestedPath && requestedPath !== "/"
+      ? `/${requestedPath.replace(/^\/+/, "")}`
+      : "/";
+
+    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = `${base}${path}`;
   }, [title, description, canonicalPath]);
 }

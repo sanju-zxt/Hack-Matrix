@@ -21,24 +21,26 @@ export function FAQSection() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="glass mx-auto mt-12 flex max-w-3xl flex-col items-center justify-between gap-3 rounded-full px-7 py-4 text-sm sm:flex-row sm:gap-6">
-            <p className="text-center text-white/65 sm:text-left">
+          <div className="glass mx-auto mt-12 flex w-full max-w-3xl min-w-0 flex-col items-center justify-between gap-3 rounded-3xl px-4 py-5 text-sm sm:flex-row sm:gap-6 sm:rounded-full sm:px-7 sm:py-4">
+            <p className="w-full min-w-0 text-center text-pretty text-white/65 sm:w-auto sm:flex-1 sm:text-left">
               Still have questions? Email the organizing team —{" "}
               <a
                 href={`mailto:${contact.email}`}
-                className="font-medium text-violet-bright underline-offset-4 hover:underline"
+                className="break-all font-medium text-violet-bright underline-offset-4 hover:underline sm:break-normal"
               >
                 {contact.email}
               </a>
             </p>
             <Link
               to="/faq"
-              className="group inline-flex shrink-0 items-center gap-1.5 font-semibold text-white/80 transition-colors hover:text-violet-bright"
+              className="group inline-flex min-h-11 w-full min-w-0 items-center justify-center gap-1.5 rounded-lg py-2 font-semibold text-white/80 transition-colors hover:text-violet-bright motion-reduce:transition-none sm:w-auto sm:shrink-0 sm:justify-start sm:rounded-none"
             >
-              Open the full FAQ page
+              <span className="min-w-0 text-pretty">
+                Open the full FAQ page
+              </span>
               <ArrowRight
                 size={15}
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
+                className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
               />
             </Link>
           </div>

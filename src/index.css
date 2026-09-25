@@ -34,6 +34,27 @@
 
 /* ── Base ────────────────────────────────────────────────────────────────── */
 @layer base {
+  :root {
+    --nav-h: 4rem;
+    --shell-max: 72rem;
+    --gutter: 1.25rem;
+
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+
+    --nav-h-safe: calc(var(--nav-h) + var(--safe-top));
+    --page-top-pad: max(0px, calc(var(--safe-top) - 3rem));
+    --sticky-cta-h: 0px;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --gutter: 2rem;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -52,11 +73,22 @@
     }
   }
 
+  html.nav-open,
+  html.nav-open body {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  html.nav-open {
+    scrollbar-gutter: stable;
+  }
+
   body {
     @apply bg-ink-950 text-white antialiased;
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    overflow-wrap: break-word;
   }
 
   ::selection {
@@ -83,6 +115,93 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-violet-deep);
+  }
+}
+
+@layer components {
+  .shell-x {
+    width: 100%;
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    padding-left: max(var(--gutter), var(--safe-left));
+    padding-right: max(var(--gutter), var(--safe-right));
+  }
+
+  .app-shell {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .site-header {
+    padding-top: var(--safe-top);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: var(--nav-h);
+  }
+
+  .scroll-target {
+    scroll-margin-top: calc(var(--nav-h-safe) + 2rem);
+  }
+
+  .page-top {
+    padding-top: var(--page-top-pad);
+  }
+
+  .menu-panel {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - var(--nav-h-safe));
+    overscroll-behavior: contain;
+  }
+
+  @supports (height: 100dvh) {
+    .menu-panel {
+      max-height: calc(100dvh - var(--nav-h-safe));
+    }
+  }
+
+  .menu-scrim {
+    height: calc(100vh - var(--nav-h-safe));
+  }
+
+  @supports (height: 100dvh) {
+    .menu-scrim {
+      height: calc(100dvh - var(--nav-h-safe));
+    }
+  }
+
+  .menu-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: max(1.25rem, var(--safe-bottom));
+  }
+
+  .footer-shell {
+    padding-block: 4rem 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .footer-shell {
+      padding-block: 5rem 2.5rem;
+    }
+  }
+
+  @media (orientation: landscape) and (max-height: 560px) {
+    .footer-shell {
+      padding-block: 2.5rem 2rem;
+    }
+  }
+
+  .wrap-anywhere {
+    overflow-wrap: anywhere;
   }
 }
 
@@ -124,13 +243,20 @@
   color: transparent;
 }
 
-/* Slow floating glow orbs (GPU-friendly: transform + opacity only) */
+/* Slow floating glow orbs (transform + opacity only; no permanent layer promotion) */
 .glow-orb {
   position: absolute;
   border-radius: 9999px;
   filter: blur(70px);
   pointer-events: none;
-  will-change: transform, opacity;
+}
+
+/* Blur + float on a full-viewport layer is the most expensive effect on the
+   page. Reduced-motion visitors get the static background without it. */
+@media (prefers-reduced-motion: reduce) {
+  .glow-orb {
+    display: none;
+  }
 }
 
 @keyframes float-a {
@@ -192,7 +318,14 @@
   animation: particle-rise var(--duration, 16s) linear infinite;
   animation-delay: var(--delay, 0s);
   opacity: 0;
-  will-change: transform, opacity;
+}
+
+/* Hero already drops the particle field when motion is reduced; this keeps a
+   stray .particle from animating if one is ever rendered again. */
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    display: none;
+  }
 }
 
 @keyframes pulse-soft {
@@ -208,17 +341,20 @@
   animation: pulse-soft 2.4s ease-in-out infinite;
 }
 
-/* Safe-area helper for mobile sticky bars */
-.safe-bottom {
-  padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+/* Safe-area helpers for mobile sticky bars */
+.safe-top {
+  padding-top: var(--safe-top);
 }
 
-/* Prevents horizontal scroll / layout shift from sticky mobile CTA */
-body.has-sticky-cta {
-  padding-bottom: 76px;
+.safe-bottom {
+  padding-bottom: max(var(--safe-bottom), 0.75rem);
+}
+
+body.has-sticky-cta .app-shell {
+  padding-bottom: var(--sticky-cta-h, 4.5rem);
 }
 @media (min-width: 1024px) {
-  body.has-sticky-cta {
+  body.has-sticky-cta .app-shell {
     padding-bottom: 0;
   }
 }
@@ -252,7 +388,12 @@ body.has-sticky-cta {
 }
 .spin-slow {
   animation: spin-slow 40s linear infinite;
-  will-change: transform;
+}
+/* Promote only while the ring actually animates. */
+@media (prefers-reduced-motion: no-preference) {
+  .spin-slow {
+    will-change: transform;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .spin-slow {
@@ -268,7 +409,11 @@ body.has-sticky-cta {
 }
 .spin-rev {
   animation: spin-rev 60s linear infinite;
-  will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .spin-rev {
+    will-change: transform;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .spin-rev {
@@ -289,7 +434,11 @@ body.has-sticky-cta {
   display: flex;
   width: max-content;
   animation: marquee var(--marquee-speed, 36s) linear infinite;
-  will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    will-change: transform;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
@@ -318,4 +467,18 @@ body.has-sticky-cta {
 }
 .card-sheen:hover::after {
   transform: translateX(120%);
+}
+
+@media (max-width: 1023px) {
+  .glow-orb {
+    filter: blur(46px);
+  }
+  .glass {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .glass-strong {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
 }

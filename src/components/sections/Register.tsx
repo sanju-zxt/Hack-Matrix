@@ -9,29 +9,38 @@
 } from "lucide-react";
 import {
   event,
+  getEventStatus,
   registration,
   scheduleDates,
   venue,
 } from "../../data/eventConfig";
+import { getRegistrationUrl } from "../../lib/registration";
 import { Container, Section } from "../ui/Section";
 import { RegisterButton } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
 import { Link } from "react-router-dom";
 
+const registrationUrl = getRegistrationUrl();
+const registrationStatus = getEventStatus();
+
 const steps = [
   {
     icon: ClipboardList,
-    title: "1 Â· Fill the registration form",
-    desc: "Complete all team + member details in the official form.",
+    title: "1 · Fill the registration form",
+    desc: registrationUrl
+      ? "Complete all team + member details in the official form."
+      : "The official form is being finalized. Review the details below while the link is prepared.",
   },
   {
     icon: Wallet,
-    title: "2 Â· Complete the fee payment",
-    desc: `${registration.fee} ${registration.feePer} Â· instructions inside the form.`,
+    title: "2 · Complete the fee payment",
+    desc: registrationUrl
+      ? `${registration.fee} ${registration.feePer} · instructions inside the form.`
+      : `${registration.fee} ${registration.feePer} · payment instructions will be shared with the form.`,
   },
   {
     icon: Ticket,
-    title: "3 Â· Get confirmed",
+    title: "3 · Get confirmed",
     desc: "Receive your confirmation with check-in details before event day.",
   },
 ];
@@ -46,19 +55,21 @@ export function Register() {
       />
 
       <Container className="relative">
-        <div className="glass-strong relative overflow-hidden rounded-[2rem] p-8 sm:p-12 lg:p-16">
+        <div className="glass-strong relative overflow-hidden rounded-[2rem] p-5 sm:p-8 lg:p-16">
           <div
             aria-hidden
             className="absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]"
           />
 
-          <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
+          <div className="relative grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
             {/* CTA copy */}
             <div>
               <Reveal>
                 <p className="flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.35em] text-violet-bright">
                   <span aria-hidden className="h-px w-8 bg-violet/50" />
-                  Registration open
+                  {registrationUrl
+                    ? registrationStatus.label
+                    : "Registration form coming soon"}
                 </p>
               </Reveal>
               <Reveal delay={0.05}>
@@ -69,19 +80,24 @@ export function Register() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="mt-4 max-w-lg text-base leading-relaxed text-white/65">
-                  {registration.fee} {registration.feePer} Â· teams of{" "}
-                  {registration.teamSize.min}â€“
-                  {registration.teamSize.max}. Registering takes about 5 minutes
-                  â€” the form opens in a new tab.
+                  {registration.fee} {registration.feePer} · teams of{" "}
+                  {registration.teamSize.min}–{registration.teamSize.max}.{" "}
+                  {registrationUrl
+                    ? "Registering takes about 5 minutes — the form opens in a new tab."
+                    : "The official form link is being finalized. Check back for registration updates."}
                 </p>
               </Reveal>
 
               <Reveal delay={0.15}>
-                <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <RegisterButton size="lg" label="REGISTER FOR HACK-MATRIX" />
+                <div className="mt-7 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
+                  <RegisterButton
+                    size="lg"
+                    label="REGISTER FOR HACK-MATRIX"
+                    className="w-full sm:w-auto"
+                  />
                   <Link
                     to="/register"
-                    className="group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white/70 transition-colors hover:text-violet-bright"
+                    className="group inline-flex min-h-11 w-full items-center justify-center gap-1.5 whitespace-normal break-words px-4 py-3 text-center text-sm font-semibold text-white/70 transition-colors hover:text-violet-bright sm:w-auto sm:px-0 sm:py-0"
                   >
                     Registration guide
                     <ArrowUpRight
@@ -93,16 +109,16 @@ export function Register() {
               </Reveal>
 
               <Reveal delay={0.2}>
-                <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/55">
-                  <span className="inline-flex items-center gap-2">
+                <div className="mt-8 flex flex-wrap items-start gap-x-5 gap-y-3 text-sm text-white/55 sm:gap-x-7">
+                  <span className="inline-flex min-w-0 max-w-full items-start gap-2 break-words">
                     <CalendarDays size={15} className="text-violet-bright" />
                     Deadline: {registration.deadlineLabel}
                   </span>
-                  <span className="inline-flex items-center gap-2">
+                  <span className="inline-flex min-w-0 max-w-full items-start gap-2 break-words">
                     <Users size={15} className="text-violet-bright" />
                     {registration.teamSize.label}
                   </span>
-                  <span className="inline-flex items-center gap-2">
+                  <span className="inline-flex min-w-0 max-w-full items-start gap-2 break-words">
                     <Mail size={15} className="text-violet-bright" />
                     Questions? Email the organizing team
                   </span>
@@ -112,19 +128,19 @@ export function Register() {
 
             {/* Step panel */}
             <Reveal delay={0.15} y={28}>
-              <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 sm:p-8">
+              <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-5 sm:p-8">
                 <h3 className="font-display text-lg font-semibold text-white">
                   How registration works
                 </h3>
-                <ol className="mt-6 space-y-6">
+                <ol className="mt-5 space-y-5 sm:mt-6 sm:space-y-6">
                   {steps.map((step) => (
-                    <li key={step.title} className="flex gap-4">
+                    <li key={step.title} className="flex min-w-0 items-start gap-3 sm:gap-4">
                       <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-violet/30 bg-violet/10 text-violet-bright">
                         <step.icon size={19} strokeWidth={1.75} />
                       </span>
-                      <div>
-                        <p className="font-semibold text-white">{step.title}</p>
-                        <p className="mt-0.5 text-sm leading-relaxed text-white/55">
+                      <div className="min-w-0">
+                        <p className="break-words font-semibold text-white">{step.title}</p>
+                        <p className="mt-0.5 break-words text-sm leading-relaxed text-white/55">
                           {step.desc}
                         </p>
                       </div>
@@ -132,18 +148,18 @@ export function Register() {
                   ))}
                 </ol>
 
-                <div className="mt-8 rounded-xl border border-white/5 bg-white/[0.02] p-4">
+                <div className="mt-6 rounded-xl border border-white/5 bg-white/[0.02] p-4 sm:mt-8">
                   <p className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
                     Event snapshot
                   </p>
                   <p className="mt-2 text-sm text-white/65">
-                    {event.name} {event.edition} Â· {scheduleDates.dateLabel} Â·{" "}
-                    {scheduleDates.startTime}â€“{scheduleDates.endTime}{" "}
+                    {event.name} {event.edition} · {scheduleDates.dateLabel} ·{" "}
+                    {scheduleDates.startTime}–{scheduleDates.endTime}{" "}
                     {scheduleDates.timeZone}
                   </p>
                   <p className="mt-1 text-sm text-white/60">{venue.name}</p>
                   <p className="mt-1 text-sm text-white/60">
-                    {scheduleDates.format} Â· {registration.fee} {registration.feePer}
+                    {scheduleDates.format} · {registration.fee} {registration.feePer}
                   </p>
                 </div>
               </div>

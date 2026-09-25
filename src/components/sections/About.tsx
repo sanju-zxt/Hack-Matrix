@@ -27,27 +27,26 @@ export function About() {
   return (
     <Section id="about">
       <Container>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-          {/* Sticky narrative column */}
-          <div className="lg:sticky lg:top-32 lg:self-start">
+        <div className="grid min-w-0 grid-cols-1 gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-10 lg:gap-16">
+          <div className="min-w-0 md:sticky md:top-28 md:self-start lg:top-32">
             <SectionHeading
               align="left"
               eyebrow="About the Event"
               title="An 8-hour sprint from zero to shipped"
-              className="mb-6"
+              className="mb-6 break-words sm:mb-8"
             />
-            {about.paragraphs.map((p) => (
-              <Reveal key={p.slice(0, 24)} delay={0.1}>
-                <p className="mb-4 text-base leading-relaxed text-white/65">
+            {about.paragraphs.map((p, index) => (
+              <Reveal key={`${index}-${p.slice(0, 24)}`} delay={0.1} className="min-w-0">
+                <p className="mb-4 break-words text-base leading-relaxed text-white/70">
                   {p}
                 </p>
               </Reveal>
             ))}
             <Reveal delay={0.2}>
-              <div className="mt-8 flex items-center gap-5">
+              <div className="mt-7 flex flex-col items-start gap-4 sm:mt-8 sm:flex-row sm:items-center sm:gap-5">
                 <span
                   aria-hidden
-                  className="relative inline-flex h-20 w-20 shrink-0 items-center justify-center"
+                  className="relative inline-flex h-16 w-16 shrink-0 items-center justify-center sm:h-20 sm:w-20"
                 >
                   <span className="spin-slow absolute inset-0 rounded-full border border-dashed border-violet/30" />
                   <span className="spin-rev absolute inset-2 rounded-full border border-dotted border-leaf/40" />
@@ -56,38 +55,40 @@ export function About() {
                   </span>
                   <span className="absolute -right-0.5 top-2 h-2 w-2 rounded-full bg-leaf-light shadow-[0_0_8px_rgba(98,201,135,0.9)]" />
                 </span>
-                <span className="font-mono text-sm text-white/55">
+                <p className="max-w-xs break-words font-mono text-sm leading-relaxed text-white/65 sm:max-w-none">
                   {about.pillars.length} pillars guide the build
                   {flags.showLogo && (
                     <>
-                      {" Â· "}
-                      <span className="text-white/60">powered by VVIT Bengaluru</span>
+                      {" · "}
+                      <span className="text-white/70">powered by VVIT Bengaluru</span>
                     </>
                   )}
-                </span>
+                </p>
               </div>
             </Reveal>
           </div>
 
-          {/* Pillars grid */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
             {about.pillars.map((pillar, i) => {
               const Icon = pillarIcons[i % pillarIcons.length];
               return (
-                <Reveal key={pillar.title} delay={(i % 2) * 0.07} y={20}>
-                  <div className="glass card-sheen group h-full overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40">
+                <Reveal
+                  key={pillar.title}
+                  delay={(i % 2) * 0.07}
+                  y={20}
+                  className="h-full min-w-0"
+                >
+                  <div className="glass card-sheen group h-full min-w-0 overflow-hidden rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-violet/40 sm:p-6">
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-violet/10 text-violet-bright transition-colors duration-300 group-hover:bg-violet/20">
+                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet/10 text-violet-bright transition-colors duration-300 group-hover:bg-violet/20">
                         <Icon size={19} strokeWidth={1.75} />
                       </span>
-                      <p className="font-mono text-xs text-white/55">
-                        0{i + 1}
-                      </p>
+                      <p className="font-mono text-xs text-white/65">0{i + 1}</p>
                     </div>
-                    <h3 className="mt-4 font-display text-lg font-semibold text-white">
+                    <h3 className="mt-4 break-words font-display text-base font-semibold text-white sm:text-lg">
                       {pillar.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-white/55">
+                    <p className="mt-1.5 break-words text-sm leading-relaxed text-white/65">
                       {pillar.description}
                     </p>
                   </div>

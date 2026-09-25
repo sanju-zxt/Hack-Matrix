@@ -6,13 +6,10 @@ interface RevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  /** distance in px to translate up */
   y?: number;
-  /** keep visible after reveal */
   once?: boolean;
 }
 
-/** GPU-friendly scroll reveal (opacity + transform only). */
 export function Reveal({
   children,
   className,
@@ -24,7 +21,7 @@ export function Reveal({
 
   return (
     <motion.div
-      className={cn(className)}
+      className={cn("min-w-0", className)}
       initial={reduce ? { opacity: 0 } : { opacity: 0, y }}
       whileInView={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
       viewport={{ once, margin: "-80px" }}

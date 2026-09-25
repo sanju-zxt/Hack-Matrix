@@ -19,10 +19,10 @@ export function Schedule() {
 
         <ol className="mx-auto grid max-w-3xl grid-cols-1">
           {schedule.map((item, i) => (
-            <li key={item.key} className="relative pb-3 last:pb-0">
+            <li key={item.key} className="relative min-w-0 pb-3 last:pb-0">
               <Reveal delay={i * 0.03} y={14}>
                 <div
-                  className={`flex items-start gap-4 rounded-2xl p-4 transition-colors duration-300 sm:items-center ${
+                  className={`flex min-w-0 items-start gap-3 rounded-2xl p-3.5 transition-colors duration-300 sm:items-center sm:gap-4 sm:p-4 ${
                     item.highlight
                       ? "glass border-violet/30 bg-violet/[0.07]"
                       : "hover:bg-white/[0.03]"
@@ -36,23 +36,23 @@ export function Schedule() {
                         : "bg-white/20"
                     }`}
                   />
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-white/80 sm:text-base">
+                  <div className="flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4">
+                    <p className="min-w-0 flex-1 break-words text-pretty text-sm font-medium leading-relaxed text-white/80 sm:text-base">
                       {item.label}
                     </p>
+                    <p
+                      className={`min-w-0 break-words text-left font-mono text-sm leading-relaxed sm:max-w-[60%] sm:text-right ${
+                        item.highlight ? "text-violet-bright" : "text-white/60"
+                      }`}
+                    >
+                      {item.value}
+                    </p>
+                    {isPending(item.value) && (
+                      <span className="w-fit shrink-0 rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-1 font-mono text-xs uppercase leading-none tracking-wider text-amber-300">
+                        TBA
+                      </span>
+                    )}
                   </div>
-                  <p
-                    className={`text-right font-mono text-xs sm:text-sm ${
-                      item.highlight ? "text-violet-bright" : "text-white/60"
-                    }`}
-                  >
-                    {item.value}
-                  </p>
-                  {isPending(item.value) && (
-                    <span className="shrink-0 rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-amber-300">
-                      TBA
-                    </span>
-                  )}
                 </div>
               </Reveal>
             </li>
@@ -60,10 +60,15 @@ export function Schedule() {
         </ol>
 
         <Reveal delay={0.15}>
-          <p className="mx-auto mt-8 flex max-w-2xl items-center justify-center gap-2 text-center font-mono text-xs uppercase tracking-[0.2em] text-white/55">
-            <CalendarDays size={14} className="text-violet-bright" />
-            All times in {scheduleDates.timeZone} Â· [TBA] slots are confirmed by the
-            organizing team
+          <p className="mx-auto mt-8 flex max-w-3xl items-start justify-center gap-2 px-2 text-center font-mono text-xs leading-relaxed tracking-[0.12em] text-pretty text-white/55 sm:items-center sm:px-0 sm:tracking-[0.2em]">
+            <CalendarDays
+              size={14}
+              className="mt-0.5 shrink-0 text-violet-bright"
+            />
+            <span className="min-w-0">
+              All times in {scheduleDates.timeZone} · [TBA] slots are confirmed
+              by the organizing team
+            </span>
           </p>
         </Reveal>
       </Container>
