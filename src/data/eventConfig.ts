@@ -133,10 +133,9 @@ export const registration = {
    * state instead of sending visitors to a dead link.
    */
   googleFormUrl: "", // TODO: paste your registration form link here
-  fee: "To be announced",
+  fee: "₹149",
   feePer: "per team",
-  feeNote:
-    "Registration and payment details for IGNITE 2026 are being finalised — see the payment page for updates.",
+  feeNote: "Flat ₹149 per team for the full 4-week sprint.",
   teamSize: { min: 2, max: 3, label: "2 – 3 members per team" },
   /** Registration window. Leave fields null until announced. */
   opens: null as string | null, // e.g. "2026-09-25T09:00:00+05:30"
@@ -275,7 +274,7 @@ export const schedule = [
   { key: "week2", label: "Week 2 — Ideation & Implementation Plan", value: "24 – 30 October 2026", highlight: false },
   { key: "week3", label: "Week 3 — System Build (AI-assisted)", value: "31 Oct – 6 November 2026", highlight: false },
   { key: "week4", label: "Week 4 — Testing & Milestone Review", value: "7 – 13 November 2026", highlight: false },
-  { key: "finale", label: "Finale — Demo Day & Results", value: "To be announced", highlight: false },
+  { key: "finale", label: "Finale — Showcase & Results", value: "To be announced", highlight: false },
 ] as const;
 
 /* ── RULES ────────────────────────────────────────────────────────────────── */
@@ -342,7 +341,7 @@ export const rules = [
 export const faqs = [
   { q: "What is IGNITE?", a: "IGNITE 2026 is a 4-week open innovation sprint at VVIT, Bengaluru, where student teams turn their own ideas into working prototypes with expert mentorship." },
   { q: "Who can participate?", a: "College students from any discipline — engineering, computer science, AI/ML, data science, electronics and product-minded builders. See the eligibility section." },
-  { q: "How long is the programme?", a: "The sprint runs for 4 weeks, kicking off on 16 October 2026 and closing with a final demo day." },
+  { q: "How long is the programme?", a: "The sprint runs for 4 weeks, kicking off on 16 October 2026 and closing with the final showcase." },
   { q: "How many members can be in a team?", a: `Teams of ${registration.teamSize.min}–${registration.teamSize.max} members.` },
   { q: "Is the event online or offline?", a: "Kickoff is on campus at the VVIT Seminar Hall, with hybrid and online collaboration through the sprint. [Organizers: finalize hybrid scope]" },
   { q: "Do we need a finished product?", a: "No. You bring your own idea and build a working prototype over the 4 weeks — mentorship and milestone reviews guide you." },

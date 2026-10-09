@@ -828,7 +828,7 @@ test.describe("content and interactions", () => {
       page.getByRole("heading", { level: 1, name: /REGISTER/i })
     ).toBeVisible();
     await expect(
-      page.locator("main").getByText("To be announced").first()
+      page.locator("main").getByText("₹149").first()
     ).toBeVisible();
     await expect(
       page.locator("main").getByText("2 – 3 members per team").first()

@@ -482,3 +482,97 @@ body.has-sticky-cta .app-shell {
     backdrop-filter: blur(14px);
   }
 }
+
+/* ── Ambient site background (layered, GPU-only, non-interactive) ─────────── */
+
+/* Denser second grid layer, sits *under* the main .bg-grid — very low alpha. */
+.bg-grid-fine {
+  background-image: linear-gradient(
+      to right,
+      rgba(124, 108, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(124, 108, 255, 0.04) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Large rotating aurora: violet + blue with a hint of VVIT emerald (#2e9e5b).
+   Soft-edged via a radial mask (no blur filter, so the spin stays cheap). */
+.bg-aurora {
+  border-radius: 9999px;
+  background:
+    conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(124, 108, 255, 0.3),
+      rgba(91, 140, 255, 0.18),
+      rgba(46, 158, 91, 0.16),
+      rgba(91, 140, 255, 0.18),
+      rgba(124, 108, 255, 0.3)
+    ),
+    radial-gradient(50% 50% at 30% 35%, rgba(124, 108, 255, 0.5), transparent 70%),
+    radial-gradient(55% 55% at 72% 62%, rgba(91, 140, 255, 0.45), transparent 72%),
+    radial-gradient(40% 40% at 55% 85%, rgba(46, 158, 91, 0.35), transparent 70%);
+  -webkit-mask-image: radial-gradient(closest-side, black 40%, transparent 78%);
+  mask-image: radial-gradient(closest-side, black 40%, transparent 78%);
+}
+
+@keyframes aurora-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-aurora {
+  animation: aurora-spin 60s linear infinite;
+}
+
+/* Thin light band that slowly sweeps down the viewport. */
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18vh;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(154, 139, 255, 0.12) 45%,
+    rgba(126, 166, 255, 0.18) 50%,
+    rgba(154, 139, 255, 0.12) 55%,
+    transparent
+  );
+  filter: blur(14px);
+  opacity: 0.5;
+}
+
+@keyframes scanline-sweep {
+  0% {
+    transform: translate3d(0, -20vh, 0);
+  }
+  100% {
+    transform: translate3d(0, 120vh, 0);
+  }
+}
+.animate-scanline {
+  animation: scanline-sweep 12s linear infinite;
+}
+
+/* Subtle dot-matrix overlay; pair with a mask/opacity to reveal one corner. */
+.bg-dots {
+  background-image: radial-gradient(rgba(124, 108, 255, 0.25) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Promote only while these actually animate. */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-aurora,
+  .animate-scanline {
+    will-change: transform;
+  }
+}
+
+/* Reduced-motion visitors get the static background (no rotation / no sweep). */
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora,
+  .animate-scanline {
+    animation: none;
+  }
+}

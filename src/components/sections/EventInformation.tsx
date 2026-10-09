@@ -73,7 +73,7 @@ export function EventInformation() {
         <SectionHeading
           eyebrow="Event Overview"
           title="Everything you need to know"
-          description="The essential details at a glance — all controlled from the central configuration."
+          description="The essential details at a glance."
           className="mb-8 break-words sm:mb-12"
         />
 

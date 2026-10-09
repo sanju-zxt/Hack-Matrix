@@ -154,11 +154,11 @@ export function Hero() {
     .split(".")
     .map((word) => word.trim())
     .filter(Boolean);
-  const [durNum = "8", durUnit = "HOURS"] =
+  const [durNum = "4", durUnit = "WEEKS"] =
     scheduleDates.durationLabel.split(" ");
 
   const stats = [
-    { value: `${durNum} ${durUnit.toUpperCase()}`, caption: "build from zero" },
+    { value: `${durNum} ${durUnit.toUpperCase()}`, caption: "of build time" },
     { value: "INTER-COLLEGIATE", caption: "open to all colleges" },
     { value: event.city.toUpperCase(), caption: "on-campus event" },
     { value: `TEAM ${registration.teamSize.max}`, caption: registration.teamSize.label },

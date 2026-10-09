@@ -13,8 +13,8 @@ export function Schedule() {
       <Container>
         <SectionHeading
           eyebrow="Event Timeline"
-          title="The day, hour by hour"
-          description="Key milestones planned around the event. Fine-tuned timing is published closer to the day."
+          title="The four weeks, phase by phase"
+          description="Key milestones across the sprint. Final dates and details are confirmed closer to the kickoff."
         />
 
         <ol className="mx-auto grid max-w-3xl grid-cols-1">

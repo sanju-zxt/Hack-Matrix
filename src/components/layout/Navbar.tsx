@@ -21,15 +21,35 @@ function focusContentAfterNavigation(header: HTMLElement | null) {
   if (main instanceof HTMLElement) main.focus({ preventScroll: true });
 }
 
-/** Persistent site-wide background: grid + noise + soft vignette. Pure CSS, GPU-friendly. */
+/** Persistent site-wide background: layered grid, aurora, scanline, noise + soft vignette. Pure CSS, GPU-friendly. */
 export function SiteBackground() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      {/* 1 · base radial vignette (deep ink → transparent) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_90%_at_50%_-10%,#090b12_0%,transparent_60%)]" />
+
+      {/* 2 · dense fine grid, faded from the centre */}
+      <div className="bg-grid-fine absolute inset-0 [mask-image:radial-gradient(ellipse_80%_65%_at_50%_40%,black_20%,transparent_75%)]" />
+
+      {/* 3 · primary engineering grid, anchored to the top */}
       <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_75%_60%_at_50%_0%,black_30%,transparent_75%)]" />
+
+      {/* 4 · slow rotating aurora */}
+      <div className="animate-aurora bg-aurora absolute -inset-[40%] opacity-25" />
+
+      {/* 5 · thin light band sweeping down the viewport */}
+      <div className="animate-scanline scanline" />
+
+      {/* 6 · dot-matrix, masked to the bottom-right corner */}
+      <div className="bg-dots absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_55%_55%_at_100%_100%,black_0%,transparent_70%)]" />
+
+      {/* 7 · film grain */}
       <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-overlay" />
-      <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-violet/[0.09] to-transparent" />
+
+      {/* 8 · floating glow orbs (violet + blue + emerald accent) */}
       <div className="glow-orb animate-float-a -top-32 left-[12%] h-96 w-96 bg-violet/15" />
       <div className="glow-orb animate-float-b right-[8%] top-24 h-[28rem] w-[28rem] bg-blue/10" />
+      <div className="glow-orb animate-float-a -bottom-24 right-[18%] h-72 w-72 bg-leaf/10" />
     </div>
   );
 }
