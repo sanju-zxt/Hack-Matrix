@@ -184,7 +184,7 @@ export function Navbar({ onOpenChange }: { onOpenChange?: (open: boolean) => voi
       )}
     >
       <nav aria-label="Main" className="shell-x site-nav">
-        <Link to="/" aria-label="HACK-MATRIX home" className="shrink-0">
+        <Link to="/" aria-label="IGNITE home" className="shrink-0">
           <Brand logoSize={34} />
         </Link>
 

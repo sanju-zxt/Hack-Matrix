@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const RulesPage = lazy(() => import("./pages/RulesPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
+const PaymentPage = lazy(() => import("./pages/PaymentPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/rules" element={<RulesPage />} />
               <Route path="/faq" element={<FAQPage />} />
+              <Route path="/payment" element={<PaymentPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

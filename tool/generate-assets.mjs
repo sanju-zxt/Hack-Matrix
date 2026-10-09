@@ -63,10 +63,10 @@ async function generate() {
   <ellipse cx="900" cy="315" rx="320" ry="320" fill="url(#glow)"/>
   <circle cx="900" cy="315" r="170" fill="#ffffff"/>
   <circle cx="900" cy="315" r="170" fill="none" stroke="#7C6CFF" stroke-width="4" opacity="0.9"/>
-  <text x="90" y="260" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#ffffff">HACK-MATRIX</text>
+  <text x="90" y="260" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#ffffff">IGNITE</text>
   <text x="90" y="348" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#9AA3B2">2026</text>
   <rect x="90" y="378" width="220" height="4" rx="2" fill="#7C6CFF"/>
-  <text x="90" y="435" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#9AA3B2">8-Hour Inter-Collegiate Hackathon &#183; VVIT Bengaluru</text>
+  <text x="90" y="435" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#9AA3B2">4-Week Product Prototyping Sprint &#183; VVIT Bengaluru</text>
 </svg>`,
     "utf8"
   );

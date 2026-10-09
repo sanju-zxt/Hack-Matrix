@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { AxeBuilder } from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-const ROUTES = ["/", "/register", "/rules", "/faq"] as const;
+const ROUTES = ["/", "/register", "/rules", "/faq", "/payment"] as const;
 const RESPONSIVE_ROUTES = [...ROUTES, "/this-route-does-not-exist"] as const;
 const DESKTOP_VIEWPORT = { width: 1440, height: 900 } as const;
 const SHORT_LANDSCAPE_VIEWPORT = { width: 740, height: 360 } as const;
@@ -259,7 +259,7 @@ async function expectRouteToFit(page: Page, route: string) {
 }
 
 async function expectHeroHeadingToFit(page: Page) {
-  const heading = page.getByRole("heading", { level: 1, name: /HACK-MATRIX/i });
+  const heading = page.getByRole("heading", { level: 1, name: /IGNITE/i });
   await expect(heading).toBeVisible();
   const metrics = await heading.evaluate((element) => {
     const viewportWidth = document.documentElement.clientWidth;
@@ -560,7 +560,7 @@ test.describe("small-screen essentials", () => {
 
     const cta = page
       .locator("main a, main button")
-      .filter({ hasText: /REGISTER FOR HACK-MATRIX|FORM LINK SOON/i })
+      .filter({ hasText: /REGISTER FOR IGNITE|FORM LINK SOON/i })
       .first();
     await expect(cta).toBeVisible();
     const metrics = await cta.evaluate((element) => {
@@ -591,7 +591,7 @@ test.describe("small-screen essentials", () => {
     ).toBeVisible();
     await contact.scrollIntoViewIfNeeded();
 
-    const longWord = "HACKMATRIXREGISTRATIONENQUIRY".repeat(4);
+    const longWord = "IGNITEREGISTRATIONENQUIRY".repeat(4);
     const fields = [
       contact.getByLabel("Name", { exact: true }),
       contact.getByLabel("Email", { exact: true }),
@@ -745,16 +745,16 @@ test.describe("content and interactions", () => {
   test("hero shows headline, tagline and live countdown", async ({ page }) => {
     await gotoRoute(page, "/");
     await expect(
-      hero(page).getByRole("heading", { level: 1, name: /HACK-MATRIX/i })
+      hero(page).getByRole("heading", { level: 1, name: /IGNITE/i })
     ).toBeVisible();
 
     const tagline = hero(page).locator("p.text-violet-bright");
     await expect(tagline).toBeVisible();
-    await expect(tagline).toContainText("BUILD");
-    await expect(tagline).toContainText("SOLVE");
-    await expect(tagline).toContainText("INNOVATE");
+    await expect(tagline).toContainText("PROTOTYPE");
+    await expect(tagline).toContainText("VALIDATE");
+    await expect(tagline).toContainText("SHIP");
 
-    await expect(hero(page).getByText("EVENT STARTS IN")).toBeVisible();
+    await expect(hero(page).getByText("KICKOFF IN")).toBeVisible();
 
     const timer = page.getByRole("timer");
     const phase = await eventPhase(page);
@@ -805,7 +805,7 @@ test.describe("content and interactions", () => {
 
   test("FAQ accordion toggles", async ({ page }) => {
     await gotoRoute(page, "/");
-    const trigger = page.getByRole("button", { name: "What is HACK-MATRIX?" });
+    const trigger = page.getByRole("button", { name: "What is IGNITE?" });
     const panelId = await trigger.getAttribute("aria-controls");
     expect(panelId).not.toBeNull();
     const panel = page.locator(`#${panelId}`);
@@ -813,7 +813,7 @@ test.describe("content and interactions", () => {
     if ((await trigger.getAttribute("aria-expanded")) !== "true") await trigger.click();
     await expect(trigger).toHaveAttribute("aria-expanded", "true");
     await expect(panel).toBeVisible();
-    await expect(panel).toContainText(/8-hour inter-collegiate hackathon/i);
+    await expect(panel).toContainText(/4-week open innovation sprint/i);
 
     await trigger.click();
     await expect(trigger).toHaveAttribute("aria-expanded", "false");
@@ -827,13 +827,15 @@ test.describe("content and interactions", () => {
     await expect(
       page.getByRole("heading", { level: 1, name: /REGISTER/i })
     ).toBeVisible();
-    await expect(page.locator("main").getByText("₹399").first()).toBeVisible();
     await expect(
-      page.locator("main").getByText("2 – 4 members per team").first()
+      page.locator("main").getByText("To be announced").first()
+    ).toBeVisible();
+    await expect(
+      page.locator("main").getByText("3 – 5 members per team").first()
     ).toBeVisible();
     const cta = page
       .locator("main a, main button")
-      .filter({ hasText: /REGISTER FOR HACK-MATRIX|FORM LINK SOON/i })
+      .filter({ hasText: /REGISTER FOR IGNITE|FORM LINK SOON/i })
       .first();
     await expect(cta).toBeVisible();
   });
@@ -846,7 +848,7 @@ test.describe("content and interactions", () => {
 
   test("FAQ page lists all questions", async ({ page }) => {
     await gotoRoute(page, "/faq");
-    await expect(page.getByText("Is food provided?")).toBeVisible();
+    await expect(page.getByText("What is PRISM?")).toBeVisible();
     await expect(page.getByText("Are certificates provided?")).toBeVisible();
   });
 
@@ -861,11 +863,11 @@ test.describe("content and interactions", () => {
 
   test("register page offers add-to-calendar download", async ({ page }) => {
     await gotoRoute(page, "/register");
-    const link = page.locator('a[download="hack-matrix-2026.ics"]');
+    const link = page.locator('a[download="ignite-2026.ics"]');
     await expect(link).toBeVisible();
     const [download] = await Promise.all([page.waitForEvent("download"), link.click()]);
-    expect(download.suggestedFilename()).toBe("hack-matrix-2026.ics");
-    expect(await readFile(await download.path(), "utf8")).toContain("DTSTART:20261015T033000Z");
+    expect(download.suggestedFilename()).toBe("ignite-2026.ics");
+    expect(await readFile(await download.path(), "utf8")).toContain("DTSTART:20261016T083000Z");
   });
 
   test("unknown routes show 404 with register CTA", async ({ page }) => {
@@ -874,7 +876,7 @@ test.describe("content and interactions", () => {
       timeout: NAVIGATION_TIMEOUT,
     });
     await expect(page.getByText("OUT OF BOUNDS")).toBeVisible();
-    await expect(page.getByText("This page fell out of the MATRIX.")).toBeVisible();
+    await expect(page.getByText("This page fell out of the build.")).toBeVisible();
     await expect(
       page.locator("main").getByText(/REGISTER YOUR TEAM|FORM LINK SOON/).first()
     ).toBeVisible();
@@ -887,7 +889,7 @@ test.describe("content and interactions", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await gotoRoute(page, "/");
     await expect(
-      page.getByRole("heading", { level: 1, name: /HACK-MATRIX/i })
+      page.getByRole("heading", { level: 1, name: /IGNITE/i })
     ).toBeVisible();
     await expect(page.locator(".particle")).toHaveCount(0);
   });

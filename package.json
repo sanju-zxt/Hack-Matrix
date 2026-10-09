@@ -1,5 +1,5 @@
 {
-  "name": "hack-matrix",
+  "name": "ignite-2026",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "test:e2e": "npm run build && playwright test",
     "test:e2e:responsive": "npm run build && playwright test --grep \"responsive layout\"",
-    "generate:assets": "node tool/generate-assets.mjs"
+    "generate:assets": "node tool/generate-assets.mjs",
+    "generate:brochure": "node tool/build-brochure.mjs",
+    "brochure:render": "node tool/render-brochure.mjs",
+    "brochure": "npm run generate:brochure && npm run brochure:render"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

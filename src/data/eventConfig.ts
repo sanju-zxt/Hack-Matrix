@@ -1,6 +1,6 @@
 /**
  * ─────────────────────────────────────────────────────────────────────────────
- *  HACK-MATRIX 2026 · CENTRAL EVENT CONFIGURATION
+ *  IGNITE 2026 · CENTRAL EVENT CONFIGURATION
  * ─────────────────────────────────────────────────────────────────────────────
  *  Every editable piece of the website lives here. No component should hardcode
  *  event information. Edit a value below and it updates everywhere it appears.
@@ -10,25 +10,25 @@
  */
 
 export const event = {
-  name: "HACK-MATRIX",
+  name: "IGNITE",
   edition: "2026",
-  /** Shown as the main headline: "HACK-MATRIX 2026" */
-  displayName: "HACK-MATRIX 2026",
-  tagline: "BUILD. SOLVE. INNOVATE.",
-  subtitle: "8-Hour Inter-Collegiate Hackathon",
+  /** Shown as the main headline: "IGNITE 2026" */
+  displayName: "IGNITE 2026",
+  tagline: "PROTOTYPE. VALIDATE. SHIP.",
+  subtitle: "4-Week Industry Product Prototyping Sprint",
   institution: "Vijaya Vittala Institute of Technology",
   city: "Bengaluru",
   heroDescription:
-    "An intense 8-hour build-from-zero hackathon where teams receive the problem statement at the start of the event and turn ideas into working solutions.",
+    "IGNITE is a 4-week open innovation sprint where student teams turn real industry problems into working prototypes — mentored end-to-end and powered by SmartX Technologies and AptPath.",
   /**
    * Live status windows (absolute IST timestamps). The status pill switches
    * between REGISTRATIONS OPEN SOON → REGISTRATIONS OPEN → LIVE NOW → EVENT
    * ENDED based on these gates.
    */
-  date: "2026-10-15T09:00:00+05:30",
-  registrationsOpenAt: "2026-09-15T00:00:00+05:30",
-  liveAt: "2026-10-15T09:00:00+05:30",
-  endsAt: "2026-10-15T19:00:00+05:30",
+  date: "2026-10-16T14:00:00+05:30",
+  registrationsOpenAt: "2026-09-25T00:00:00+05:30",
+  liveAt: "2026-10-16T14:00:00+05:30",
+  endsAt: "2026-11-13T23:59:59+05:30",
 } as const;
 
 /* ── LIVE STATUS HELPER ───────────────────────────────────────────────────── */
@@ -59,58 +59,60 @@ export function getEventStatus(now: Date = new Date()): EventStatus {
     return {
       kind: "open",
       label: "REGISTRATIONS OPEN",
-      detail: `Build day ${scheduleDates.dateLabel} · ${scheduleDates.startTime} ${scheduleDates.timeZone}`,
+      detail: `Kickoff ${scheduleDates.dateLabel} · ${scheduleDates.startTime} ${scheduleDates.timeZone}`,
     };
   }
   if (t < STATUS_GATES.ends) {
     return {
       kind: "live",
-      label: "LIVE NOW",
-      detail: `Live until ${scheduleDates.endTime} ${scheduleDates.timeZone} · ${scheduleDates.dateLabel}`,
+      label: "SPRINT LIVE",
+      detail: `Running until ${scheduleDates.endLabel} · ${scheduleDates.dateLabel}`,
     };
   }
   return {
     kind: "ended",
-    label: "EVENT ENDED",
-    detail: `Event concluded ${scheduleDates.dateLabel}`,
+    label: "PROGRAM ENDED",
+    detail: `Program concluded ${scheduleDates.endLabel}`,
   };
 }
 
 /* ── EVENT DATE & TIME ────────────────────────────────────────────────────── */
 export const scheduleDates = {
   /** Human friendly label used across the site */
-  dateLabel: "15 October 2026",
+  dateLabel: "16 October 2026",
   /** ISO date for structured data */
-  dateISO: "2026-10-15",
-  /** Start / end time (24h). 8-hour build happens inside this window. */
-  startTime: "09:00",
-  endTime: "19:00",
+  dateISO: "2026-10-16",
+  /** Label for when the sprint wraps up */
+  endLabel: "13 November 2026",
+  /** Start / end time (24h) — the kickoff session window. */
+  startTime: "14:00",
+  endTime: "17:00",
   timeZone: "IST",
   /** UTC offset used for absolute timestamps (countdown + JSON-LD). */
   timeZoneOffset: "+05:30",
-  /** Duration of the build phase */
-  durationLabel: "8 Hours",
-  format: "Offline + Hybrid",
+  /** Duration of the sprint */
+  durationLabel: "4 Weeks",
+  format: "On-campus & Online",
 } as const;
 
 /**
  * HERO COUNTDOWN
- *  — enabled + targetISO  → a live countdown runs until the event starts.
- *  — enabled + targetISO in the past → countdown switches to "EVENT IS LIVE".
- *  Set the target to the moment registrations/check-in begins.
+ *  — enabled + targetISO  → a live countdown runs until the kickoff.
+ *  — enabled + targetISO in the past → countdown switches to "SPRINT IS LIVE".
+ *  Set the target to the moment kickoff/check-in begins.
  */
 export const countdown = {
   enabled: true,
-  targetISO: "2026-10-15T09:00:00+05:30",
-  label: "EVENT STARTS IN",
+  targetISO: "2026-10-16T14:00:00+05:30",
+  label: "KICKOFF IN",
   /** Optional note shown under the countdown. Empty string hides it. */
-  note: "Check-in opens at 09:00 IST · times may be fine-tuned by the organizing team",
+  note: "Kickoff 16 October 2026 · 2:00 PM IST · Seminar Hall, VVIT Campus",
 } as const;
 
 /* ── VENUE ────────────────────────────────────────────────────────────────── */
 export const venue = {
   name: "Vijaya Vittala Institute of Technology",
-  addressLine1: "Bengaluru, Karnataka, India",
+  addressLine1: "Kothanur Post, Hennur–Bagalur Road, Bengaluru – 560077",
   /**
    * Google Maps. A search query is safe (unknown official pin) — replace with
    * a pinned embed/maps URL once the exact campus block is finalized.
@@ -126,27 +128,47 @@ export const venue = {
 export const registration = {
   /**
    * THE ONE FIELD YOU MUST FILL BEFORE GOING LIVE.
-   * Paste the shareable link to your Google Form here.
-   * While empty, the REGISTER buttons show a friendly "Form link coming soon"
+   * Paste the shareable link to your registration form here.
+   * While empty, the REGISTER buttons show a friendly "coming soon"
    * state instead of sending visitors to a dead link.
    */
-  googleFormUrl: "", // TODO: paste your Google Form link here
-  fee: "₹399",
+  googleFormUrl: "", // TODO: paste your registration form link here
+  fee: "To be announced",
   feePer: "per team",
   feeNote:
-    "Registrations are handled through the official registration form. The ₹399 fee per team is collected as part of the registration process.",
-  teamSize: { min: 2, max: 4, label: "2 – 4 members per team" },
+    "Registration and payment details for IGNITE 2026 are being finalised — see the payment page for updates.",
+  teamSize: { min: 3, max: 5, label: "3 – 5 members per team" },
   /** Registration window. Leave fields null until announced. */
-  opens: null as string | null, // e.g. "2026-09-01T09:00:00+05:30"
-  closes: null as string | null, // e.g. "2026-10-10T23:59:59+05:30"
+  opens: null as string | null, // e.g. "2026-09-25T09:00:00+05:30"
+  closes: null as string | null, // e.g. "2026-10-14T23:59:59+05:30"
   deadlineLabel: "To be announced",
   /** Checklist shown on the Register page — things teams should have ready. */
   whatToPrepare: [
     "Team details — name, college, city",
     "Full name, email, phone, branch & year for every member",
-    "GitHub profiles (required for submission)",
-    "LinkedIn profiles (recommended)",
+    "GitHub profiles (required for the build)",
+    "Laptops, chargers and a valid student ID",
     "All members must be students (eligible colleges as listed)",
+  ],
+} as const;
+
+/* ── PAYMENT ──────────────────────────────────────────────────────────────── */
+/**
+ * The payment page intentionally shows a "yet to be updated" state until the
+ * organizing team finalises the fee and payment channel. Flip `status` to
+ * "live" (and fill the fields) once confirmed.
+ */
+export const payment = {
+  status: "pending" as "pending" | "live",
+  notice: "PAYMENT DETAILS YET TO BE UPDATED",
+  message:
+    "The registration fee and payment link for IGNITE 2026 are being finalised. This page will be updated with the official amount, UPI / bank details and a secure payment link once confirmed.",
+  fee: registration.fee,
+  steps: [
+    "Official fee & team confirmation",
+    "UPI / bank transfer details",
+    "Secure payment link",
+    "Payment confirmation & receipt",
   ],
 } as const;
 
@@ -165,7 +187,7 @@ export const themes = [
 ] as const;
 
 export const themesNote =
-  "Final problem statements will be revealed at the beginning of the hackathon.";
+  "Problem tracks span these domains. Final problem statements are shared by industry mentors at the kickoff.";
 
 /* ── ELIGIBILITY ──────────────────────────────────────────────────────────── */
 export const eligibility = {
@@ -176,85 +198,83 @@ export const eligibility = {
     { label: "AI / ML students", note: "Core & applied AI programs" },
     { label: "Data Science students", note: "Analytics, engineering & statistics" },
     { label: "Electronics & other disciplines", note: "ECE, EEE, mechanical, civil…" },
-    { label: "Anyone passionate about tech & innovation", note: "Interest matters more than the degree" },
+    { label: "Product-minded builders", note: "If you can define a problem, you belong" },
   ],
   note:
-    "Configurable — entry criteria, year bands and any college restrictions are controlled by the organizing team.",
+    "Open to student teams of 3–5. Selected teams are paired with mentors and take an idea from problem to working prototype.",
   /** Optional, only render if set */
   extra: null as string | null,
 } as const;
 
 /* ── PRIZES ───────────────────────────────────────────────────────────────── */
 export const prizes = {
-  /** TBA until finalized. When set, edit|notice is hidden and items render. */
-  status: "TBA" as "TBA" | "FINAL",
-  notice: "PRIZES & SPECIAL AWARDS — TO BE ANNOUNCED",
-  /** Future prize categories (rendered as ghost slots once status = FINAL). */
+  /** When FINAL, the notice is hidden and categories render as cards. */
+  status: "FINAL" as "TBA" | "FINAL",
+  notice: "REWARDS & RECOGNITION",
+  /** Reward tiers. */
   categories: [
-    "Winner",
-    "Runner Up",
-    "Best AI Solution",
-    "Best Use of APIs",
-    "Best Automation",
-    "Best Cloud Deployment",
-    "Special Jury Award",
+    "First Prize — ₹15,000",
+    "Runner-Up — ₹10,000",
+    "6-Month Program Subscription · worth ₹49,999",
   ],
 } as const;
 
 /* ── SPONSORS & PARTNERS ──────────────────────────────────────────────────── */
 export const sponsors = {
-  notice: "PARTNERS WILL BE ANNOUNCED SOON",
-  /** Add paid partners here — each entry becomes a logo slot automatically. */
+  notice: "POWERED BY OUR PARTNERS",
   categories: [
-    "Title Partner",
+    "Presented With",
+    "Platform Partner",
     "Technology Partner",
-    "AI Partner",
-    "Cloud Partner",
-    "Developer Partner",
     "Community Partner",
   ],
-  /** Items below are placeholders — fill real names/logos (public/<name>.png). */
-  partners: [] as { name: string; category: string; logo?: string }[],
+  /**
+   * Priority order (top to bottom): SmartX Technologies → AptPath → Samagra.
+   * The first entry renders as the featured partner.
+   */
+  partners: [
+    { name: "SmartX Technologies", category: "In collaboration with", logo: "/logos/smartx.jpeg" },
+    { name: "AptPath", category: "Platform Partner", logo: "/logos/aptpath.png" },
+    { name: "Samagra", category: "Community Partner", logo: "/logos/samagra.png" },
+  ] as { name: string; category: string; logo?: string }[],
 } as const;
 
-/* ── HOW IT WORKS ─────────────────────────────────────────────────────────── */
+/* ── HOW IT WORKS (PRISM) ─────────────────────────────────────────────────── */
 export const howItWorks = [
-  { step: "01", title: "Register", description: "Complete your team registration." },
-  { step: "02", title: "Check In", description: "Arrive at the venue and complete verification." },
-  { step: "03", title: "Problem Reveal", description: "Problem statements are released at the beginning of the event." },
-  { step: "04", title: "Build", description: "Teams have 8 hours to build their solution." },
-  { step: "05", title: "Submit", description: "Submit project, repository and required documentation before the deadline." },
-  { step: "06", title: "Demo", description: "Shortlisted teams present their solutions to the judges." },
-  { step: "07", title: "Results", description: "Winners are announced during the closing ceremony." },
+  { step: "01", title: "Kickoff", description: "Attend the campus kickoff, meet your mentors and lock in a 3–5 member team." },
+  { step: "02", title: "Problem First", description: "Define a real industry problem — business context, users and success criteria before any code." },
+  { step: "03", title: "Research & Ideation", description: "Map existing solutions, find the gaps and shape solution hypotheses together." },
+  { step: "04", title: "System Build", description: "Ship a working prototype with AI-assisted workflows — you own and explain every output." },
+  { step: "05", title: "Milestone Reviews", description: "Weekly mentor check-ins across implementation, build, testing and review." },
+  { step: "06", title: "Finale & Demo", description: "Present your prototype to judges and mentors at the closing demo day." },
 ] as const;
 
 /* ── ABOUT ────────────────────────────────────────────────────────────────── */
 export const about = {
   paragraphs: [
-    "HACK-MATRIX is an 8-hour innovation sprint where participants receive the challenge / problem statements at the beginning of the event. Teams must ideate, design, develop, deploy and present a working solution within the given time.",
-    "No pre-built projects, no prepared pitches — everything starts from zero on event day. What matters is how fast your team can think, prototype and ship.",
+    "IGNITE is a 4-week open innovation sprint run by Vijaya Vittala Institute of Technology with SmartX Technologies and AptPath. Teams take a real industry problem from first principles to a working prototype.",
+    "Guided by the PRISM product methodology, expert mentors and weekly milestone reviews, you learn by building — and ship something that actually works.",
   ],
   pillars: [
-    { title: "Build from zero", description: "Ideate, build and ship within the event window." },
-    { title: "Real-world problem solving", description: "Tackle practical challenges that matter." },
-    { title: "Rapid prototyping", description: "Turn an idea into a working demo — fast." },
-    { title: "AI & emerging tech", description: "Experiment with the stacks that define tomorrow." },
-    { title: "Deployment", description: "Ship something that actually runs and works." },
-    { title: "Final demonstration", description: "Present your solution live to judges." },
-    { title: "Industry exposure", description: "Interact with peers, mentors and reviewers." },
+    { title: "Problem first", description: "Define the problem and success criteria before writing code." },
+    { title: "Industry problems", description: "Work on challenges sourced from real industry partners." },
+    { title: "Expert mentorship", description: "Get guidance from experienced domain professionals." },
+    { title: "AI-assisted build", description: "Use AI as a force multiplier — you own every output." },
+    { title: "Working prototype", description: "Ship something functional that solves a real problem." },
+    { title: "Industry badges", description: "Earn digital credentials recognised by industry." },
+    { title: "Finale & showcase", description: "Present to judges and mentors for rewards and recognition." },
   ],
 } as const;
 
-/* ── EVENT TIMELINE (SCHEDULE) ────────────────────────────────────────────── */
+/* ── EVENT TIMELINE (4-WEEK SPRINT) ───────────────────────────────────────── */
 /** value can be a label, a time or a date — everything shown exactly as written. */
 export const schedule = [
-  { key: "opens", label: "Registration Opens", value: "To be announced", highlight: false },
-  { key: "closes", label: "Registration Closes", value: "To be announced", highlight: false },
-  { key: "eventDay", label: "Event Day", value: "15 October 2026", highlight: true },
-  { key: "reveal", label: "Problem Statement Reveal", value: "At event start · 09:00 IST", highlight: false },
-  { key: "submission", label: "Submission Deadline", value: "Announced at the event", highlight: false },
-  { key: "finals", label: "Final Presentations", value: "Announced at the event", highlight: false },
-  { key: "results", label: "Results & Closing", value: "Announced at the event", highlight: false },
+  { key: "kickoff", label: "Kickoff & Team Formation", value: "16 October 2026 · 2:00 PM", highlight: true },
+  { key: "week1", label: "Week 1 — Problem First & Research", value: "16 – 23 October 2026", highlight: false },
+  { key: "week2", label: "Week 2 — Ideation & Implementation Plan", value: "24 – 30 October 2026", highlight: false },
+  { key: "week3", label: "Week 3 — System Build (AI-assisted)", value: "31 Oct – 6 November 2026", highlight: false },
+  { key: "week4", label: "Week 4 — Testing & Milestone Review", value: "7 – 13 November 2026", highlight: false },
+  { key: "finale", label: "Finale — Demo Day & Results", value: "To be announced", highlight: false },
 ] as const;
 
 /* ── RULES ────────────────────────────────────────────────────────────────── */
@@ -273,7 +293,7 @@ export const rules = [
   },
   {
     title: "Originality",
-    body: "All work must be original and created during the event. Pre-built or submitted-elsewhere projects are not permitted.",
+    body: "All work must be original and created during the sprint. Pre-built or previously-submitted projects are not permitted.",
   },
   {
     title: "AI usage",
@@ -284,8 +304,8 @@ export const rules = [
     body: "Open-source libraries and frameworks may be used with proper attribution and licenses.",
   },
   {
-    title: "Pre-built code",
-    body: "Templates, boilerplates and starter code are allowed as foundations, but the core logic and functionality must be built during the hackathon.",
+    title: "Starter code",
+    body: "Templates, boilerplates and starter code are allowed as foundations, but the core logic and functionality must be built during the sprint.",
   },
   {
     title: "APIs",
@@ -293,15 +313,15 @@ export const rules = [
   },
   {
     title: "Submission requirements",
-    body: "Teams must submit their source repository, a working demo link/app and any required documentation before the deadline. [Organizers: finalize exact submission channel & format]",
+    body: "Teams must submit their source repository and a working prototype demo before the final review. [Organizers: finalize exact submission channel & format]",
   },
   {
-    title: "Late submission",
-    body: "Submissions after the deadline are marked late; grace periods and penalties are at the organizing team's discretion.",
+    title: "Milestone reviews",
+    body: "Progress is reviewed weekly against defined milestones. Teams are expected to attend mentor check-ins and document their outcomes.",
   },
   {
     title: "Judging",
-    body: "Solutions are judged on innovation, technical complexity, impact, usability and the quality of the presentation. [Organizers: finalize rubric]",
+    body: "Solutions are judged on innovation, technical complexity, impact, usability and the quality of the final demo. [Organizers: finalize rubric]",
   },
   {
     title: "Disqualification",
@@ -309,41 +329,42 @@ export const rules = [
   },
   {
     title: "Intellectual property",
-    body: "Teams retain ownership of the work they create during the event. [Organizers: finalize IP terms]",
+    body: "Teams retain ownership of the work they create during the sprint. [Organizers: finalize IP terms]",
   },
   {
     title: "Code of conduct",
-    body: "All participants agree to behave respectfully and inclusively throughout the event. Harassment or discrimination of any kind is not tolerated.",
+    body: "All participants agree to behave respectfully and inclusively throughout the programme. Harassment or discrimination of any kind is not tolerated.",
   },
 ] as const;
 
 /* ── FAQ ──────────────────────────────────────────────────────────────────── */
 export const faqs = [
-  { q: "What is HACK-MATRIX?", a: "HACK-MATRIX is an 8-hour inter-collegiate hackathon at VVIT, Bengaluru, where teams receive the problem statement at the start and build a working solution within the event window." },
-  { q: "Who can participate?", a: "College students from any discipline — engineering, computer science, AI/ML, data science, electronics and technology-orientated programs. See the eligibility section." },
+  { q: "What is IGNITE?", a: "IGNITE 2026 is a 4-week open innovation sprint at VVIT, Bengaluru, where student teams turn real industry problems into working prototypes with expert mentorship." },
+  { q: "Who can participate?", a: "College students from any discipline — engineering, computer science, AI/ML, data science, electronics and product-minded builders. See the eligibility section." },
+  { q: "How long is the programme?", a: "The sprint runs for 4 weeks, kicking off on 16 October 2026 and closing with a final demo day." },
   { q: "How many members can be in a team?", a: `Teams of ${registration.teamSize.min}–${registration.teamSize.max} members.` },
-  { q: "Is the event online or offline?", a: "The event is primarily offline at the VVIT campus, with hybrid participation options where applicable. [Organizers: finalize hybrid scope]" },
-  { q: "What should participants bring?", a: "A laptop, charger, any required adapters and a valid student ID for check-in. Everything else needed to build." },
-  { q: "Will the problem statement be provided beforehand?", a: "No. Problem statements are revealed at the beginning of the event, and teams build from zero from that moment." },
-  { q: "Can we use AI tools?", a: "Yes — AI-assisted development is encouraged. Be ready to explain and defend your solution during evaluation." },
-  { q: "Can we use external APIs?", a: "Yes, subject to the terms of each service. Don't commit API keys to your repository." },
-  { q: "Is GitHub required?", a: "A GitHub repository is required for submission. Create your team repo before the event day." },
-  { q: "What happens after registration?", a: "You'll receive confirmation with next steps including check-in timing, venue details and what to prepare." },
-  { q: "Is food provided?", a: "[Configurable — to be confirmed by the organizing team.]" },
-  { q: "Are certificates provided?", a: "Participation certificates are typically provided; details are announced by the organizing team." },
-  { q: "What are the judging criteria?", a: "Innovation, technical complexity, real-world impact, usability and quality of the final demo presentation." },
-  { q: "How will teams submit their projects?", a: "Submission includes the source repository, working demo and required documentation, via the channel announced at the event." },
+  { q: "Is the event online or offline?", a: "Kickoff is on campus at the VVIT Seminar Hall, with hybrid and online collaboration through the sprint. [Organizers: finalize hybrid scope]" },
+  { q: "Do we need a finished product?", a: "No. You start from a real problem at kickoff and build a working prototype over the 4 weeks — mentorship and milestone reviews guide you." },
+  { q: "What is PRISM?", a: "PRISM is SmartX Technologies' industry-grade product development methodology — problem first, research & ideation, implementation plan, system build and milestone reviews." },
+  { q: "What can we win?", a: "₹15,000 for the first prize, ₹10,000 for the runner-up, plus a 6-month programme subscription worth ₹49,999, verified certificates and industry-recognised digital badges." },
+  { q: "Are certificates provided?", a: "Yes — verified certificates and digital credentials are awarded to participants." },
+  { q: "Can we use AI tools?", a: "Yes — AI-assisted development is encouraged. You must own and be able to explain every output during evaluation." },
+  { q: "What should participants bring?", a: "A laptop, charger, a GitHub account and a valid student ID. Everything else needed to build is guided by your mentor." },
+  { q: "How do we register?", a: "Team registration opens shortly. The registration and payment links will be updated here once finalised — see the payment page for the current status." },
+  { q: "Who organises IGNITE?", a: "Vijaya Vittala Institute of Technology with SmartX Technologies and AptPath, supported by Samagra, the VVIT student body." },
+  { q: "Where do we get updates?", a: "Follow the organising team on social media and check back here for schedule, registration and payment updates." },
 ] as const;
 
 /* ── CONTACT ──────────────────────────────────────────────────────────────── */
 export const contact = {
-  email: "hackmatrix@vvit.edu.in", // TODO: replace with real inbox
-  phone: "+91 XXXXX XXXXX", // TODO: replace with real number
-  instagram: "https://instagram.com/vvithackmatrix", // TODO: replace handle
+  email: "samagra2k26@gmail.com",
+  phone: "+91 74112 64727",
+  phoneAlt: "+91 93809 87187",
+  instagram: "https://instagram.com/vvit.ignite", // TODO: replace handle
   linkedin: "https://linkedin.com/in/vvit-bengaluru", // TODO: replace company profile
   whatsapp: "", // TODO: add shareable WhatsApp invite link
   discord: "", // TODO: add invite link when ready
-  socialLabel: "Follow HACK-MATRIX for updates",
+  socialLabel: "Follow IGNITE for updates",
 } as const;
 
 /* ── NAVIGATION ───────────────────────────────────────────────────────────── */
@@ -367,28 +388,32 @@ export const footer = {
     { label: "Timeline", to: "/#timeline" },
     { label: "Rules", to: "/rules" },
     { label: "FAQ", to: "/faq" },
+    { label: "Payment", to: "/payment" },
     { label: "Register", to: "/register" },
     { label: "Contact", to: "/#contact" },
   ],
-  copyright: "© 2026 HACK-MATRIX. All rights reserved.",
-  madeBy: "Organized by Vijaya Vittala Institute of Technology, Bengaluru.",
+  copyright: "© 2026 IGNITE. All rights reserved.",
+  madeBy:
+    "Organized by Vijaya Vittala Institute of Technology, Bengaluru, with SmartX Technologies and AptPath.",
 } as const;
 
 /* ── SEO ──────────────────────────────────────────────────────────────────── */
 export const seo = {
   /** Replace with the real production URL once deployed (used for canonicals + OG + sitemap). */
-  siteUrl: "https://hack-matrix.example.com", // TODO: set production URL
-  title: "HACK-MATRIX 2026 | 8-Hour Hackathon | VVIT Bengaluru",
+  siteUrl: "https://hack-matrix-lac.vercel.app",
+  title: "IGNITE 2026 | 4-Week Product Prototyping Sprint | VVIT Bengaluru",
   description:
-    "HACK-MATRIX 2026 is an 8-hour inter-collegiate hackathon at Vijaya Vittala Institute of Technology, Bengaluru. Build from zero, solve real-world challenges and present your solution.",
+    "IGNITE 2026 is a 4-week industry product prototyping sprint at Vijaya Vittala Institute of Technology, Bengaluru, in collaboration with SmartX Technologies and AptPath. Turn real problems into working prototypes.",
   keywords: [
-    "HACK-MATRIX",
-    "hackathon",
+    "IGNITE 2026",
+    "IGNITE",
+    "product prototyping",
+    "innovation sprint",
     "Bengaluru",
     "VVIT",
-    "college hackathon",
-    "8-hour hackathon",
-    "inter-collegiate",
+    "SmartX Technologies",
+    "AptPath",
+    "student innovation",
   ],
   ogImage: "/og-image.png",
   lang: "en",

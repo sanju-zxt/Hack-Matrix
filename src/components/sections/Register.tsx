@@ -92,7 +92,7 @@ export function Register() {
                 <div className="mt-7 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
                   <RegisterButton
                     size="lg"
-                    label="REGISTER FOR HACK-MATRIX"
+                    label="REGISTER FOR IGNITE"
                     className="w-full sm:w-auto"
                   />
                   <Link

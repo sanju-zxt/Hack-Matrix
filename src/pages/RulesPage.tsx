@@ -9,7 +9,7 @@ export default function RulesPage() {
   usePageMeta({
     title: "Rules",
     description:
-      "Rules & code of conduct for HACK-MATRIX 2026 — eligibility, team size, originality, judging and more.",
+      "Rules & code of conduct for IGNITE 2026 — eligibility, team size, originality, judging and more.",
     canonicalPath: "/rules",
   });
 
@@ -69,7 +69,7 @@ export default function RulesPage() {
               <RegisterButton
                 className="w-full sm:w-auto"
                 size="lg"
-                label="REGISTER FOR HACK-MATRIX"
+                label="REGISTER FOR IGNITE"
               />
             </div>
           </div>

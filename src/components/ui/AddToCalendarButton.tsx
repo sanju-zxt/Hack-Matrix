@@ -4,7 +4,7 @@ import { event, scheduleDates, venue } from "../../data/eventConfig";
 import { getRegistrationUrl } from "../../lib/registration";
 import { cn } from "../../lib/cn";
 
-const EVENT_UID = "hack-matrix-2026@hackmatrix";
+const EVENT_UID = "ignite-2026@ignite";
 const OBJECT_URL_REVOKE_DELAY = 2000;
 const textEncoder = new TextEncoder();
 
@@ -62,7 +62,7 @@ function buildIcs() {
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//HACKMATRIX//EN",
+    "PRODID:-//IGNITE//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
@@ -164,7 +164,7 @@ export function AddToCalendarButton({ className }: { className?: string }) {
       ref={anchorRef}
       role="button"
       tabIndex={0}
-      download="hack-matrix-2026.ics"
+      download="ignite-2026.ics"
       onClick={handleDownload}
       onKeyDown={(event) => {
         if (event.key !== "Enter" && event.key !== " ") return;

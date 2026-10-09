@@ -78,7 +78,7 @@ export default function RegisterPage() {
   usePageMeta({
     title: "Register",
     description:
-      "Register for HACK-MATRIX 2026 — the 8-hour inter-collegiate hackathon at VVIT, Bengaluru.",
+      "Register for IGNITE 2026 — the 4-week product prototyping sprint at VVIT, Bengaluru.",
     canonicalPath: "/register",
   });
 
@@ -92,7 +92,7 @@ export default function RegisterPage() {
         </Reveal>
         <Reveal delay={0.05}>
           <h1 className="text-center font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-            REGISTER FOR HACK-MATRIX{" "}
+            REGISTER FOR IGNITE{" "}
             <span className="text-gradient">{event.edition}</span>
           </h1>
         </Reveal>
@@ -111,7 +111,7 @@ export default function RegisterPage() {
             <div className="relative">
               <RegisterButton
                 size="lg"
-                label="REGISTER FOR HACK-MATRIX"
+                label="REGISTER FOR IGNITE"
                 className="w-full sm:w-auto"
               />
               <p className="mt-4 break-words text-sm text-white/60">{formMessage}</p>
@@ -237,7 +237,7 @@ export default function RegisterPage() {
           <div className="mt-8 flex flex-col items-center sm:mt-12">
             <RegisterButton
               size="lg"
-              label="REGISTER FOR HACK-MATRIX"
+              label="REGISTER FOR IGNITE"
               className="w-full sm:w-auto"
             />
             <p className="mt-4 max-w-lg break-words text-center text-sm text-white/60">

@@ -32,7 +32,7 @@ export function About() {
             <SectionHeading
               align="left"
               eyebrow="About the Event"
-              title="An 8-hour sprint from zero to shipped"
+              title="A 4-week sprint from idea to shipped"
               className="mb-6 break-words sm:mb-8"
             />
             {about.paragraphs.map((p, index) => (
@@ -51,7 +51,7 @@ export function About() {
                   <span className="spin-slow absolute inset-0 rounded-full border border-dashed border-violet/30" />
                   <span className="spin-rev absolute inset-2 rounded-full border border-dotted border-leaf/40" />
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-violet/40 bg-ink-800 font-mono text-[0.7rem] font-semibold tracking-widest text-violet-bright">
-                    HM
+                    IG
                   </span>
                   <span className="absolute -right-0.5 top-2 h-2 w-2 rounded-full bg-leaf-light shadow-[0_0_8px_rgba(98,201,135,0.9)]" />
                 </span>

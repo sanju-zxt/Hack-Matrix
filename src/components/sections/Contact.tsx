@@ -105,24 +105,28 @@ export function Contact() {
                 </a>
               </Reveal>
 
-              <Reveal delay={0.1} y={16}>
-                <a
-                  href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}
-                  className="group flex min-h-11 items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-all duration-300 hover:border-violet/40 hover:bg-violet/5 sm:gap-4 sm:p-5"
-                >
-                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet/10 text-violet-bright transition-colors duration-300 group-hover:bg-violet/20">
-                    <Phone size={19} strokeWidth={1.75} />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
-                      Phone
-                    </span>
-                    <span className="block break-all font-medium text-white transition-colors group-hover:text-violet-bright">
-                      {contact.phone}
-                    </span>
-                  </span>
-                </a>
-              </Reveal>
+              {[contact.phone, contact.phoneAlt]
+                .filter(Boolean)
+                .map((phone, i) => (
+                  <Reveal key={phone} delay={0.1 + i * 0.03} y={16}>
+                    <a
+                      href={`tel:${phone.replace(/[^\d+]/g, "")}`}
+                      className="group flex min-h-11 items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-all duration-300 hover:border-violet/40 hover:bg-violet/5 sm:gap-4 sm:p-5"
+                    >
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet/10 text-violet-bright transition-colors duration-300 group-hover:bg-violet/20">
+                        <Phone size={19} strokeWidth={1.75} />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-mono text-[0.65rem] uppercase tracking-[0.25em] text-white/55">
+                          Phone
+                        </span>
+                        <span className="block break-all font-medium text-white transition-colors group-hover:text-violet-bright">
+                          {phone}
+                        </span>
+                      </span>
+                    </a>
+                  </Reveal>
+                ))}
 
               <Reveal delay={0.15} y={16}>
                 <div className="flex min-h-11 items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:gap-4 sm:p-5">

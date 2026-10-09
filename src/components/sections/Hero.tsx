@@ -248,7 +248,7 @@ export function Hero() {
             )}
           >
             <span className="text-gradient drop-shadow-[0_0_40px_rgba(124,108,255,0.25)]">
-              HACK-MATRIX
+              {event.name}
             </span>
             <span
               className={cn(

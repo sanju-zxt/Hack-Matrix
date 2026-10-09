@@ -10,7 +10,7 @@ export default function FAQPage() {
   usePageMeta({
     title: "FAQ",
     description:
-      "Frequently asked questions about HACK-MATRIX 2026 — eligibility, teams, judging, submissions and more.",
+      "Frequently asked questions about IGNITE 2026 — eligibility, teams, judging, submissions and more.",
     canonicalPath: "/faq",
   });
 
@@ -58,7 +58,7 @@ export default function FAQPage() {
               <div className="mt-6">
                 <Button className="w-full sm:w-auto" to="/register" size="lg">
                   <span className="min-w-0 text-center">
-                    REGISTER FOR HACK-MATRIX
+                    REGISTER FOR IGNITE
                   </span>
                   <ArrowRight size={18} className="shrink-0" />
                 </Button>

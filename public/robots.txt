@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://hack-matrix.example.com/sitemap.xml
+Sitemap: https://hack-matrix-lac.vercel.app/sitemap.xml

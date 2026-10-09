@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>IGNITE 2026 — Brochure (6-page DL booklet)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ═══════════════════════════════════════════════════════════════════════
+     IGNITE 2026 — 7-PAGE DL BOOKLET
+     dark HUD / technical blueprint  ·  99 x 210 mm per page
+
+     FORMAT
+     ──────
+     Seven independent portrait pages at DL size. One topic per page, no
+     folding, no panels. `@page` drives the PDF box; `.page` is the only
+     page primitive.
+
+     BRAND
+     ─────
+     The VVIT seal appears exactly ONCE, on page 1. Every other page is
+     identified by a hairline reticle, a mono stamp and a ghost index
+     numeral, so the mark reads as a signature rather than wallpaper.
+
+     Decorative glow is painted as a background gradient on `.page` itself,
+     never as a positioned child — a positioned child that bleeds off the
+     edge is reported as page overflow, and the page is what gets cut.
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  :root {
+    --void:    #05070A;
+    --surf:    #0A0E14;
+    --surf-2:  #0F141C;
+    --hair:    #1B2430;
+    --hair-2:  #2A3646;
+    --hair-3:  #3A4859;
+    --ink:     #DCE3ED;
+    --ink-2:   #A8B3C2;
+    --ink-3:   #7C8798;
+    --cy:      #22D3EE;
+    --vi:      #7C6CFF;
+    --gr:      #2E9E5B;
+    --am:      #F5C451;
+
+    --pw: 99mm;
+    --ph: 210mm;
+    --pad: 8mm;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: #05070A; }
+
+  body {
+    font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── page ───────────────────────────────────────────────────── */
+  .page {
+    width: var(--pw);
+    height: var(--ph);
+    position: relative;
+    overflow: hidden;
+    background-color: var(--void);
+    background-image:
+      radial-gradient(58mm 58mm at 14% 6%, rgba(124, 108, 255, .20), transparent 68%),
+      radial-gradient(50mm 50mm at 88% 94%, rgba(34, 211, 238, .13), transparent 70%),
+      repeating-linear-gradient(0deg, rgba(34, 211, 238, .022) 0 1px, transparent 1px 4px);
+    color: var(--ink);
+    page-break-after: always;
+    break-after: page;
+    margin: 8mm auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .5);
+  }
+  .page:last-of-type { page-break-after: auto; break-after: auto; margin-bottom: 0; }
+
+  /* fine + coarse blueprint grid, clipped to the page by .page itself */
+  .page::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(34, 211, 238, .05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 211, 238, .05) 1px, transparent 1px),
+      linear-gradient(rgba(34, 211, 238, .028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 211, 238, .028) 1px, transparent 1px);
+    background-size: 16mm 16mm, 16mm 16mm, 4mm 4mm, 4mm 4mm;
+  }
+
+  @media print {
+    html, body { background: #FFFFFF; }
+    .page { margin: 0; box-shadow: none; }
+    @page { size: 99mm 210mm; margin: 0; }
+  }
+
+  /* ── content flow ───────────────────────────────────────────── */
+  .flow {
+    position: relative; z-index: 2;
+    height: 100%;
+    padding: var(--pad);
+    display: flex; flex-direction: column;
+  }
+  /* interior pages reserve a right-hand lane so the ghost numeral
+     never crosses body copy */
+  .page:not(.cover) .flow { padding-right: 27mm; }
+
+  /* ── HUD reticle: four corner brackets ──────────────────────── */
+  .reticle {
+    position: absolute;
+    inset: 5mm;
+    z-index: 1;
+    border: .25mm solid var(--hair);
+    pointer-events: none;
+  }
+  .bracket {
+    position: absolute;
+    width: 5mm; height: 5mm;
+    border: .45mm solid var(--cy);
+  }
+  .bracket.tl { top: -.45mm; left: -.45mm; border-right: 0; border-bottom: 0; }
+  .bracket.tr { top: -.45mm; right: -.45mm; border-left: 0; border-bottom: 0; }
+  .bracket.bl { bottom: -.45mm; left: -.45mm; border-right: 0; border-top: 0; }
+  .bracket.br { bottom: -.45mm; right: -.45mm; border-left: 0; border-top: 0; }
+
+  /* ── ghost index numeral (watermark) ────────────────────────── */
+  .ghostnum {
+    position: absolute;
+    z-index: 1;
+    right: 5mm; top: 34mm;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18mm; font-weight: 700; line-height: 1.25;
+    letter-spacing: -.03em;
+    color: var(--cy);
+    opacity: .12;
+    pointer-events: none;
+  }
+
+  /* ── micro-label ────────────────────────────────────────────── */
+  .stamp {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.55mm; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--cy);
+    margin-bottom: 3mm;
+  }
+  .stamp.vi { color: var(--vi); }
+  .stamp.gr { color: var(--gr); }
+
+  /* ── typographic lockup (stands in for the logo on pages 2-7) ── */
+  .lockup {
+    padding-bottom: 2.2mm;
+    border-bottom: .4mm solid var(--hair-2);
+  }
+  .lockup .mark {
+    font-family: "Space Grotesk", sans-serif; font-weight: 700;
+    font-size: 2.9mm; letter-spacing: .04em; color: var(--ink);
+  }
+  .lockup .sub {
+    display: inline-block;
+    font-family: "JetBrains Mono", monospace; font-size: 1.45mm;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+    margin-left: 2.2mm;
+  }
+
+  .page-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 6.2mm; font-weight: 700;
+    line-height: 1.14; letter-spacing: -.02em;
+    color: var(--ink);
+    margin-top: 3.4mm;
+  }
+  .page-lede { font-size: 2.1mm; line-height: 1.5; color: var(--ink-2); margin-top: 2mm; }
+
+  .rule-line { height: .5mm; width: 100%; background-color: var(--hair-2); margin: 4mm 0; }
+
+  /* ── section heading ────────────────────────────────────────── */
+  .sec { display: flex; align-items: center; gap: 2.2mm; margin-bottom: 2.6mm; }
+  .sec h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2.8mm; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink); white-space: nowrap;
+  }
+  .sec .bar { flex: 1 1 auto; height: .5mm; background-color: var(--hair-2); }
+
+  .stack { margin-top: 4.4mm; }
+
+  /* ── angular clip container ─────────────────────────────────── */
+  .clip {
+    background-color: var(--surf);
+    clip-path: polygon(0 0, calc(100% - 3mm) 0, 100% 3mm, 100% 100%, 3mm 100%, 0 calc(100% - 3mm));
+    padding: 3.2mm 3.2mm;
+  }
+
+  /* ═══════════ COVER (page 1) — the only page with the seal ═══════════ */
+  .cover { text-align: center; }
+  .cover .flow { align-items: center; }
+
+  .seal-frame {
+    width: 27mm; height: 27mm;
+    background-color: #FFFFFF;
+    padding: 1.1mm;
+    box-shadow: 0 0 0 .8mm var(--gr), 0 0 0 1.4mm var(--surf-2), 0 0 0 2mm var(--vi);
+  }
+  .seal-frame img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; }
+
+  .cover-host { margin-top: 3.4mm; }
+  .cover-host .presents {
+    display: block;
+    font-family: "JetBrains Mono", monospace; font-size: 1.45mm;
+    letter-spacing: .24em; text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 1mm;
+  }
+  .cover-host strong { display: block; font-size: 2.35mm; font-weight: 600; color: var(--ink-2); line-height: 1.35; }
+
+  .cover-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12mm; font-weight: 700; line-height: 1.02;
+    letter-spacing: -.03em;
+    color: var(--ink);
+    margin: 5.4mm 0 2.4mm;
+  }
+  .cover-title em {
+    font-style: normal;
+    background: linear-gradient(96deg, var(--cy) 0%, var(--vi) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cover-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 2.1mm; font-weight: 700; letter-spacing: .2em; color: var(--ink-2);
+  }
+  .cover-sub { font-size: 2mm; color: var(--ink-3); line-height: 1.5; margin-top: 2.4mm; }
+
+  .cover-date {
+    display: flex; align-items: center; justify-content: center; gap: 2.6mm;
+    margin: 4.6mm 0 0; padding: 2.4mm 5mm;
+    background-color: var(--surf);
+    clip-path: polygon(0 0, calc(100% - 3mm) 0, 100% 3mm, 100% 100%, 3mm 100%, 0 calc(100% - 3mm));
+  }
+  .cover-date .d {
+    font-family: "Space Grotesk", sans-serif; font-size: 9mm; font-weight: 700;
+    line-height: 1.05; color: var(--cy); letter-spacing: -.02em;
+  }
+  .cover-date .m {
+    font-family: "JetBrains Mono", monospace; font-size: 2.3mm; font-weight: 700;
+    letter-spacing: .16em; color: var(--ink); text-align: left; line-height: 1.4;
+  }
+  .cover-date .m small { display: block; font-size: 1.5mm; color: var(--ink-3); letter-spacing: .14em; }
+
+  /* stat meters */
+  .meters { display: flex; flex-direction: column; gap: 1.9mm; margin: 4.6mm 0 0; width: 100%; }
+  .meter { display: flex; align-items: center; gap: 2.6mm; }
+  .meter .v {
+    font-family: "Space Grotesk", sans-serif; font-size: 3.2mm; font-weight: 700;
+    color: var(--ink); flex: 0 0 19mm; line-height: 1.1;
+  }
+  .meter .l {
+    font-family: "JetBrains Mono", monospace; font-size: 1.45mm;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+    flex: 1 1 auto; text-align: left;
+  }
+  .bar-track { flex: 0 0 13mm; height: 1mm; background-color: var(--hair); }
+  .bar-fill { display: block; height: 1mm; background-color: var(--cy); }
+
+  .fill { margin-top: auto; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 2.4mm; }
+  .cta {
+    display: inline-block;
+    font-family: "JetBrains Mono", monospace; font-weight: 700;
+    font-size: 2.5mm; letter-spacing: .14em;
+    color: var(--void); background-color: var(--cy);
+    padding: 2.6mm 7mm;
+    clip-path: polygon(0 0, calc(100% - 2.5mm) 0, 100% 2.5mm, 100% 100%, 2.5mm 100%, 0 calc(100% - 2.5mm));
+  }
+  .cta.ghost {
+    color: var(--ink); background-color: transparent;
+    border-bottom: .4mm solid var(--cy);
+    padding: .8mm 0; font-size: 2mm; letter-spacing: .02em;
+    clip-path: none;
+  }
+  .cover-foot {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.45mm; letter-spacing: .1em;
+    color: var(--ink-3); line-height: 1.8; margin-top: 1.4mm;
+  }
+
+  /* ── prose ──────────────────────────────────────────────────── */
+  p.body { font-size: 2.15mm; line-height: 1.6; color: var(--ink-2); }
+  p.body + p.body { margin-top: 2.2mm; }
+
+  /* ── data readout ───────────────────────────────────────────── */
+  .data {
+    display: grid; grid-template-columns: 21mm 1fr;
+    gap: 2.4mm; align-items: baseline;
+    margin-bottom: 1.8mm;
+  }
+  .data .k {
+    font-family: "JetBrains Mono", monospace; font-size: 1.5mm;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .data .v {
+    font-family: "Space Grotesk", sans-serif; font-size: 2.4mm;
+    font-weight: 600; color: var(--ink); line-height: 1.32;
+  }
+  .data .v.s { font-family: Inter, sans-serif; font-size: 1.85mm; font-weight: 400; color: var(--ink-2); }
+  .data.vi .k { color: var(--vi); }
+  .data.gr .k { color: var(--gr); }
+  .data.am .k { color: var(--am); }
+
+  /* ── bracket chips ──────────────────────────────────────────── */
+  .tags { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+  .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.7mm; color: var(--ink-2);
+    border: .35mm solid var(--hair-2);
+    background-color: var(--surf);
+    padding: 1mm 2.2mm;
+  }
+
+  /* ── theme list ─────────────────────────────────────────────── */
+  .theme-list { display: flex; flex-direction: column; gap: 1.4mm; }
+  .theme {
+    display: flex; gap: 2.6mm; align-items: baseline;
+    background-color: var(--surf);
+    border-left: .5mm solid var(--hair-2);
+    padding: 1.8mm 2.4mm;
+  }
+  .theme .n {
+    font-family: "JetBrains Mono", monospace; font-size: 1.45mm; font-weight: 700;
+    color: var(--cy); flex: 0 0 5mm; letter-spacing: .06em;
+  }
+  .theme .t { min-width: 0; }
+  .theme .t b {
+    font-family: "Space Grotesk", sans-serif; font-size: 2.1mm; font-weight: 600;
+    color: var(--ink); margin-right: 1.6mm;
+  }
+  .theme .t span { font-size: 1.8mm; color: var(--ink-2); line-height: 1.45; }
+
+  /* ── process steps ──────────────────────────────────────────── */
+  .steps { display: flex; flex-direction: column; }
+  .step {
+    display: flex; gap: 2.6mm; align-items: baseline;
+    padding: 1.9mm 0;
+    border-bottom: .4mm solid var(--hair);
+  }
+  .step:last-child { border-bottom: 0; }
+  .step .n {
+    font-family: "JetBrains Mono", monospace; font-size: 1.65mm; font-weight: 700;
+    color: var(--cy); flex: 0 0 6mm; letter-spacing: .06em;
+  }
+  .step .x { font-size: 1.95mm; line-height: 1.45; color: var(--ink-2); min-width: 0; }
+  .step .x b {
+    font-family: "Space Grotesk", sans-serif; font-size: 2.1mm; font-weight: 600;
+    color: var(--ink); margin-right: 1.4mm;
+  }
+
+  /* ── technical bullet list: glyph markers, never round dots ──── */
+  .tick-list { list-style: none; }
+  .tick-list li {
+    position: relative;
+    padding-left: 4.6mm;
+    font-size: 2mm; line-height: 1.45; color: var(--ink-2);
+    margin-bottom: 1.7mm;
+  }
+  .tick-list li:last-child { margin-bottom: 0; }
+  .tick-list li::before {
+    content: "\25B8";
+    position: absolute; left: 0; top: -.1mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 2mm; font-weight: 700; line-height: 1.45;
+    color: var(--cy);
+  }
+  .tick-list li b { color: var(--ink); font-weight: 600; }
+
+  /* ── TBA banner ─────────────────────────────────────────────── */
+  .tba {
+    border: .4mm dashed var(--am);
+    background-color: var(--surf);
+    padding: 3mm 2.6mm; text-align: center;
+    clip-path: polygon(0 0, calc(100% - 2.5mm) 0, 100% 2.5mm, 100% 100%, 2.5mm 100%, 0 calc(100% - 2.5mm));
+  }
+  .tba .t {
+    font-family: "JetBrains Mono", monospace; font-size: 1.8mm; font-weight: 700;
+    letter-spacing: .16em; color: var(--am); margin-bottom: 1.2mm;
+  }
+  .tba p { font-size: 1.8mm; line-height: 1.5; color: var(--ink-2); }
+
+  /* ── prize slots ────────────────────────────────────────────── */
+  .slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4mm; margin-top: 2.4mm; }
+  .slot {
+    background-color: var(--surf-2);
+    padding: 1.8mm 1mm; text-align: center;
+    clip-path: polygon(0 0, calc(100% - 2mm) 0, 100% 2mm, 100% 100%, 2mm 100%, 0 calc(100% - 2mm));
+  }
+  .slot .sh {
+    font-family: "JetBrains Mono", monospace; font-size: 1.3mm;
+    letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2);
+    line-height: 1.35; margin-bottom: .7mm;
+  }
+  .slot .sv {
+    font-family: "Space Grotesk", sans-serif; font-size: 2.5mm; font-weight: 700;
+    color: var(--ink-3); letter-spacing: .02em;
+  }
+  .slot .ss { font-size: 1.35mm; color: var(--ink-2); line-height: 1.35; margin-top: .5mm; }
+
+  /* ── judging rail ───────────────────────────────────────────── */
+  .rail { display: flex; flex-direction: column; }
+  .rail-item {
+    display: flex; gap: 2.6mm; align-items: baseline;
+    padding: 1.7mm 0 1.7mm 3mm;
+    border-left: .5mm solid var(--hair-2);
+    position: relative;
+  }
+  .rail-item::before {
+    content: "";
+    position: absolute; left: -1mm; top: 2.3mm;
+    width: 1.6mm; height: 1.6mm;
+    background-color: var(--hair-3);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  }
+  .rail-item.hot { border-left-color: var(--cy); }
+  .rail-item.hot::before { background-color: var(--cy); }
+  .rail-item .t {
+    font-family: "JetBrains Mono", monospace; font-size: 1.85mm; font-weight: 700;
+    color: var(--cy); flex: 0 0 14mm;
+  }
+  .rail-item .l { font-size: 1.9mm; line-height: 1.4; color: var(--ink-2); min-width: 0; }
+  .rail-item.hot .l { color: var(--ink); font-weight: 600; }
+
+  .note { font-size: 1.75mm; line-height: 1.5; color: var(--ink-3); }
+
+  /* ── partner slots ──────────────────────────────────────────── */
+  .partners { display: flex; gap: 1.6mm; }
+  .partner {
+    flex: 1 1 0;
+    background-color: var(--surf-2);
+    padding: 2.2mm .6mm; text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.35mm; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ink-3);
+    clip-path: polygon(0 0, calc(100% - 1.8mm) 0, 100% 1.8mm, 100% 100%, 1.8mm 100%, 0 calc(100% - 1.8mm));
+  }
+
+  /* ── QR + footer ────────────────────────────────────────────── */
+  .qr-row { display: flex; align-items: center; gap: 3.2mm; }
+  .qr-swatch { flex: 0 0 auto; width: 23mm; height: 23mm; background-color: #FFFFFF; padding: 1.4mm; }
+  .qr-swatch img { width: 100%; height: 100%; display: block; }
+  .qr-cap { min-width: 0; }
+  .qr-cap .qk {
+    display: block;
+    font-family: "JetBrains Mono", monospace; font-size: 1.45mm;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 1mm;
+  }
+  .qr-cap .qu {
+    display: block;
+    font-family: "Space Grotesk", sans-serif; font-size: 2.2mm; font-weight: 700;
+    color: var(--ink); letter-spacing: .01em; word-break: break-all; line-height: 1.3;
+  }
+  .qr-cap p { font-size: 1.7mm; line-height: 1.45; color: var(--ink-2); margin-top: 1.2mm; }
+
+  .foot {
+    margin-top: auto; padding-top: 2.4mm;
+    border-top: .4mm solid var(--hair);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.4mm; letter-spacing: .08em; color: var(--ink-3);
+    display: flex; justify-content: space-between;
+  }
+
+  /* ═══════════ PAGE 2 · pull-quote block ═══════════ */
+  .quote {
+    border-left: .8mm solid var(--cy);
+    background-color: var(--surf);
+    padding: 2.8mm 3mm;
+    margin-top: 4.4mm;
+  }
+  .quote p {
+    font-family: "Space Grotesk", sans-serif; font-size: 2.6mm;
+    font-weight: 600; line-height: 1.34; color: var(--ink);
+  }
+  .quote span {
+    display: block; margin-top: 1.4mm;
+    font-family: "JetBrains Mono", monospace; font-size: 1.4mm;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--cy);
+  }
+
+  /* ═══════════ PAGE 3 · theme card grid ═══════════ */
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4mm; }
+  .tcard {
+    background-color: var(--surf);
+    border-top: .5mm solid var(--cy);
+    padding: 1.8mm 1.6mm;
+  }
+  .tcard .n {
+    display: block;
+    font-family: "JetBrains Mono", monospace; font-size: 1.4mm; font-weight: 700;
+    color: var(--cy); letter-spacing: .06em; margin-bottom: .9mm;
+  }
+  .tcard b {
+    display: block;
+    font-family: "Space Grotesk", sans-serif; font-size: 2mm; font-weight: 600;
+    color: var(--ink); line-height: 1.2; margin-bottom: .7mm;
+  }
+  .tcard .d { display: block; font-size: 1.65mm; line-height: 1.35; color: var(--ink-3); }
+
+  /* ═══════════ PAGE 4 · two-column split ═══════════ */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3.4mm; align-items: start; }
+  .split > div { min-width: 0; }
+  .split .tag { display: block; margin-bottom: 1.2mm; }
+  .split .tag:last-child { margin-bottom: 0; }
+
+  /* ═══════════ PAGE 5 · judging weight bars ═══════════ */
+  .wrow { display: flex; align-items: center; gap: 2.4mm; margin-bottom: 2.1mm; }
+  .wrow:last-child { margin-bottom: 0; }
+  .wrow .wl {
+    font-size: 1.9mm; color: var(--ink-2); line-height: 1.3;
+    flex: 1 1 auto; min-width: 0;
+  }
+  .wrow .wt { flex: 0 0 18mm; height: 1.2mm; background-color: var(--hair); }
+  .wrow .wt i { display: block; height: 1.2mm; background-color: var(--hair-3); }
+  .wrow.top .wt i { background-color: var(--cy); }
+  .wrow .wp {
+    font-family: "JetBrains Mono", monospace; font-size: 1.8mm; font-weight: 700;
+    color: var(--ink); flex: 0 0 8mm; text-align: right;
+  }
+  .wrow.top .wp { color: var(--cy); }
+
+  /* ═══════════ PAGE 6 · run of show, one time gutter ═══════════ */
+  .sched { display: flex; flex-direction: column; border-left: .4mm solid var(--hair-2); }
+  .sched-item {
+    display: flex; gap: 3mm; align-items: baseline;
+    padding: 1.55mm 0 1.55mm 3mm; position: relative;
+  }
+  .sched-item::before {
+    content: ""; position: absolute; left: -1.05mm; top: 2.05mm;
+    width: 1.5mm; height: 1.5mm; background-color: var(--hair-3);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  }
+  .sched-item.hot::before { background-color: var(--cy); }
+  .sched-item .t {
+    font-family: "JetBrains Mono", monospace; font-size: 1.85mm; font-weight: 700;
+    color: var(--cy); flex: 0 0 12.5mm; line-height: 1.3;
+  }
+  .sched-item .l { font-size: 1.9mm; line-height: 1.35; color: var(--ink-2); min-width: 0; }
+  .sched-item .l b {
+    font-family: "Space Grotesk", sans-serif; font-size: 2mm; font-weight: 600;
+    color: var(--ink); margin-right: 1.4mm;
+  }
+  .sched-item.pre .t { color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 · COVER — the only page carrying the VVIT seal ═══════════ -->
+<section class="page cover" data-role="cover" data-page="1">
+  <div class="reticle">
+    <span class="bracket tl"></span><span class="bracket tr"></span>
+    <span class="bracket bl"></span><span class="bracket br"></span>
+  </div>
+
+  <div class="flow">
+    <span class="stamp">IGNITE 2026 // DL BOOKLET // 01</span>
+
+    <div class="seal-frame"><img src="__LOGO_DATA_URI__" alt="Vijaya Vittala Institute of Technology logo" /></div>
+    <div class="cover-host">
+      <span class="presents">Presented by</span>
+      <strong>Vijaya Vittala Institute of Technology</strong>
+    </div>
+
+    <span class="stamp vi" style="margin-top:5mm;">4-Week Industry Prototyping Sprint</span>
+    <h1 class="cover-title">IGNITE<br /><em>2026</em></h1>
+    <div class="cover-tag">PROTOTYPE. VALIDATE. SHIP.</div>
+    <p class="cover-sub">A four-week build-from-zero product sprint.<br />Problem statements drop at kickoff.</p>
+
+    <div class="cover-date">
+      <span class="d">16</span>
+      <span class="m">OCT<small>2026 &middot; 2:00 PM onwards</small></span>
+    </div>
+
+    <div class="meters">
+      <div class="meter">
+        <span class="v">4 WKS</span><span class="l">Sprint span</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%"></span></span>
+      </div>
+      <div class="meter">
+        <span class="v">3&ndash;5</span><span class="l">Team size</span>
+        <span class="bar-track"><span class="bar-fill" style="width:50%"></span></span>
+      </div>
+      <div class="meter">
+        <span class="v">&#8377;49,999</span><span class="l">Program value</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25%"></span></span>
+      </div>
+    </div>
+
+    <div class="fill">
+      <span class="cta">REGISTER</span>
+      <a class="cta ghost" href="https://ignite.aptpath.in">ignite.aptpath.in</a>
+      <div class="cover-foot">VVIT CAMPUS &middot; BENGALURU<br />WITH SMARTX TECHNOLOGIES &amp; APTPATH</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 2 · ABOUT ═══════════ -->
+<section class="page" data-page="2">
+  <div class="reticle">
+    <span class="bracket tl"></span><span class="bracket tr"></span>
+    <span class="bracket bl"></span><span class="bracket br"></span>
+  </div>
+  <div class="ghostnum">02</div>
+
+  <div class="flow">
+    <span class="stamp">IGNITE 2026 // ABOUT</span>
+    <h2 class="page-title">Four weeks.<br />Zero pre-built projects.</h2>
+    <p class="page-lede">
+      Teams receive the challenge at kickoff and work through a four-week industry
+      prototyping sprint to ideate, design, build, deploy and present a working product.
+    </p>
+
+    <div class="quote">
+      <p>&ldquo;Build from zero.<br />Ship something real.&rdquo;</p>
+      <span>// the only rule that matters</span>
+    </div>
+
+    <div class="rule-line"></div>
+
+    <div class="sec"><h3>At a glance</h3><div class="bar"></div></div>
+    <div class="data"><span class="k">When</span><span class="v">16 October 2026 &middot; 2:00 PM onwards</span></div>
+    <div class="data vi"><span class="k">Where</span><span class="v">Seminar Hall, VVIT Campus, Bengaluru</span></div>
+    <div class="data gr"><span class="k">Duration</span><span class="v">4 weeks &middot; 28 days</span></div>
+
+    <div class="stack">
+      <div class="sec"><h3>Format</h3><div class="bar"></div></div>
+      <ul class="tick-list">
+        <li><b>Build from zero</b> &mdash; no pre-built projects, no rehearsed pitches</li>
+        <li><b>Working prototype required</b> &mdash; repo, deployment and documentation</li>
+        <li><b>Statement at kickoff</b> &mdash; problem statements revealed live</li>
+        <li><b>Weekly milestone reviews</b> &mdash; mentor check-ins every week</li>
+        <li><b>Industry collaboration</b> &mdash; built with SmartX Technologies &amp; AptPath</li>
+      </ul>
+    </div>
+
+    <div class="stack">
+      <div class="sec"><h3>Entry covers</h3><div class="bar"></div></div>
+      <p class="body">
+        The full four-week sprint, weekly mentor reviews, an AI-assisted build track,
+        and a verified certificate and digital badge for every team member.
+      </p>
+    </div>
+
+    <div class="foot"><span>IGNITE 2026</span><span>02 / 06</span></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 3 · THEME TRACKS ═══════════ -->
+<section class="page" data-page="3">
+  <div class="reticle">
+    <span class="bracket tl"></span><span class="bracket tr"></span>
+    <span class="bracket bl"></span><span class="bracket br"></span>
+  </div>
+  <div class="ghostnum">03</div>
+
+  <div class="flow">
+    <span class="stamp">IGNITE 2026 // THEMES</span>
+    <h2 class="page-title">Nine theme tracks</h2>
+    <p class="page-lede">
+      Final problem statements are revealed at kickoff. These are the track families
+      teams can expect to build within across the four-week sprint.
+    </p>
+
+    <div class="rule-line"></div>
+
+    <div class="grid3">
+      <div class="tcard"><span class="n">01</span><b>Artificial Intelligence</b><span class="d">Agents, reasoning, generative AI.</span></div>
+      <div class="tcard"><span class="n">02</span><b>Machine Learning</b><span class="d">Models, prediction, training pipelines.</span></div>
+      <div class="tcard"><span class="n">03</span><b>Data Science</b><span class="d">Insight extraction, analytics tooling.</span></div>
+      <div class="tcard"><span class="n">04</span><b>Web &amp; Full-Stack</b><span class="d">Complete apps, APIs, product builds.</span></div>
+      <div class="tcard"><span class="n">05</span><b>Automation</b><span class="d">Tools and bots that cut human effort.</span></div>
+      <div class="tcard"><span class="n">06</span><b>Cybersecurity</b><span class="d">Protecting systems, data and privacy.</span></div>
+      <div class="tcard"><span class="n">07</span><b>Cloud &amp; DevOps</b><span class="d">Infrastructure, deployment, reliability.</span></div>
+      <div class="tcard"><span class="n">08</span><b>Social Impact</b><span class="d">Technology that serves communities.</span></div>
+      <div class="tcard"><span class="n">09</span><b>Open Innovation</b><span class="d">Bold, novel, unexpected.</span></div>
+    </div>
+
+    <div class="stack">
+      <div class="sec"><h3>Cross-track tags</h3><div class="bar"></div></div>
+      <div class="tags">
+        <span class="tag">[ API ]</span>
+        <span class="tag">[ CLOUD ]</span>
+        <span class="tag">[ DATA ]</span>
+        <span class="tag">[ UX ]</span>
+        <span class="tag">[ IMPACT ]</span>
+      </div>
+    </div>
+
+    <div class="foot"><span>IGNITE 2026</span><span>03 / 06</span></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 4 · WHO CAN JOIN / BRING ═══════════ -->
+<section class="page" data-page="4">
+  <div class="reticle">
+    <span class="bracket tl"></span><span class="bracket tr"></span>
+    <span class="bracket bl"></span><span class="bracket br"></span>
+  </div>
+  <div class="ghostnum">04</div>
+
+  <div class="flow">
+    <span class="stamp">IGNITE 2026 // ELIGIBILITY</span>
+
+    <h2 class="page-title">Who can join</h2>
+    <p class="page-lede">
+      Open to engineering innovators who want to build. Interest matters more than the
+      degree you are enrolled in.
+    </p>
+
+    <div class="rule-line"></div>
+
+    <div class="split">
+      <div>
+        <div class="sec"><h3>Eligible</h3><div class="bar"></div></div>
+        <ul class="tick-list">
+          <li><b>Engineering</b> &mdash; all branches, B.E. / B.Tech</li>
+          <li><b>Computer Science</b> &mdash; CSE, ISE, AI &amp; DS, ML</li>
+          <li><b>AI / ML</b> &mdash; core and applied programs</li>
+          <li><b>Data Science</b> &mdash; analytics, engineering, statistics</li>
+          <li><b>Other disciplines</b> &mdash; ECE, EEE, mechanical, civil</li>
+          <li><b>Anyone passionate</b> about tech</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sec"><h3>Bring</h3><div class="bar"></div></div>
+        <span class="tag">[ LAPTOP + CHARGER ]</span>
+        <span class="tag">[ DONGLE ]</span>
+        <span class="tag">[ STUDENT ID ]</span>
+        <span class="tag">[ GITHUB PROFILE ]</span>
+        <span class="tag">[ TEAM DETAILS ]</span>
+
+        <div class="stack">
+          <div class="sec"><h3>We provide</h3><div class="bar"></div></div>
+          <span class="tag">[ SEATS ]</span>
+          <span class="tag">[ PLUG POINTS ]</span>
+          <span class="tag">[ WI-FI ]</span>
+          <span class="tag">[ MENTORS ]</span>
+          <span class="tag">[ MEALS ]</span>
+          <span class="tag">[ PRINT DESK ]</span>
+          <span class="tag">[ CERTIFICATE ]</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="data vi"><span class="k">Teams</span><span class="v s">Three to five members. Mix disciplines freely &mdash; diverse teams score better.</span></div>
+    </div>
+
+    <div class="foot"><span>IGNITE 2026</span><span>04 / 06</span></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 6 · PRIZES + JUDGING ═══════════ -->
+<section class="page" data-page="5">
+  <div class="reticle">
+    <span class="bracket tl"></span><span class="bracket tr"></span>
+    <span class="bracket bl"></span><span class="bracket br"></span>
+  </div>
+  <div class="ghostnum">05</div>
+
+  <div class="flow">
+    <span class="stamp">IGNITE 2026 // PRIZES</span>
+
+    <h2 class="page-title">Prizes &amp; judging</h2>
+
+    <div class="rule-line"></div>
+
+    <div class="tba">
+      <div class="t">// REWARDS</div>
+      <p>Cash prizes, a six-month program subscription and verified credentials.</p>
+      <div class="slot-grid">
+        <div class="slot"><div class="sh">First prize</div><div class="sv">&#8377;15,000</div><div class="ss">overall best</div></div>
+        <div class="slot"><div class="sh">Runner-up</div><div class="sv">&#8377;10,000</div><div class="ss">2nd overall</div></div>
+        <div class="slot"><div class="sh">Program</div><div class="sv">&#8377;49,999</div><div class="ss">6-month subscription</div></div>
+      </div>
+      <div class="slot-grid">
+        <div class="slot"><div class="sh">Certificates</div><div class="sv">ALL</div><div class="ss">verified</div></div>
+        <div class="slot"><div class="sh">Digital badges</div><div class="sv">ALL</div><div class="ss">every member</div></div>
+        <div class="slot"><div class="sh">Incubation</div><div class="sv">6 MO</div><div class="ss">mentor access</div></div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="sec"><h3>Judging criteria</h3><div class="bar"></div></div>
+      <div class="wrow top"><span class="wl">Innovation &mdash; originality of approach</span><span class="wt"><i style="width:100%"></i></span><span class="wp">40%</span></div>
+      <div class="wrow"><span class="wl">Technical depth &mdash; difficulty solved</span><span class="wt"><i style="width:62%"></i></span><span class="wp">25%</span></div>
+      <div class="wrow"><span class="wl">Impact &mdash; usefulness to real users</span><span class="wt"><i style="width:38%"></i></span><span class="wp">15%</span></div>
+      <div class="wrow"><span class="wl">Usability &mdash; does it work well</span><span class="wt"><i style="width:25%"></i></span><span class="wp">10%</span></div>
+      <div class="wrow"><span class="wl">Demo quality &mdash; clarity of pitch</span><span class="wt"><i style="width:25%"></i></span><span class="wp">10%</span></div>
+      <p class="note" style="margin-top:2mm;">Weights are indicative and will be confirmed in the official ruleset.</p>
+    </div>
+
+    <div class="stack">
+      <div class="sec"><h3>What wins</h3><div class="bar"></div></div>
+      <ul class="tick-list">
+        <li><b>A real working build</b> &mdash; deployed, demoable, not a slide deck</li>
+        <li><b>Original thinking</b> &mdash; a problem seen from an unusual angle</li>
+        <li><b>Honest engineering</b> &mdash; you can defend every design decision</li>
+      </ul>
+    </div>
+
+    <div class="foot"><span>IGNITE 2026</span><span>05 / 06</span></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 7 · TIMELINE + REGISTER ═══════════ -->
+<section class="page" data-page="6" data-role="back">
+  <div class="reticle">
+    <span class="bracket tl"></span><span class="bracket tr"></span>
+    <span class="bracket bl"></span><span class="bracket br"></span>
+  </div>
+  <div class="ghostnum">06</div>
+
+  <div class="flow">
+    <span class="stamp">IGNITE 2026 // RUN OF SHOW</span>
+
+    <h2 class="page-title">Four weeks, kickoff to finale</h2>
+
+    <div class="rule-line"></div>
+
+    <div class="sec"><h3>Sprint run of show</h3><div class="bar"></div></div>
+    <div class="sched">
+      <div class="sched-item pre"><span class="t">PRE</span><span class="l"><b>Register</b> Complete your team registration online.</span></div>
+      <div class="sched-item hot"><span class="t">16 OCT</span><span class="l"><b>Kickoff</b> Problem statements revealed. 2:00 PM, Seminar Hall.</span></div>
+      <div class="sched-item"><span class="t">STEP 1</span><span class="l"><b>Problem First</b> Define the real problem and scope your build.</span></div>
+      <div class="sched-item"><span class="t">STEP 2</span><span class="l"><b>Research &amp; Ideation</b> Explore, validate and converge on a direction.</span></div>
+      <div class="sched-item"><span class="t">STEP 3</span><span class="l"><b>Implementation Plan</b> Lock the architecture and milestones.</span></div>
+      <div class="sched-item"><span class="t">STEP 4</span><span class="l"><b>System Build</b> AI-assisted build with weekly mentor reviews.</span></div>
+      <div class="sched-item hot"><span class="t">FINALE</span><span class="l"><b>Demo day</b> Final pitches, results and certificates.</span></div>
+    </div>
+    <p class="note" style="margin-top:1.8mm;">Indicative timeline &mdash; follows the PRISM methodology by SmartX Technologies.</p>
+
+    <div class="stack">
+      <div class="sec"><h3>Ground rules</h3><div class="bar"></div></div>
+      <ul class="tick-list">
+        <li><b>Originality</b> &mdash; starter code is fine as a foundation, the core logic must be yours.</li>
+        <li><b>AI assistance</b> &mdash; encouraged, but you must defend every part.</li>
+      </ul>
+    </div>
+
+    <div class="stack">
+      <div class="sec"><h3>Register now</h3><div class="bar"></div></div>
+      <div class="clip">
+        <div class="qr-row">
+          <span class="qr-swatch"><img src="__QR_DATA_URI__" alt="QR code linking to ignite.aptpath.in" /></span>
+          <span class="qr-cap">
+            <span class="qk">Scan to register</span>
+            <span class="qu">ignite.aptpath.in</span>
+            <p>Registration, rules, schedule and results on one page.</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="sec"><h3>Contact &amp; partners</h3><div class="bar"></div></div>
+      <div class="data"><span class="k">Email</span><span class="v">ignite@aptpath.in</span></div>
+      <div class="data gr"><span class="k">Social</span><span class="v s">@aptpath &middot; smartx-technologies</span></div>
+      <div class="partners" style="margin-top:2mm;">
+        <span class="partner">SmartX Technologies</span>
+        <span class="partner">AptPath</span>
+        <span class="partner">Samagra &middot; VVIT</span>
+      </div>
+    </div>
+
+    <div class="foot"><span>Vijaya Vittala Institute of Technology</span><span>06 / 06</span></div>
+  </div>
+</section>
+
+</body>
+</html>

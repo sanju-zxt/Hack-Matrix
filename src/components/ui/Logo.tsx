@@ -102,10 +102,10 @@ export function Brand({
       {withLogo && <Logo size={logoSize} loading={logoLoading} />}
       <span className="flex min-w-0 flex-col">
         <span className="break-words font-display text-base font-bold leading-none tracking-wide text-white sm:text-lg">
-          HACK<span className="text-violet-bright">-MATRIX</span>
+          {event.name}
         </span>
         <span className="mt-1 hidden font-mono text-[0.55rem] uppercase tracking-[0.2em] text-white/70 sm:block sm:text-[0.6rem] sm:tracking-[0.3em]">
-          {event.edition} · {event.subtitle.replace(/-/g, " ")}
+          {event.edition} · {event.city}
         </span>
       </span>
     </span>

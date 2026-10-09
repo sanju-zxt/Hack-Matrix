@@ -12,7 +12,7 @@ export function usePageMeta({ title, description, canonicalPath }: Meta = {}) {
   useEffect(() => {
     const normalizedTitle = title?.trim();
     document.title = normalizedTitle
-      ? `${normalizedTitle} | HACK-MATRIX 2026`
+      ? `${normalizedTitle} | IGNITE 2026`
       : seo.title;
 
     let meta = document.querySelector<HTMLMetaElement>(

@@ -8,7 +8,7 @@ export default function NotFound() {
   usePageMeta({
     title: "Page not found",
     description:
-      "This route fell out of the matrix — but your seat at HACK-MATRIX 2026 hasn't been taken yet.",
+      "This route fell out of the build — but your seat at IGNITE 2026 hasn't been taken yet.",
   });
 
   const reduce = useReducedMotion();
@@ -37,11 +37,11 @@ export default function NotFound() {
           </p>
 
           <h1 className="mt-6 break-words font-display text-3xl font-bold text-pretty text-white sm:text-4xl lg:text-5xl">
-            This page fell out of the MATRIX.
+            This page fell out of the build.
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-white/60 sm:text-lg">
-            But your seat at HACK-MATRIX 2026 hasn&apos;t been taken yet.
+            But your seat at IGNITE 2026 hasn&apos;t been taken yet.
           </p>
 
           <div className="mx-auto mt-10 grid w-full max-w-xl grid-cols-1 gap-3 sm:flex sm:max-w-none sm:flex-wrap sm:justify-center sm:gap-4">
