@@ -103,7 +103,7 @@ export const scheduleDates = {
  */
 export const countdown = {
   enabled: true,
-  targetISO: "2026-10-16T14:00:00+05:30",
+  targetISO: "2026-10-16T23:59:59+05:30",
   label: "KICKOFF IN",
   /** Optional note shown under the countdown. Empty string hides it. */
   note: "Kickoff 16 October 2026 · Seminar Hall, VVIT Campus",
