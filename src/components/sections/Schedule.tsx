@@ -1,5 +1,5 @@
 ﻿import { CalendarDays } from "lucide-react";
-import { schedule, scheduleDates } from "../../data/eventConfig";
+import { schedule } from "../../data/eventConfig";
 import { Container, Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
@@ -66,8 +66,8 @@ export function Schedule() {
               className="mt-0.5 shrink-0 text-violet-bright"
             />
             <span className="min-w-0">
-              All times in {scheduleDates.timeZone} · [TBA] slots are confirmed
-              by the organizing team
+              Dates are indicative · [TBA] slots are confirmed by the organizing
+              team
             </span>
           </p>
         </Reveal>

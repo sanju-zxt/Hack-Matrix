@@ -222,9 +222,7 @@ export default function RegisterPage() {
               Event snapshot
             </p>
             <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
-              {event.name} {event.edition} · {scheduleDates.dateLabel} ·{" "}
-              {scheduleDates.startTime}–{scheduleDates.endTime}{" "}
-              {scheduleDates.timeZone}
+              {event.name} {event.edition} · {scheduleDates.dateLabel}
             </p>
             <p className="mt-1.5 break-words text-sm text-white/55">{venue.name}</p>
             <p className="mt-1.5 text-sm text-white/55">

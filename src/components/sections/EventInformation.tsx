@@ -1,7 +1,6 @@
 ﻿import type { LucideIcon } from "lucide-react";
 import {
   CalendarDays,
-  Clock,
   MapPin,
   Timer,
   Users,
@@ -34,12 +33,6 @@ const cards: InfoCard[] = [
     value: scheduleDates.dateLabel,
     sub: "Mark your calendars",
     icon: CalendarDays,
-  },
-  {
-    label: "Time",
-    value: `${scheduleDates.startTime} – ${scheduleDates.endTime}`,
-    sub: `${scheduleDates.timeZone} timezone`,
-    icon: Clock,
   },
   {
     label: "Venue",

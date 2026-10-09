@@ -831,7 +831,7 @@ test.describe("content and interactions", () => {
       page.locator("main").getByText("To be announced").first()
     ).toBeVisible();
     await expect(
-      page.locator("main").getByText("3 – 5 members per team").first()
+      page.locator("main").getByText("2 – 3 members per team").first()
     ).toBeVisible();
     const cta = page
       .locator("main a, main button")

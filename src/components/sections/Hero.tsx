@@ -377,7 +377,7 @@ export function Hero() {
               <Countdown size={shortLandscape ? "sm" : "lg"} />
               <div className="mt-5 border-t border-white/5 pt-4 sm:mt-7 sm:pt-6">
                 <p className="break-words font-mono text-[0.65rem] uppercase leading-relaxed tracking-[0.14em] text-white/75 sm:text-xs sm:tracking-[0.25em]">
-                  {scheduleDates.dateLabel} · {scheduleDates.startTime} – {scheduleDates.endTime} {scheduleDates.timeZone}
+                  {scheduleDates.dateLabel}
                 </p>
                 <p className="mt-2 break-words text-xs text-white/70 sm:text-sm">{venue.name}</p>
                 <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/70 sm:text-sm">

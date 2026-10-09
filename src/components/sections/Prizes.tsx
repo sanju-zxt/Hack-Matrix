@@ -6,12 +6,8 @@ import { Reveal } from "../ui/Reveal";
 
 export function Prizes() {
   const finalized = prizes.status === "FINAL";
-  const lastCategoryLayout = [
-    prizes.categories.length % 2 !== 0 ? "sm:col-span-2" : "",
-    prizes.categories.length % 3 === 1 ? "lg:col-span-1 lg:col-start-2" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const lastCategoryLayout =
+    prizes.categories.length % 2 !== 0 ? "sm:col-span-2 lg:col-span-1" : "";
   const ghostSlotLayout = [
     prizes.categories.length % 2 !== 0 ? "col-span-2" : "",
     prizes.categories.length % 3 !== 0 ? "sm:col-span-2" : "",
@@ -26,7 +22,7 @@ export function Prizes() {
         <SectionHeading
           eyebrow="Prizes"
           title="What's worth building for"
-          description="Rewards for the best builds across the day."
+          description="Rewards and recognition for the best builds across the program."
         />
 
         {!finalized && (

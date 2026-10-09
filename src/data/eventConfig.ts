@@ -19,7 +19,7 @@ export const event = {
   institution: "Vijaya Vittala Institute of Technology",
   city: "Bengaluru",
   heroDescription:
-    "IGNITE is a 4-week open innovation sprint where student teams turn real industry problems into working prototypes — mentored end-to-end and powered by SmartX Technologies and AptPath.",
+    "IGNITE is a 4-week open innovation sprint where student teams turn their own ideas into working prototypes — mentored end-to-end and powered by SmartX Technologies and AptPath.",
   /**
    * Live status windows (absolute IST timestamps). The status pill switches
    * between REGISTRATIONS OPEN SOON → REGISTRATIONS OPEN → LIVE NOW → EVENT
@@ -59,7 +59,7 @@ export function getEventStatus(now: Date = new Date()): EventStatus {
     return {
       kind: "open",
       label: "REGISTRATIONS OPEN",
-      detail: `Kickoff ${scheduleDates.dateLabel} · ${scheduleDates.startTime} ${scheduleDates.timeZone}`,
+      detail: `Kickoff ${scheduleDates.dateLabel}`,
     };
   }
   if (t < STATUS_GATES.ends) {
@@ -106,7 +106,7 @@ export const countdown = {
   targetISO: "2026-10-16T14:00:00+05:30",
   label: "KICKOFF IN",
   /** Optional note shown under the countdown. Empty string hides it. */
-  note: "Kickoff 16 October 2026 · 2:00 PM IST · Seminar Hall, VVIT Campus",
+  note: "Kickoff 16 October 2026 · Seminar Hall, VVIT Campus",
 } as const;
 
 /* ── VENUE ────────────────────────────────────────────────────────────────── */
@@ -137,7 +137,7 @@ export const registration = {
   feePer: "per team",
   feeNote:
     "Registration and payment details for IGNITE 2026 are being finalised — see the payment page for updates.",
-  teamSize: { min: 3, max: 5, label: "3 – 5 members per team" },
+  teamSize: { min: 2, max: 3, label: "2 – 3 members per team" },
   /** Registration window. Leave fields null until announced. */
   opens: null as string | null, // e.g. "2026-09-25T09:00:00+05:30"
   closes: null as string | null, // e.g. "2026-10-14T23:59:59+05:30"
@@ -187,7 +187,7 @@ export const themes = [
 ] as const;
 
 export const themesNote =
-  "Problem tracks span these domains. Final problem statements are shared by industry mentors at the kickoff.";
+  "These domains are just starting points — your team brings its own idea and shapes it with mentor guidance.";
 
 /* ── ELIGIBILITY ──────────────────────────────────────────────────────────── */
 export const eligibility = {
@@ -201,7 +201,7 @@ export const eligibility = {
     { label: "Product-minded builders", note: "If you can define a problem, you belong" },
   ],
   note:
-    "Open to student teams of 3–5. Selected teams are paired with mentors and take an idea from problem to working prototype.",
+    "Open to student teams of 2–3. Each team brings its own idea and works with mentors to turn it into a working prototype.",
   /** Optional, only render if set */
   extra: null as string | null,
 } as const;
@@ -241,23 +241,24 @@ export const sponsors = {
 
 /* ── HOW IT WORKS (PRISM) ─────────────────────────────────────────────────── */
 export const howItWorks = [
-  { step: "01", title: "Kickoff", description: "Attend the campus kickoff, meet your mentors and lock in a 3–5 member team." },
-  { step: "02", title: "Problem First", description: "Define a real industry problem — business context, users and success criteria before any code." },
-  { step: "03", title: "Research & Ideation", description: "Map existing solutions, find the gaps and shape solution hypotheses together." },
-  { step: "04", title: "System Build", description: "Ship a working prototype with AI-assisted workflows — you own and explain every output." },
-  { step: "05", title: "Milestone Reviews", description: "Weekly mentor check-ins across implementation, build, testing and review." },
-  { step: "06", title: "Finale & Demo", description: "Present your prototype to judges and mentors at the closing demo day." },
+  { step: "01", title: "Register your team", description: "Form a team of 2–3 members and register your interest for the sprint." },
+  { step: "02", title: "Bring your idea", description: "Come in with your own idea — any domain, any problem you care about solving." },
+  { step: "03", title: "Research & validate", description: "Pressure-test the idea, understand users and refine the problem you're solving." },
+  { step: "04", title: "Plan the build", description: "Turn your idea into a clear implementation plan with success criteria." },
+  { step: "05", title: "Build the prototype", description: "Build a working prototype over the weeks with AI-assisted workflows." },
+  { step: "06", title: "Mentor reviews", description: "Weekly milestone check-ins with industry mentors keep you on track." },
+  { step: "07", title: "Demo & showcase", description: "Present your working prototype to judges and mentors at the closing showcase." },
 ] as const;
 
 /* ── ABOUT ────────────────────────────────────────────────────────────────── */
 export const about = {
   paragraphs: [
-    "IGNITE is a 4-week open innovation sprint run by Vijaya Vittala Institute of Technology with SmartX Technologies and AptPath. Teams take a real industry problem from first principles to a working prototype.",
+    "IGNITE is a 4-week open innovation sprint run by Vijaya Vittala Institute of Technology with SmartX Technologies and AptPath. Teams bring their own idea and take it from first principles to a working prototype.",
     "Guided by the PRISM product methodology, expert mentors and weekly milestone reviews, you learn by building — and ship something that actually works.",
   ],
   pillars: [
-    { title: "Problem first", description: "Define the problem and success criteria before writing code." },
-    { title: "Industry problems", description: "Work on challenges sourced from real industry partners." },
+    { title: "Idea first", description: "Start from your own idea and define what's worth solving." },
+    { title: "Open domain", description: "Build across AI, web, data, automation, social impact and more." },
     { title: "Expert mentorship", description: "Get guidance from experienced domain professionals." },
     { title: "AI-assisted build", description: "Use AI as a force multiplier — you own every output." },
     { title: "Working prototype", description: "Ship something functional that solves a real problem." },
@@ -269,8 +270,8 @@ export const about = {
 /* ── EVENT TIMELINE (4-WEEK SPRINT) ───────────────────────────────────────── */
 /** value can be a label, a time or a date — everything shown exactly as written. */
 export const schedule = [
-  { key: "kickoff", label: "Kickoff & Team Formation", value: "16 October 2026 · 2:00 PM", highlight: true },
-  { key: "week1", label: "Week 1 — Problem First & Research", value: "16 – 23 October 2026", highlight: false },
+  { key: "kickoff", label: "Kickoff & Team Formation", value: "16 October 2026", highlight: true },
+  { key: "week1", label: "Week 1 — Ideation & Research", value: "16 – 23 October 2026", highlight: false },
   { key: "week2", label: "Week 2 — Ideation & Implementation Plan", value: "24 – 30 October 2026", highlight: false },
   { key: "week3", label: "Week 3 — System Build (AI-assisted)", value: "31 Oct – 6 November 2026", highlight: false },
   { key: "week4", label: "Week 4 — Testing & Milestone Review", value: "7 – 13 November 2026", highlight: false },
@@ -339,12 +340,13 @@ export const rules = [
 
 /* ── FAQ ──────────────────────────────────────────────────────────────────── */
 export const faqs = [
-  { q: "What is IGNITE?", a: "IGNITE 2026 is a 4-week open innovation sprint at VVIT, Bengaluru, where student teams turn real industry problems into working prototypes with expert mentorship." },
+  { q: "What is IGNITE?", a: "IGNITE 2026 is a 4-week open innovation sprint at VVIT, Bengaluru, where student teams turn their own ideas into working prototypes with expert mentorship." },
   { q: "Who can participate?", a: "College students from any discipline — engineering, computer science, AI/ML, data science, electronics and product-minded builders. See the eligibility section." },
   { q: "How long is the programme?", a: "The sprint runs for 4 weeks, kicking off on 16 October 2026 and closing with a final demo day." },
   { q: "How many members can be in a team?", a: `Teams of ${registration.teamSize.min}–${registration.teamSize.max} members.` },
   { q: "Is the event online or offline?", a: "Kickoff is on campus at the VVIT Seminar Hall, with hybrid and online collaboration through the sprint. [Organizers: finalize hybrid scope]" },
-  { q: "Do we need a finished product?", a: "No. You start from a real problem at kickoff and build a working prototype over the 4 weeks — mentorship and milestone reviews guide you." },
+  { q: "Do we need a finished product?", a: "No. You bring your own idea and build a working prototype over the 4 weeks — mentorship and milestone reviews guide you." },
+  { q: "Do we have to pick from fixed problem statements?", a: "No — IGNITE is open innovation. You bring your own idea; the themes are just starting points." },
   { q: "What is PRISM?", a: "PRISM is SmartX Technologies' industry-grade product development methodology — problem first, research & ideation, implementation plan, system build and milestone reviews." },
   { q: "What can we win?", a: "₹15,000 for the first prize, ₹10,000 for the runner-up, plus a 6-month programme subscription worth ₹49,999, verified certificates and industry-recognised digital badges." },
   { q: "Are certificates provided?", a: "Yes — verified certificates and digital credentials are awarded to participants." },
@@ -360,8 +362,9 @@ export const contact = {
   email: "samagra2k26@gmail.com",
   phone: "+91 74112 64727",
   phoneAlt: "+91 93809 87187",
-  instagram: "https://instagram.com/vvit.ignite", // TODO: replace handle
-  linkedin: "https://linkedin.com/in/vvit-bengaluru", // TODO: replace company profile
+  instagram: "https://www.instagram.com/samagra_vvit/",
+  linkedin:
+    "https://www.linkedin.com/school/vijaya-vittala-institute-of-technology/",
   whatsapp: "", // TODO: add shareable WhatsApp invite link
   discord: "", // TODO: add invite link when ready
   socialLabel: "Follow IGNITE for updates",
@@ -403,7 +406,7 @@ export const seo = {
   siteUrl: "https://hack-matrix-lac.vercel.app",
   title: "IGNITE 2026 | 4-Week Product Prototyping Sprint | VVIT Bengaluru",
   description:
-    "IGNITE 2026 is a 4-week industry product prototyping sprint at Vijaya Vittala Institute of Technology, Bengaluru, in collaboration with SmartX Technologies and AptPath. Turn real problems into working prototypes.",
+    "IGNITE 2026 is a 4-week industry product prototyping sprint at Vijaya Vittala Institute of Technology, Bengaluru, in collaboration with SmartX Technologies and AptPath. Turn your own ideas into working prototypes.",
   keywords: [
     "IGNITE 2026",
     "IGNITE",

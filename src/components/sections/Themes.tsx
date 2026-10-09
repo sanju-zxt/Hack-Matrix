@@ -35,7 +35,7 @@ export function Themes() {
         <SectionHeading
           eyebrow="Themes"
           title="Choose your battlefield"
-          description={`Problem statements fall across these domains. ${themesNote}`}
+          description={`Your idea can fall across any of these domains. ${themesNote}`}
         />
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -70,8 +70,8 @@ export function Themes() {
             <Info size={20} className="mt-0.5 shrink-0 text-violet-bright" />
             <p className="min-w-0 break-words text-pretty text-sm leading-relaxed text-white/75">
               <strong className="font-semibold text-white">Heads up:</strong>{" "}
-              {themesNote} Themes shown here are categories to guide preparation —
-              not the final specifications.
+              {themesNote} Themes shown here are inspiration — you're free to
+              build in any domain.
             </p>
           </div>
         </Reveal>

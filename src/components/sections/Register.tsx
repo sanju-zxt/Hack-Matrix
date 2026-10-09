@@ -153,9 +153,7 @@ export function Register() {
                     Event snapshot
                   </p>
                   <p className="mt-2 text-sm text-white/65">
-                    {event.name} {event.edition} · {scheduleDates.dateLabel} ·{" "}
-                    {scheduleDates.startTime}–{scheduleDates.endTime}{" "}
-                    {scheduleDates.timeZone}
+                    {event.name} {event.edition} · {scheduleDates.dateLabel}
                   </p>
                   <p className="mt-1 text-sm text-white/60">{venue.name}</p>
                   <p className="mt-1 text-sm text-white/60">

@@ -9,8 +9,8 @@ export function HowItWorks() {
       <Container>
         <SectionHeading
           eyebrow="How it works"
-          title="Seven steps from registration to results"
-          description="A sharp, predictable journey — so your team can focus entirely on building."
+          title="Seven steps from idea to showcase"
+          description="A clear, predictable journey — from your idea to a working prototype."
           className="mb-8 break-words sm:mb-12"
         />
 
