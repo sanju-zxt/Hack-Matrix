@@ -25,7 +25,7 @@ export interface LegalPage {
   sections: LegalSection[];
 }
 
-const UPDATED = "9 October 2026";
+const UPDATED = "10 October 2026";
 
 const contactLine = `Questions about this page? Email ${contact.email}, or call ${contact.phone} / ${contact.phoneAlt}.`;
 const feeLine = `${registration.fee} ${registration.feePer}`;
@@ -78,7 +78,7 @@ export const legalPages: LegalPage[] = [
       {
         heading: "Payments",
         body: [
-          `The registration fee (${feeLine}) is paid through the payment link shared in the registration form. Card, UPI or net-banking details are entered on the payment provider's secure page — we never see or store them.`,
+          `The registration fee (${feeLine}) is paid through the official payment page (Razorpay). Card, UPI or net-banking details are entered on the payment provider's secure page — we never see or store them.`,
         ],
       },
       {
@@ -322,7 +322,7 @@ export const legalPages: LegalPage[] = [
       {
         heading: "How you pay",
         body: [
-          `Register first — the ${feeLine} payment link is then shared inside the registration form. Payment is completed online and your team is confirmed once it is received.`,
+          `Register first, then pay ${feeLine} through the official payment page or the link shared in the registration form. Payment is completed online and your team is confirmed once it is received.`,
         ],
       },
       {
@@ -359,13 +359,13 @@ export const legalPages: LegalPage[] = [
       {
         heading: "When you pay",
         body: [
-          "You register first. The payment link is then shared in the registration form, and payment is completed after you register.",
+          "You register first, then pay through the payment link on the official payment page or the one shared in the registration form.",
         ],
       },
       {
         heading: "Payment methods",
         body: [
-          "Payment is made online through the link provided, using the methods supported by the payment provider — typically UPI, cards and net banking.",
+          "Payment is made online through our secure Razorpay payment link, using UPI, cards or net banking.",
         ],
       },
       {
