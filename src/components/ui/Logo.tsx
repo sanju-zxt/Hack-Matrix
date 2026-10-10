@@ -4,8 +4,8 @@ import { cn } from "../../lib/cn";
 
 const LOGO_SRC = "/vvitlogo.jpg";
 /** Natural size of public/vvitlogo.jpg, so the box is reserved before decode. */
-const LOGO_NATURAL_WIDTH = 675;
-const LOGO_NATURAL_HEIGHT = 675;
+const LOGO_NATURAL_WIDTH = 1024;
+const LOGO_NATURAL_HEIGHT = 1025;
 
 export type LogoLoading = "eager" | "lazy";
 
