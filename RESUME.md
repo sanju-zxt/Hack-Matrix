@@ -127,10 +127,10 @@ footer link coverage).
 - `rg` is NOT available in this shell; use the Grep tool.
 
 ## Suggested next session order
-1. Commit+push the pending batch (see PENDING COMMIT) — payment live + dashboards.
-2. **Set up the dashboards**: user deploys `tool/apps-script/Code.gs` on the registration sheet, adds the
-   `IGNITE_ADMIN_PASSCODE` script property, deploys as Web App (Execute as Me / Access Anyone), pastes the
-   `/exec` URL into `admin.endpoint` → build/test → deploy. Then verify `/admin` approve + `/team` lookup.
-3. Ask user for the registration form URL + deadline → wire into `eventConfig.ts`.
-4. **Ask the user to read the 6 policy pages** — wording drafted by me, not legally reviewed.
-5. Redeploy to Vercel (custom domain www.ignitearena.live already configured by user).
+DONE this session: form URL, deadline, payment live, dashboards wired+deployed, policy fixes #3/#4, scroll UX.
+Remaining (see Open items above):
+1. **End-to-end test the dashboards on the live site**: submit a test entry �+' approve on `/admin` (passcode) �+' look up on `/team`.
+2. **Finale date** �+" fill `schedule` finale value (also fixes goodies-timing wording in policies). Still user's call.
+3. **Optional polish**: whatsapp/discord invite links (`contact.*`), exact campus block / Maps pin, confirm prize tiers.
+4. **Optional**: regenerate brochure QR with `BROCHURE_URL=https://www.ignitearena.live python tool/make-qr.py`.
+5. Share the site + dashboards; Vercel auto-deploys `master` (custom domain www.ignitearena.live already configured).
