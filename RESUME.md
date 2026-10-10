@@ -1,7 +1,7 @@
 # RESUME — VVIT IGNITE 2026 landing site
 
 Authoritative state doc. Read this FIRST before touching the project.
-Last updated: 2026-10-10 (policy review + smoother phone scroll/back-to-top).
+Last updated: 2026-10-10 (OG/link-preview image, promo kit, FAQ + registration-deadline countdown + e-certificate).
 
 ## What this is
 Marketing/landing site for **IGNITE 2026** — a 4-week (NOT one-day) industry
@@ -17,18 +17,36 @@ team size **2–3**, fee **₹149 per team**, PRISM methodology.
 - Brand: ink `#05060a` / violet `#7c6cff` / blue `#5b8cff` + VVIT leaf/olive accents.
 
 ## Git state (as of shutdown)
-- `HEAD = 3e92606` "smoother phone scroll + back-to-top button" — **all pushed**, `master` in sync with `origin/master`.
+- `HEAD = b77e39e` "complete FAQ, registration-deadline countdown, e-certificate for all" — **all pushed**, `master` in sync with `origin/master`.
 - This session's commits (oldest→newest), all pushed:
   1. `eceb6d8` live Razorpay payment + organizer & team-status dashboards
   2. `04972a9` registration deadline 19 Oct 12:00 AM
   3. `ca5f357` policy review — name Razorpay, point to payment page, date bump (`UPDATED` = 10 Oct 2026)
   4. `3e92606` smoother phone scroll + back-to-top button
-- Untracked (intentionally NOT in git): `.snapshots/`, `VVIT IGNITE Brochure - October 2026 - v5.pdf.pdf`, root `aptpath.png` / `samagra.png` / `smartx.jpeg`.
+  5. `0c20f23` RESUME update (policy + scroll)
+  6. `e1fbd01` RESUME capture scroll UX + remaining open items
+  7. `e8f91d9` branded OG/link-preview card from final poster (+ `promo/` kit)
+  8. `b77e39e` complete FAQ + registration-deadline countdown + e-certificate for all
+- Untracked (intentionally NOT in git): `.snapshots/`, `VVIT IGNITE Brochure - October 2026 - v5.pdf.pdf`, root `aptpath.png` / `samagra.png` / `smartx.jpeg`, and `PROMO-KIT.md` (promo copy; not yet committed by request).
 - Working tree otherwise clean. Build green, lint clean (only pre-existing `Logo.tsx:23` warning), 56/56 Playwright pass.
 
 ## Scroll / mobile UX (2026-10-10)
 - `index.css`: `html { scroll-padding-top: var(--nav-h-safe); overscroll-behavior-y: contain; }` + `body { overscroll-behavior-y: contain; }` (anchors clear sticky navbar; no rubber-band chaining on phones).
 - New `src/components/layout/BackToTop.tsx` — floating back-to-top button (appears after 640px, sits above the sticky CTA via `--sticky-cta-h`, respects reduced-motion). Rendered in `Layout.tsx`, hidden while the mobile menu is open.
+
+## Link-preview (OG) image (2026-10-10)
+- **`public/og-image.png` is now a branded 1200×630 card** built from the final poster (`C:\Users\Sanju\Downloads\Ignite FInal Poster.jpg`, 2416×3424 portrait): left = IGNITE title + "Teams 2–3 · ₹149/team · Register by 19 Oct" + ignitearena.live; right = the full poster (fitted, not cropped).
+- Regenerable: `promo/og-card.html` + `promo/ignite-poster.jpg`; screenshot helper `promo/_shot.cjs` (uses installed Edge/Chrome, since the Playwright headless-shell bundle is version-mismatched): `node promo/_shot.cjs "public\og-image.png" "promo\og-card.html"`.
+- `index.html`: `og:image`/`twitter:image`/JSON-LD bumped to `?v=3` + added `og:image:width/height` 1200/630. **WhatsApp caches previews hard** — re-share or use FB/LinkedIn debuggers to refresh.
+
+## Promo kit (2026-10-10)
+- `PROMO-KIT.md` (untracked) — hooks, IG carousel caption, story/reel script, WhatsApp broadcast, LinkedIn/X posts, club email, posting calendar. All CTAs point only to the existing site (no bio-link/hosting site).
+- `promo/POSTER-SPECS.md` + `promo/posters.html` (committed) — screenshot-ready branded frames: IG carousel 5×1080×1080, story 1080×1920, poster 1080×1350, link card 1200×627.
+
+## Content updates (2026-10-10)
+- **FAQ completed** (`eventConfig.ts` `faqs`): "How do we register?" now says registrations are OPEN + form + ₹149 + deadline; **new FAQ "When do registrations close?"** (19 Oct · 12:00 AM IST); "What can we win?" + "Are certificates provided?" updated.
+- **e-certificate for every participant** — stated in the FAQ and the About pillar (renamed "E-certificate for all").
+- **Registration-deadline countdown** — new `src/components/ui/DeadlineCountdown.tsx` (live "Registrations close in …", auto-hides when passed). Shown on home `Register` section + `/register`. **NOT `role="timer"`** on purpose — the e2e tests treat `getByRole("timer")` as unique (hero), so a second timer would break them.
 
 ## Payment (LIVE, 2026-10-10)
 - `payment.status` = **"live"**; `payment.link` = **https://razorpay.me/@lohithsanjup** (handle `@lohithsanjup`, provider Razorpay).
