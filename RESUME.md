@@ -1,7 +1,7 @@
 # RESUME — VVIT IGNITE 2026 landing site
 
 Authoritative state doc. Read this FIRST before touching the project.
-Last updated: 2026-10-10 (payment live + organizer/team dashboards).
+Last updated: 2026-10-10 (policy review + smoother phone scroll/back-to-top).
 
 ## What this is
 Marketing/landing site for **IGNITE 2026** — a 4-week (NOT one-day) industry
@@ -17,23 +17,18 @@ team size **2–3**, fee **₹149 per team**, PRISM methodology.
 - Brand: ink `#05060a` / violet `#7c6cff` / blue `#5b8cff` + VVIT leaf/olive accents.
 
 ## Git state (as of shutdown)
-- `HEAD = ec0e48d` "IGNITE 2026: regenerate favicon/apple-touch/OG from new VVIT logo + cache-bust" — **pushed** (`master` in sync with `origin/master`).
-- **UNCOMMITTED (this session) — live payment + organizer/team dashboards:**
-  ```
-   M src/App.tsx  src/data/eventConfig.ts  src/pages/PaymentPage.tsx  src/pages/RegisterPage.tsx  tests/site.spec.ts
-  ?? src/components/ui/TeamStatusBadge.tsx  src/lib/adminApi.ts  src/lib/teamStatus.ts
-  ?? src/pages/AdminPage.tsx  src/pages/TeamPage.tsx  tool/apps-script/
-  ```
+- `HEAD = 3e92606` "smoother phone scroll + back-to-top button" — **all pushed**, `master` in sync with `origin/master`.
+- This session's commits (oldest→newest), all pushed:
+  1. `eceb6d8` live Razorpay payment + organizer & team-status dashboards
+  2. `04972a9` registration deadline 19 Oct 12:00 AM
+  3. `ca5f357` policy review — name Razorpay, point to payment page, date bump (`UPDATED` = 10 Oct 2026)
+  4. `3e92606` smoother phone scroll + back-to-top button
 - Untracked (intentionally NOT in git): `.snapshots/`, `VVIT IGNITE Brochure - October 2026 - v5.pdf.pdf`, root `aptpath.png` / `samagra.png` / `smartx.jpeg`.
+- Working tree otherwise clean. Build green, lint clean (only pre-existing `Logo.tsx:23` warning), 56/56 Playwright pass.
 
-### PENDING COMMIT — run this first next session
-```powershell
-git add src/App.tsx src/data/eventConfig.ts src/pages/PaymentPage.tsx src/pages/RegisterPage.tsx tests/site.spec.ts `
-        src/components/ui/TeamStatusBadge.tsx src/lib/adminApi.ts src/lib/teamStatus.ts `
-        src/pages/AdminPage.tsx src/pages/TeamPage.tsx tool/apps-script/ RESUME.md
-git commit -m "IGNITE 2026: live Razorpay payment + organizer & team-status dashboards"
-git push origin master
-```
+## Scroll / mobile UX (2026-10-10)
+- `index.css`: `html { scroll-padding-top: var(--nav-h-safe); overscroll-behavior-y: contain; }` + `body { overscroll-behavior-y: contain; }` (anchors clear sticky navbar; no rubber-band chaining on phones).
+- New `src/components/layout/BackToTop.tsx` — floating back-to-top button (appears after 640px, sits above the sticky CTA via `--sticky-cta-h`, respects reduced-motion). Rendered in `Layout.tsx`, hidden while the mobile menu is open.
 
 ## Payment (LIVE, 2026-10-10)
 - `payment.status` = **"live"**; `payment.link` = **https://razorpay.me/@lohithsanjup** (handle `@lohithsanjup`, provider Razorpay).
