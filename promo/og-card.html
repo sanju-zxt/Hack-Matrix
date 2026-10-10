@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>IGNITE 2026 — OG card 1200×630</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  @page { margin: 0 }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden;background:#05060a}
+  .og{
+    position:relative;width:1200px;height:630px;overflow:hidden;color:#fff;
+    font-family:"Inter",system-ui,sans-serif;
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(124,108,255,.30), transparent 55%),
+      radial-gradient(110% 120% at 100% 100%, rgba(91,140,255,.26), transparent 58%),
+      radial-gradient(80% 90% at 100% 0%, rgba(46,158,91,.16), transparent 60%),
+      linear-gradient(150deg,#080911,#05060a 55%,#070812);
+    display:flex;align-items:center;
+  }
+  .og::before{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(to right, rgba(124,108,255,.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,108,255,.07) 1px, transparent 1px);
+    background-size:60px 60px;opacity:.7;
+  }
+  .left{position:relative;z-index:1;flex:1 1 auto;padding:0 8px 0 64px;display:flex;flex-direction:column;gap:16px;max-width:660px}
+  .kick{display:inline-flex;align-items:center;gap:12px;font-family:"JetBrains Mono",monospace;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:#cfc9ff;border:1px solid rgba(154,139,255,.35);border-radius:999px;padding:9px 18px;background:rgba(124,108,255,.08);width:max-content}
+  .dot{width:8px;height:8px;border-radius:99px;background:#62c987;box-shadow:0 0 10px #62c987}
+  .h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:118px;line-height:.92;letter-spacing:-.02em}
+  .grad{background:linear-gradient(100deg,#9a8bff,#7c6cff 40%,#7ea6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tag{font-family:"JetBrains Mono",monospace;font-size:20px;letter-spacing:.26em;color:#d7d2ff;text-transform:uppercase}
+  .desc{font-size:22px;line-height:1.4;color:#c9c4e4;max-width:560px}
+  .facts{display:flex;gap:10px;flex-wrap:wrap;margin-top:2px}
+  .fact{border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 14px;background:rgba(255,255,255,.03);font-size:17px;color:#e7e4f7}
+  .fact b{font-family:"Space Grotesk",sans-serif;color:#fff}
+  .url{margin-top:4px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:24px;color:#9a8bff}
+  .right{position:relative;z-index:1;width:470px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding-right:56px}
+  .poster{height:590px;border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.12)}
+  .poster img{display:block;height:590px;width:auto}
+</style>
+</head>
+<body>
+  <div class="og">
+    <div class="left">
+      <span class="kick"><span class="dot"></span>VVIT Bengaluru · Kickoff 16 Oct 2026</span>
+      <div class="h1"><span class="grad">IGNITE</span> 2026</div>
+      <div class="tag">Prototype · Validate · Ship</div>
+      <div class="desc">A 4-week industry product prototyping sprint — turn your own idea into a working prototype.</div>
+      <div class="facts">
+        <span class="fact"><b>Teams 2–3</b></span>
+        <span class="fact"><b>₹149</b>/team</span>
+        <span class="fact">Register by <b>19 Oct</b></span>
+      </div>
+      <div class="url">→ ignitearena.live</div>
+    </div>
+    <div class="right">
+      <div class="poster"><img src="ignite-poster.jpg" alt="IGNITE 2026 poster" /></div>
+    </div>
+  </div>
+</body>
+</html>

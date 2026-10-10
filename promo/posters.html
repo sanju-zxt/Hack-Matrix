@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IGNITE 2026 — Promo Graphics (screenshot ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#05060a; --ink850:#0c0f18; --ink700:#171b2b; --ink600:#23273c;
+    --violet:#7c6cff; --violet-bright:#9a8bff; --violet-deep:#5a4bdc; --blue:#5b8cff; --blue-bright:#7ea6ff;
+    --leaf:#2e9e5b; --leaf-light:#62c987; --olive:#c6c95f;
+    --display:"Space Grotesk",sans-serif; --sans:"Inter",sans-serif; --mono:"JetBrains Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0a0a0d;color:#fff;font-family:var(--sans);padding:40px;display:flex;flex-direction:column;align-items:center;gap:56px}
+  .note{max-width:900px;text-align:center;color:#9aa;font-size:14px;line-height:1.6}
+  .note b{color:#fff}
+  .lab{width:max-content;font-family:var(--mono);font-size:13px;color:var(--violet-bright);letter-spacing:.06em;margin-bottom:10px}
+  .frame{position:relative;overflow:hidden;border-radius:2px;color:#fff;background:
+      radial-gradient(120% 90% at 15% 8%, rgba(124,108,255,.28), transparent 55%),
+      radial-gradient(110% 90% at 88% 92%, rgba(91,140,255,.24), transparent 58%),
+      radial-gradient(90% 80% at 80% 6%, rgba(46,158,91,.14), transparent 60%),
+      linear-gradient(160deg,#080911, #05060a 55%, #070812);
+    display:flex;flex-direction:column;padding:6%}
+  .frame::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+      linear-gradient(to right, rgba(124,108,255,.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,108,255,.07) 1px, transparent 1px);
+    background-size:64px 64px;opacity:.7}
+  .frame > *{position:relative;z-index:1}
+  .chip{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.72em;letter-spacing:.22em;text-transform:uppercase;color:#cfc9ff;border:1px solid rgba(154,139,255,.35);border-radius:999px;padding:.5em 1em;background:rgba(124,108,255,.08)}
+  .dot{width:.5em;height:.5em;border-radius:99px;background:var(--leaf-light);box-shadow:0 0 10px var(--leaf-light)}
+  .grad{background:linear-gradient(100deg,var(--violet-bright),var(--violet) 40%,var(--blue-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:1em;border-top:1px solid rgba(255,255,255,.12);padding-top:4%;font-size:.8em;color:#b9b3d6}
+  .mono{font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase}
+  .center{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.5em}
+
+  /* ── 1080 x 1080 carousel ── */
+  .sq{width:1080px;height:1080px}
+  .sq .h1{font-family:var(--display);font-weight:700;font-size:190px;line-height:.92;letter-spacing:-.02em}
+  .sq .tag{margin-top:.5em;font-family:var(--mono);font-size:30px;letter-spacing:.28em;color:#d7d2ff}
+  .sq .sub{margin-top:.7em;font-size:34px;color:#c9c4e4;max-width:88%;line-height:1.35}
+  .sq .big{font-family:var(--display);font-weight:700;font-size:104px;line-height:1.02;letter-spacing:-.01em}
+  .sq .lbl{font-family:var(--mono);font-size:24px;letter-spacing:.2em;color:var(--violet-bright);text-transform:uppercase;margin-bottom:.6em}
+  .facts{display:flex;flex-direction:column;gap:.5em;margin-top:.3em}
+  .fact{display:flex;align-items:baseline;gap:.6em;font-size:38px;color:#e7e4f7}
+  .fact b{font-family:var(--display);font-size:52px}
+  .prizes{display:flex;flex-direction:column;gap:.45em}
+  .prow{display:flex;align-items:baseline;gap:.5em;font-size:34px;color:#d9d5f0}
+  .prow .amt{font-family:var(--display);font-weight:700;font-size:72px}
+
+  /* ── 1080 x 1920 story ── */
+  .story{width:1080px;height:1920px;padding:9% 7%}
+  .story .h1{font-family:var(--display);font-weight:700;font-size:210px;line-height:.95}
+  .story .tag{margin-top:.4em;font-family:var(--mono);font-size:34px;letter-spacing:.26em;color:#d7d2ff}
+  .story .sub{margin-top:.8em;font-size:46px;color:#cbc6e6;line-height:1.35}
+  .story .cta{margin-top:1.1em;display:inline-flex;width:max-content;font-family:var(--display);font-weight:700;font-size:44px;padding:.55em 1.2em;border-radius:999px;color:#0b0b16;background:linear-gradient(100deg,var(--violet-bright),var(--blue-bright))}
+  .story .foot{margin-top:auto;font-size:34px;color:#b9b3d6}
+
+  /* ── 1080 x 1350 poster ── */
+  .poster{width:1080px;height:1350px;padding:6.5%}
+  .poster .lock{display:flex;align-items:center;justify-content:space-between}
+  .poster .h1{font-family:var(--display);font-weight:700;font-size:186px;line-height:.95}
+  .poster .tag{margin-top:.35em;font-family:var(--mono);font-size:28px;letter-spacing:.26em;color:#d7d2ff}
+  .poster .desc{margin-top:.5em;font-size:32px;color:#c9c4e4}
+  .poster .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:5%}
+  .poster .card{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px 22px;background:rgba(255,255,255,.03)}
+  .poster .card .k{font-family:var(--mono);font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet-bright)}
+  .poster .card .v{font-family:var(--display);font-weight:600;font-size:40px;margin-top:.15em}
+  .poster .prize{margin-top:5%;border:1px solid rgba(154,139,255,.35);border-radius:16px;padding:22px 26px;background:linear-gradient(100deg,rgba(124,108,255,.16),rgba(91,140,255,.10));font-size:34px}
+  .poster .prize b{font-family:var(--display);font-size:46px}
+  .poster .bottom{margin-top:auto;display:flex;flex-direction:column;gap:14px}
+  .poster .reg{display:flex;align-items:center;justify-content:space-between;font-family:var(--display);font-weight:700;font-size:44px;padding:22px 28px;border-radius:16px;color:#0b0b16;background:linear-gradient(100deg,var(--violet-bright),var(--blue-bright))}
+  .poster .partners{font-size:26px;color:#b9b3d6}
+  .poster .contacts{font-size:24px;color:#8f8aa8;font-family:var(--mono)}
+
+  /* ── 1200 x 627 social card ── */
+  .card{width:1200px;height:627px;flex-direction:row;align-items:center;gap:5%}
+  .card .left{flex:1.1;display:flex;flex-direction:column;gap:.4em}
+  .card .right{flex:.9;display:flex;flex-direction:column;gap:.5em;border-left:1px solid rgba(255,255,255,.12);padding-left:5%}
+  .card .h1{font-family:var(--display);font-weight:700;font-size:110px;line-height:.95}
+  .card .tag{font-family:var(--mono);font-size:22px;letter-spacing:.22em;color:#d7d2ff}
+  .card .pitch{font-size:26px;color:#c9c4e4;line-height:1.4}
+  .card .pl{font-family:var(--display);font-weight:700;font-size:56px}
+  .card .url{margin-top:.2em;font-family:var(--display);font-weight:700;font-size:32px;color:var(--violet-bright)}
+  .card .foot{position:absolute;left:5%;right:5%;bottom:5%;font-size:22px;color:#8f8aa8}
+</style>
+</head>
+<body>
+
+<p class="note"><b>IGNITE 2026 — promo graphics.</b> Screenshot each frame at 100% zoom (or DevTools → right-click the frame → <b>Capture node screenshot</b>) to export exact-pixel PNGs. Sizes: carousel <b>1080×1080</b> · story <b>1080×1920</b> · poster <b>1080×1350</b> · link card <b>1200×627</b>.</p>
+
+<!-- ─────────── CAROUSEL SLIDE 1 ─────────── -->
+<div>
+  <div class="lab">IG CAROUSEL · 1080×1080 · slide 1</div>
+  <div class="frame sq">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span class="chip"><span class="dot"></span>VVIT · Samagra</span>
+      <span class="chip">16 OCT 2026</span>
+    </div>
+    <div class="center">
+      <div class="h1"><span class="grad">IGNITE</span><br>2026</div>
+      <div class="tag">PROTOTYPE · VALIDATE · SHIP</div>
+      <div class="sub">A 4-week industry product prototyping sprint — turn your own idea into a working prototype.</div>
+    </div>
+    <div class="kick"><span>VVIT · Bengaluru</span><span>Kickoff 16 Oct · Register by 19 Oct</span></div>
+  </div>
+</div>
+
+<!-- ─────────── CAROUSEL SLIDE 2 ─────────── -->
+<div>
+  <div class="lab">IG CAROUSEL · 1080×1080 · slide 2</div>
+  <div class="frame sq">
+    <span class="chip"><span class="dot"></span>Open innovation</span>
+    <div class="center">
+      <div class="lbl">How it works</div>
+      <div class="big">YOUR IDEA.<br>4 WEEKS.<br><span class="grad">A WORKING PROTOTYPE.</span></div>
+      <div class="sub">Teams of 2–3 · any domain · no fixed problem statements. You choose what to build.</div>
+    </div>
+    <div class="kick"><span>IGNITE 2026</span><span>ignitearena.live</span></div>
+  </div>
+</div>
+
+<!-- ─────────── CAROUSEL SLIDE 3 ─────────── -->
+<div>
+  <div class="lab">IG CAROUSEL · 1080×1080 · slide 3</div>
+  <div class="frame sq">
+    <span class="chip">Powered by SmartX Technologies &amp; AptPath</span>
+    <div class="center">
+      <div class="lbl">Guidance that ships</div>
+      <div class="big">MENTORED.<br><span class="grad">MILESTONE-REVIEWED.</span></div>
+      <div class="facts">
+        <div class="fact"><b>✓</b> Industry mentors from SmartX &amp; AptPath</div>
+        <div class="fact"><b>✓</b> PRISM product methodology</div>
+        <div class="fact"><b>✓</b> AI-assisted building · weekly reviews</div>
+      </div>
+    </div>
+    <div class="kick"><span>Supported by Samagra</span><span>VVIT · Bengaluru</span></div>
+  </div>
+</div>
+
+<!-- ─────────── CAROUSEL SLIDE 4 ─────────── -->
+<div>
+  <div class="lab">IG CAROUSEL · 1080×1080 · slide 4</div>
+  <div class="frame sq">
+    <span class="chip"><span class="dot"></span>Prizes &amp; recognition</span>
+    <div class="center">
+      <div class="lbl">What you can win</div>
+      <div class="prizes">
+        <div class="prow"><span class="amt grad">₹15,000</span> First prize</div>
+        <div class="prow"><span class="amt grad">₹10,000</span> Runner-up</div>
+        <div class="prow"><span class="amt grad">₹49,999</span> 6-month program</div>
+      </div>
+      <div class="sub" style="margin-top:.6em">Plus verified certificates and industry-recognised digital badges.</div>
+    </div>
+    <div class="kick"><span>IGNITE 2026</span><span>Fee ₹149 / team</span></div>
+  </div>
+</div>
+
+<!-- ─────────── CAROUSEL SLIDE 5 ─────────── -->
+<div>
+  <div class="lab">IG CAROUSEL · 1080×1080 · slide 5</div>
+  <div class="frame sq" style="text-align:center;align-items:center">
+    <span class="chip"><span class="dot"></span>Registrations open</span>
+    <div class="center" style="align-items:center;text-align:center">
+      <div class="lbl" style="margin:0 auto .4em">Register by</div>
+      <div class="big"><span class="grad">19 OCT 2026</span></div>
+      <div class="sub" style="margin-inline:auto">ignitearena.live<br>Teams of 2–3 · ₹149 per team</div>
+    </div>
+    <div class="kick" style="width:100%"><span>@samagra_vvit</span><span>Link in bio</span></div>
+  </div>
+</div>
+
+<!-- ─────────── STORY / REEL COVER ─────────── -->
+<div>
+  <div class="lab">IG STORY / REEL COVER · 1080×1920</div>
+  <div class="frame story">
+    <span class="chip"><span class="dot"></span>VVIT · Samagra</span>
+    <div class="center">
+      <div class="h1"><span class="grad">IGNITE</span><br>2026</div>
+      <div class="tag">PROTOTYPE · VALIDATE · SHIP</div>
+      <div class="sub">2–3 friends. Your own idea. ₹149 per team.<br>4 weeks to a working prototype.</div>
+      <div class="cta">REGISTER BY 19 OCT →</div>
+    </div>
+    <div class="foot">ignitearena.live · @samagra_vvit</div>
+  </div>
+</div>
+
+<!-- ─────────── POSTER (portrait) ─────────── -->
+<div>
+  <div class="lab">POSTER · 1080×1350</div>
+  <div class="frame poster">
+    <div class="lock">
+      <span class="chip"><span class="dot"></span>Vijaya Vittala Institute of Technology</span>
+      <span class="chip">16 OCT 2026</span>
+    </div>
+    <div style="margin-top:5%">
+      <div class="h1"><span class="grad">IGNITE</span> 2026</div>
+      <div class="tag">PROTOTYPE · VALIDATE · SHIP</div>
+      <div class="desc">4-Week Industry Product Prototyping Sprint · Bengaluru</div>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="k">Team size</div><div class="v">2 – 3 members</div></div>
+      <div class="card"><div class="k">Idea</div><div class="v">Bring your own</div></div>
+      <div class="card"><div class="k">Fee</div><div class="v">₹149 / team</div></div>
+      <div class="card"><div class="k">Duration</div><div class="v">4 weeks</div></div>
+    </div>
+    <div class="prize">🏆 <b>₹15,000</b> First &nbsp;·&nbsp; <b>₹10,000</b> Runner-up &nbsp;·&nbsp; <b>₹49,999</b> program</div>
+    <div class="bottom">
+      <div class="reg"><span>REGISTER BY 19 OCT</span><span>→ ignitearena.live</span></div>
+      <div class="partners">With <b>SmartX Technologies</b> &amp; <b>AptPath</b> · Supported by <b>Samagra</b></div>
+      <div class="contacts">samagra2k26@gmail.com · +91 74112 64727 · @samagra_vvit</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────── SOCIAL LINK CARD ─────────── -->
+<div>
+  <div class="lab">LINKEDIN / X CARD · 1200×627</div>
+  <div class="frame card">
+    <div class="left">
+      <div class="h1"><span class="grad">IGNITE</span> 2026</div>
+      <div class="tag">PROTOTYPE · VALIDATE · SHIP</div>
+      <div class="pitch">A 4-week product prototyping sprint at VVIT, Bengaluru. Teams of 2–3 bring their own idea and build a working prototype.</div>
+    </div>
+    <div class="right">
+      <div class="pl grad">₹15,000</div>
+      <div class="pl grad">₹10,000</div>
+      <div class="pl grad">+ ₹49,999</div>
+      <div class="url">→ ignitearena.live</div>
+    </div>
+    <div class="foot">VVIT Bengaluru · SmartX Technologies · AptPath · Samagra</div>
+  </div>
+</div>
+
+</body>
+</html>
