@@ -137,10 +137,10 @@ export const registration = {
   feePer: "per team",
   feeNote: "Flat ₹149 per team for the full 4-week sprint.",
   teamSize: { min: 2, max: 3, label: "2 – 3 members per team" },
-  /** Registration window. Leave fields null until announced. */
-  opens: null as string | null, // e.g. "2026-09-25T09:00:00+05:30"
-  closes: null as string | null, // e.g. "2026-10-14T23:59:59+05:30"
-  deadlineLabel: "To be announced",
+  /** Registration window. */
+  opens: "2026-09-25T00:00:00+05:30" as string | null,
+  closes: "2026-10-19T00:00:00+05:30" as string | null,
+  deadlineLabel: "19 October 2026 · 12:00 AM",
   /** Checklist shown on the Register page — things teams should have ready. */
   whatToPrepare: [
     "Team details — name, college, city",

@@ -74,7 +74,7 @@ Two new routes, both driven by the **Google Sheet** that collects form responses
 - `countdown`: enabled, `targetISO = "2026-10-16T23:59:59+05:30"` (end of kickoff day), label "KICKOFF IN",
   note "Kickoff 16 October 2026 · Seminar Hall, VVIT Campus"
 - `registration`: **`googleFormUrl: ""` (EMPTY — blocker)**, fee "₹149", feePer "per team",
-  teamSize {min:2,max:3,label:"2 – 3 members per team"}, `deadlineLabel: "To be announced"`, opens/closes null
+  teamSize {min:2,max:3,label:"2 – 3 members per team"}, `deadlineLabel: "19 October 2026 · 12:00 AM"`, opens 2026-09-25 / closes 2026-10-19
 - `payment`: `status:"pending"` (page shows "PAYMENT DETAILS YET TO BE UPDATED"), `fee` inherits ₹149
 - `contact`: email `samagra2k26@gmail.com`, phone `+91 74112 64727`, phoneAlt `+91 93809 87187`,
   instagram `https://www.instagram.com/samagra_vvit/`,
@@ -113,7 +113,7 @@ footer link coverage).
 
 ## Open items / blockers
 1. **`registration.googleFormUrl`** = **https://forms.gle/q2vg9p4EyTctN617A** (set 2026-10-10). REGISTER buttons now go live.
-2. **Registration deadline** — set `registration.opens`/`closes`/`deadlineLabel`.
+2. **Registration deadline** — set to **19 October 2026 · 12:00 AM** (`closes` 2026-10-19T00:00:00+05:30).
 3. **Finale date** — `schedule` finale value still "To be announced".
 4. **Dashboards wired (2026-10-10)** — Apps Script deployed; `admin.endpoint` set. Verify end-to-end with a real submission (approve on `/admin`, look up on `/team`).
 5. **Policy wording still needs the user's legal review** (drafted by me).
