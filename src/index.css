@@ -57,6 +57,10 @@
 
   html {
     scroll-behavior: smooth;
+    /* Anchors land just below the sticky navbar on every viewport. */
+    scroll-padding-top: var(--nav-h-safe);
+    /* No rubber-band chunking / scroll chaining into fixed bars on phones. */
+    overscroll-behavior-y: contain;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -89,6 +93,7 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     overflow-wrap: break-word;
+    overscroll-behavior-y: contain;
   }
 
   ::selection {

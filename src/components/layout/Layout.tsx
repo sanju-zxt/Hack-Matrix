@@ -5,6 +5,7 @@ import { scrollToId } from "../../lib/scroll";
 import { Navbar, SiteBackground } from "./Navbar";
 import { Footer } from "./Footer";
 import { StickyMobileCTA } from "./StickyMobileCTA";
+import { BackToTop } from "./BackToTop";
 
 export function Layout({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,6 +40,7 @@ export function Layout({ children }: { children: ReactNode }) {
       </main>
       <Footer />
       <StickyMobileCTA hidden={menuOpen} />
+      <BackToTop hidden={menuOpen} />
     </div>
   );
 }
