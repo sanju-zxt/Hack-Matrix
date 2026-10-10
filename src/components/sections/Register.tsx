@@ -17,6 +17,7 @@ import {
 import { getRegistrationUrl } from "../../lib/registration";
 import { Container, Section } from "../ui/Section";
 import { RegisterButton } from "../ui/Button";
+import { DeadlineCountdown } from "../ui/DeadlineCountdown";
 import { Reveal } from "../ui/Reveal";
 import { Link } from "react-router-dom";
 
@@ -105,6 +106,12 @@ export function Register() {
                       className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </Link>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.18}>
+                <div className="mt-6">
+                  <DeadlineCountdown />
                 </div>
               </Reveal>
 

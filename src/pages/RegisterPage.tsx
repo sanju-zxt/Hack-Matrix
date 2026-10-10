@@ -21,6 +21,7 @@ import { usePageMeta } from "../lib/seo";
 import { Container } from "../components/ui/Section";
 import { RegisterButton } from "../components/ui/Button";
 import { AddToCalendarButton } from "../components/ui/AddToCalendarButton";
+import { DeadlineCountdown } from "../components/ui/DeadlineCountdown";
 import { Reveal } from "../components/ui/Reveal";
 
 interface DetailRow {
@@ -100,6 +101,12 @@ export default function RegisterPage() {
           <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-white/60 sm:text-lg">
             {event.heroDescription}
           </p>
+        </Reveal>
+
+        <Reveal delay={0.12}>
+          <div className="mt-6 flex justify-center sm:mt-8">
+            <DeadlineCountdown />
+          </div>
         </Reveal>
 
         <Reveal delay={0.15}>
