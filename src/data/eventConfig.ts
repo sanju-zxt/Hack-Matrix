@@ -385,14 +385,12 @@ export const nav = [
 export const footer = {
   quickLinks: [
     { label: "Home", to: "/" },
-    { label: "About", to: "/#about" },
     { label: "Themes", to: "/#themes" },
     { label: "Timeline", to: "/#timeline" },
     { label: "Rules", to: "/rules" },
     { label: "FAQ", to: "/faq" },
     { label: "Payment", to: "/payment" },
     { label: "Register", to: "/register" },
-    { label: "Contact", to: "/#contact" },
   ],
   copyright: "© 2026 IGNITE. All rights reserved.",
   madeBy:
@@ -402,7 +400,7 @@ export const footer = {
 /* ── SEO ──────────────────────────────────────────────────────────────────── */
 export const seo = {
   /** Replace with the real production URL once deployed (used for canonicals + OG + sitemap). */
-  siteUrl: "https://hack-matrix-lac.vercel.app",
+  siteUrl: "https://www.ignitearena.live",
   title: "IGNITE 2026 | 4-Week Product Prototyping Sprint | VVIT Bengaluru",
   description:
     "IGNITE 2026 is a 4-week industry product prototyping sprint at Vijaya Vittala Institute of Technology, Bengaluru, in collaboration with SmartX Technologies and AptPath. Turn your own ideas into working prototypes.",

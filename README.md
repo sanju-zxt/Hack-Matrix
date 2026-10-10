@@ -73,9 +73,9 @@ npm run brochure:render     # dist/brochure/*.html -> .pdf + preview/page-*.png
 
 ## Go-live checklist
 
-1. **Fill in `src/data/eventConfig.ts`** — `registration.googleFormUrl`, `contact` (email / phone / socials), and `seo.siteUrl` (already set to the production URL `https://hack-matrix-lac.vercel.app`).
+1. **Fill in `src/data/eventConfig.ts`** — `registration.googleFormUrl`, `contact` (email / phone / socials), and `seo.siteUrl` (already set to the production URL `https://www.ignitearena.live`).
 2. **Run `npm run generate:assets`** to regenerate OG/favicon assets from `public/vvitlogo.jpg` (logo source: copy of `vvitlogo.jpg`; override with `LOGO` env var).
 3. **Deploy to Vercel** (framework preset "Vite" picks up `vercel.json` automatically).
 4. **Optional** — drop partner logo PNGs into `/public` and reference them in `sponsors.partners` in the config.
 
-> Note: `index.html` embeds SEO meta, canonical URLs, and JSON-LD structured data — these already point at `https://hack-matrix-lac.vercel.app`, but re-check them (and `seo.siteUrl`) if the domain ever changes.
+> Note: `index.html` embeds SEO meta, canonical URLs, and JSON-LD structured data — these already point at `https://www.ignitearena.live`, but re-check them (and `seo.siteUrl`) if the domain ever changes.

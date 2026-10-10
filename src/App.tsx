@@ -9,6 +9,9 @@ const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const RulesPage = lazy(() => import("./pages/RulesPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
 const PaymentPage = lazy(() => import("./pages/PaymentPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const InfoPage = lazy(() => import("./pages/InfoPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
@@ -30,6 +33,9 @@ export default function App() {
               <Route path="/rules" element={<RulesPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/legal/:slug" element={<InfoPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

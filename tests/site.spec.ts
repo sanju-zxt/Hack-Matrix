@@ -3,7 +3,22 @@ import { AxeBuilder } from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 const ROUTES = ["/", "/register", "/rules", "/faq", "/payment"] as const;
-const RESPONSIVE_ROUTES = [...ROUTES, "/this-route-does-not-exist"] as const;
+const INFO_ROUTES = [
+  "/about",
+  "/contact",
+  "/legal/privacy-policy",
+  "/legal/terms-conditions",
+  "/legal/refund-cancellation",
+  "/legal/shipping-delivery",
+  "/legal/pricing",
+  "/legal/payment-policy",
+] as const;
+const RESPONSIVE_ROUTES = [
+  ...ROUTES,
+  "/about",
+  "/legal/privacy-policy",
+  "/this-route-does-not-exist",
+] as const;
 const DESKTOP_VIEWPORT = { width: 1440, height: 900 } as const;
 const SHORT_LANDSCAPE_VIEWPORT = { width: 740, height: 360 } as const;
 const VIEWPORTS = [
@@ -467,7 +482,7 @@ async function expectCountdownToFit(page: Page) {
 }
 
 test.describe("routes render", () => {
-  for (const route of ROUTES) {
+  for (const route of [...ROUTES, ...INFO_ROUTES]) {
     test(`${route} loads without console/page errors`, async ({ page }) => {
       const errors: string[] = [];
       page.on("console", (message) => {
@@ -481,6 +496,49 @@ test.describe("routes render", () => {
       expect(errors).toEqual([]);
     });
   }
+});
+
+test.describe("information and policy pages", () => {
+  const FOOTER_LINK_LABELS = [
+    "About Us",
+    "Contact Us",
+    "Privacy Policy",
+    "Terms & Conditions",
+    "Refund & Cancellation Policy",
+    "Shipping / Delivery Policy",
+    "Pricing / Plans",
+    "Payment Policy",
+  ];
+
+  test("footer lists every information and policy page", async ({ page }) => {
+    await gotoRoute(page, "/");
+    const footer = page.locator("footer");
+    for (const label of FOOTER_LINK_LABELS) {
+      const link = footer.getByRole("link", { name: label });
+      await expect(link, `footer link for ${label}`).toBeVisible();
+    }
+  });
+
+  test("privacy policy is reachable from the footer", async ({ page }) => {
+    await gotoRoute(page, "/");
+    await page
+      .locator("footer")
+      .getByRole("link", { name: "Privacy Policy" })
+      .click();
+    await expect(page).toHaveURL(/\/legal\/privacy-policy$/);
+    await expect(page.locator("main h1")).toHaveText("Privacy Policy");
+  });
+
+  test("policy pages link back to home and to each other", async ({ page }) => {
+    await gotoRoute(page, "/legal/pricing");
+    await expect(
+      page.getByRole("link", { name: /back to home/i })
+    ).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Payment Policy" }).first()
+    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /open the contact page/i })).toBeVisible();
+  });
 });
 
 test.describe("responsive layout", () => {
@@ -898,7 +956,7 @@ test.describe("content and interactions", () => {
 test.describe("accessibility", () => {
   test.use({ viewport: { ...DESKTOP_VIEWPORT } });
 
-  for (const route of ROUTES) {
+  for (const route of [...ROUTES, ...INFO_ROUTES]) {
     test(`${route} has no WCAG A/AA violations on desktop`, async ({ page }) => {
       await gotoRoute(page, route);
       const results = await new AxeBuilder({ page })

@@ -18,6 +18,7 @@ import {
 import { Container } from "../ui/Section";
 import { Brand } from "../ui/Logo";
 import { cn } from "../../lib/cn";
+import { infoLinks } from "../../data/policies";
 
 const socials = [
   {
@@ -44,7 +45,7 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/5 bg-ink-900/40">
       <Container className="footer-shell">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.4fr]">
           {/* Brand */}
           <div className="md:col-span-2 lg:col-span-1">
             <Brand logoSize={44} />
@@ -90,6 +91,29 @@ export function Footer() {
                   </li>
                 );
               })}
+            </ul>
+          </nav>
+
+          {/* Information + policies */}
+          <nav aria-label="Footer information and policies">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/55">
+              Information
+            </h3>
+            <ul className="mt-3 space-y-1 sm:mt-5 sm:space-y-2.5">
+              {infoLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
+                    className="group inline-flex min-h-11 sm:min-h-0 items-center gap-1.5 text-sm leading-snug text-white/70 transition-colors hover:text-violet-bright"
+                  >
+                    <span className="wrap-anywhere min-w-0">{link.label}</span>
+                    <ArrowUpRight
+                      size={12}
+                      className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+                    />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
