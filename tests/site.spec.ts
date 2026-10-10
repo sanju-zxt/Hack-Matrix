@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { AxeBuilder } from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-const ROUTES = ["/", "/register", "/rules", "/faq", "/payment"] as const;
+const ROUTES = ["/", "/register", "/rules", "/faq", "/payment", "/team", "/admin"] as const;
 const INFO_ROUTES = [
   "/about",
   "/contact",

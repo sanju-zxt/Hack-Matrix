@@ -12,6 +12,8 @@ const PaymentPage = lazy(() => import("./pages/PaymentPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const InfoPage = lazy(() => import("./pages/InfoPage"));
+const AdminPage = lazy(() => import("./pages/AdminPage"));
+const TeamPage = lazy(() => import("./pages/TeamPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
@@ -36,6 +38,8 @@ export default function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/legal/:slug" element={<InfoPage />} />
+              <Route path="/team" element={<TeamPage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

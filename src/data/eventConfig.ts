@@ -132,7 +132,7 @@ export const registration = {
    * While empty, the REGISTER buttons show a friendly "coming soon"
    * state instead of sending visitors to a dead link.
    */
-  googleFormUrl: "", // TODO: paste your registration form link here
+  googleFormUrl: "https://forms.gle/q2vg9p4EyTctN617A",
   fee: "₹149",
   feePer: "per team",
   feeNote: "Flat ₹149 per team for the full 4-week sprint.",
@@ -153,21 +153,24 @@ export const registration = {
 
 /* ── PAYMENT ──────────────────────────────────────────────────────────────── */
 /**
- * The payment page intentionally shows a "yet to be updated" state until the
- * organizing team finalises the fee and payment channel. Flip `status` to
- * "live" (and fill the fields) once confirmed.
+ * Flip `status` to "pending" to hide the pay CTA and show the holding state.
+ * While "live", the fee and `link` below are shown on the payment page.
  */
 export const payment = {
-  status: "pending" as "pending" | "live",
-  notice: "PAYMENT DETAILS YET TO BE UPDATED",
-  message:
-    "The registration fee and payment link for IGNITE 2026 are being finalised. This page will be updated with the official amount, UPI / bank details and a secure payment link once confirmed.",
+  status: "live" as "pending" | "live",
+  notice: "REGISTRATION FEE · PAY TO CONFIRM",
+  message: `Secure your team's slot for the full 4-week ${event.name} ${event.edition} sprint. Pay the one-time ${registration.fee} team fee securely through Razorpay, then share your payment reference so we can confirm your team.`,
   fee: registration.fee,
+  feePer: registration.feePer,
+  provider: "Razorpay",
+  /** Public Razorpay payment link. */
+  link: "https://razorpay.me/@lohithsanjup",
+  handle: "@lohithsanjup",
   steps: [
-    "Official fee & team confirmation",
-    "UPI / bank transfer details",
-    "Secure payment link",
-    "Payment confirmation & receipt",
+    "Register your team through the official registration form",
+    "Tap “Pay now” — the secure Razorpay page opens",
+    "Complete the payment via UPI, card or net banking",
+    "Share your payment reference / screenshot with us to get confirmed",
   ],
 } as const;
 
@@ -389,12 +392,31 @@ export const footer = {
     { label: "Timeline", to: "/#timeline" },
     { label: "Rules", to: "/rules" },
     { label: "FAQ", to: "/faq" },
+    { label: "Team Status", to: "/team" },
     { label: "Payment", to: "/payment" },
     { label: "Register", to: "/register" },
   ],
   copyright: "© 2026 IGNITE. All rights reserved.",
   madeBy:
     "Organized by Vijaya Vittala Institute of Technology, Bengaluru, with SmartX Technologies and AptPath.",
+} as const;
+
+/* ── ORGANIZER DASHBOARD ──────────────────────────────────────────────────── */
+/**
+ * Team-approval dashboard at /admin. It reads the Google Sheet that collects
+ * form responses through a Google Apps Script Web App (see
+ * `tool/apps-script/Code.gs`). Until `endpoint` is filled, the page shows a
+ * short setup notice instead of the team table.
+ */
+export const admin = {
+  enabled: true,
+  /** Apps Script Web App `/exec` URL. Empty → dashboard shows setup steps. */
+  endpoint:
+    "https://script.google.com/macros/s/AKfycbx564QEI8H5XSgQIeWK10grQMOC1z39iEs67Xy3of10aDkumaFjDpImrF94mcBEraLQ/exec",
+  title: `${event.name} ${event.edition} · Organizer Dashboard`,
+  hint: "Enter the organizer passcode to review and approve team registrations.",
+  /** sessionStorage key used to remember the passcode for the tab's session. */
+  sessionKey: "ignite-admin-token",
 } as const;
 
 /* ── SEO ──────────────────────────────────────────────────────────────────── */

@@ -1,7 +1,7 @@
 # RESUME — VVIT IGNITE 2026 landing site
 
 Authoritative state doc. Read this FIRST before touching the project.
-Last updated: 2026-10-10 (added 8 info/legal pages).
+Last updated: 2026-10-10 (payment live + organizer/team dashboards).
 
 ## What this is
 Marketing/landing site for **IGNITE 2026** — a 4-week (NOT one-day) industry
@@ -17,24 +17,36 @@ team size **2–3**, fee **₹149 per team**, PRISM methodology.
 - Brand: ink `#05060a` / violet `#7c6cff` / blue `#5b8cff` + VVIT leaf/olive accents.
 
 ## Git state (as of shutdown)
-- `HEAD = 3156aac` "IGNITE 2026: countdown targets end of kickoff day" — **already pushed** (`master` in sync with `origin/master`).
-- **UNCOMMITTED (not yet committed/pushed)** — domain swap + VVIT logo replacement + the 8 info/legal pages:
+- `HEAD = ec0e48d` "IGNITE 2026: regenerate favicon/apple-touch/OG from new VVIT logo + cache-bust" — **pushed** (`master` in sync with `origin/master`).
+- **UNCOMMITTED (this session) — live payment + organizer/team dashboards:**
   ```
-   M README.md  index.html  public/robots.txt  public/sitemap.xml  public/vvitlogo.jpg
-   M src/App.tsx  src/components/layout/Footer.tsx  src/data/eventConfig.ts  tests/site.spec.ts
-  ?? src/data/policies.ts  src/pages/AboutPage.tsx  src/pages/ContactPage.tsx  src/pages/InfoPage.tsx  RESUME.md
+   M src/App.tsx  src/data/eventConfig.ts  src/pages/PaymentPage.tsx  src/pages/RegisterPage.tsx  tests/site.spec.ts
+  ?? src/components/ui/TeamStatusBadge.tsx  src/lib/adminApi.ts  src/lib/teamStatus.ts
+  ?? src/pages/AdminPage.tsx  src/pages/TeamPage.tsx  tool/apps-script/
   ```
 - Untracked (intentionally NOT in git): `.snapshots/`, `VVIT IGNITE Brochure - October 2026 - v5.pdf.pdf`, root `aptpath.png` / `samagra.png` / `smartx.jpeg`.
 
 ### PENDING COMMIT — run this first next session
 ```powershell
-git add README.md index.html public/robots.txt public/sitemap.xml public/vvitlogo.jpg `
-        src/App.tsx src/components/layout/Footer.tsx src/data/eventConfig.ts `
-        src/data/policies.ts src/pages/AboutPage.tsx src/pages/ContactPage.tsx src/pages/InfoPage.tsx `
-        tests/site.spec.ts RESUME.md
-git commit -m "IGNITE 2026: info/legal pages, VVIT logo, www.ignitearena.live"
+git add src/App.tsx src/data/eventConfig.ts src/pages/PaymentPage.tsx src/pages/RegisterPage.tsx tests/site.spec.ts `
+        src/components/ui/TeamStatusBadge.tsx src/lib/adminApi.ts src/lib/teamStatus.ts `
+        src/pages/AdminPage.tsx src/pages/TeamPage.tsx tool/apps-script/ RESUME.md
+git commit -m "IGNITE 2026: live Razorpay payment + organizer & team-status dashboards"
 git push origin master
 ```
+
+## Payment (LIVE, 2026-10-10)
+- `payment.status` = **"live"**; `payment.link` = **https://razorpay.me/@lohithsanjup** (handle `@lohithsanjup`, provider Razorpay).
+- `PaymentPage.tsx` rewritten: fee card + **PAY ₹149 NOW** button (opens Razorpay in a new tab) + 4-step flow + security/refund notes. Renders a holding state only if `status` is flipped back to `"pending"`.
+- Legal pages (policies.ts) already say the ₹149 is paid through the link in the form / payment provider — no change needed, but still **user-reviewed wording is pending**.
+
+## Dashboards (2026-10-10)
+Two new routes, both driven by the **Google Sheet** that collects form responses, via a free **Google Apps Script Web App** (`tool/apps-script/Code.gs` + `README.md`):
+- **`/admin`** (`AdminPage.tsx`) — organizer team-approval dashboard. Passcode gate (stored in `sessionStorage` key `admin.sessionKey`). Lists teams, search + status filter, Approve / Reject / Reset per team. Writes to a `Status` (+ `Decision At`) column in the sheet.
+- **`/team`** (`TeamPage.tsx`) — public, read-only "My Team" status lookup by **registered email or team code**. Shows members + fields + approval status. No passcode.
+- Shared: `src/lib/adminApi.ts` (fetch/decide/lookup + `teamTitle`), `src/lib/teamStatus.ts` (normalize + colors), `src/components/ui/TeamStatusBadge.tsx`.
+- **WIRED (2026-10-10)**: `admin.endpoint` = the deployed `.../exec` URL (probed → returns `{"error":"unauthorized"}` for a wrong token, so the Web App is live and the `IGNITE_ADMIN_PASSCODE` script property is set). Organizers enter the passcode at `/admin`; `/team` needs no passcode.
+- `/team` is linked from the footer ("Team Status") and the Register page; `/admin` is unlinked by design.
 
 ## New pages (2026-10-10)
 | Route | Page | Notes |
@@ -93,19 +105,20 @@ git push origin master
 ## Verification (run after any change)
 ```powershell
 npm run build          # tsc -b && vite build   — must be green
-npx playwright test    # 52 tests — all must pass
+npx playwright test    # 56 tests — all must pass
 ```
-Last results: build green, **52/52 Playwright pass** (includes axe on all 13 routes,
-8-viewport responsiveness incl. `/about` + `/legal/privacy-policy`, footer link coverage).
+Last results: build green, **56/56 Playwright pass** (includes axe on all 15 routes,
+8-viewport responsiveness incl. `/about` + `/legal/privacy-policy` + `/team` + `/admin`,
+footer link coverage).
 
 ## Open items / blockers
-1. **`registration.googleFormUrl` empty** → REGISTER buttons show "FORM LINK SOON". #1 launch blocker.
-   Paste the Google Form link, then `Button.tsx` auto-switches to the live CTA.
+1. **`registration.googleFormUrl`** = **https://forms.gle/q2vg9p4EyTctN617A** (set 2026-10-10). REGISTER buttons now go live.
 2. **Registration deadline** — set `registration.opens`/`closes`/`deadlineLabel`.
 3. **Finale date** — `schedule` finale value still "To be announced".
-4. **Payment** — provide UPI/bank/secure link, flip `payment.status` to `"live"`.
-5. **Optional**: whatsapp + discord invite links; exact campus block / Maps pin; confirm prize tiers shown.
-6. **Brochure** (deferred): `tool/make-qr.py` default + the brochure QR still encode the OLD url; regenerate with
+4. **Dashboards wired (2026-10-10)** — Apps Script deployed; `admin.endpoint` set. Verify end-to-end with a real submission (approve on `/admin`, look up on `/team`).
+5. **Policy wording still needs the user's legal review** (drafted by me).
+6. **Optional**: whatsapp + discord invite links; exact campus block / Maps pin; confirm prize tiers shown.
+7. **Brochure** (deferred): `tool/make-qr.py` default + the brochure QR still encode the OLD url; regenerate with
    `BROCHURE_URL=https://www.ignitearena.live python tool/make-qr.py` if redoing the brochure.
    `tool/patch-six-pages.mjs` is STALE HACK-MATRIX content — ignore.
 
@@ -119,9 +132,10 @@ Last results: build green, **52/52 Playwright pass** (includes axe on all 13 rou
 - `rg` is NOT available in this shell; use the Grep tool.
 
 ## Suggested next session order
-1. Commit+push the pending batch (see PENDING COMMIT) — domain swap + logo + 8 pages.
-2. **Ask the user to read the 6 policy pages** (`/legal/privacy-policy` … `/legal/payment-policy`)
-   — the wording is drafted by me, not legally reviewed.
-3. Ask user for the registration form URL + deadline → wire into `eventConfig.ts` → build/test → deploy.
-3. If payment details ready: flip `payment.status` → "live" and fill fields.
-4. Redeploy to Vercel (custom domain www.ignitearena.live already configured by user).
+1. Commit+push the pending batch (see PENDING COMMIT) — payment live + dashboards.
+2. **Set up the dashboards**: user deploys `tool/apps-script/Code.gs` on the registration sheet, adds the
+   `IGNITE_ADMIN_PASSCODE` script property, deploys as Web App (Execute as Me / Access Anyone), pastes the
+   `/exec` URL into `admin.endpoint` → build/test → deploy. Then verify `/admin` approve + `/team` lookup.
+3. Ask user for the registration form URL + deadline → wire into `eventConfig.ts`.
+4. **Ask the user to read the 6 policy pages** — wording drafted by me, not legally reviewed.
+5. Redeploy to Vercel (custom domain www.ignitearena.live already configured by user).

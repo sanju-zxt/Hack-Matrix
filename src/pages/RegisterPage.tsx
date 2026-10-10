@@ -246,6 +246,16 @@ export default function RegisterPage() {
 
         <Reveal delay={0.15}>
           <div className="mt-8 break-words text-center text-sm text-white/55 sm:mt-12">
+            <p className="mb-3">
+              Already registered?{" "}
+              <Link
+                to="/team"
+                className="font-semibold text-violet-bright underline-offset-4 transition-colors hover:underline"
+              >
+                Check your team status
+              </Link>
+              .
+            </p>
             <p>
               Have questions? Read the{" "}
               <Link
