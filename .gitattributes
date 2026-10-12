@@ -1,0 +1,12 @@
+# Treat binary assets as binary so Git never applies line-ending / text
+# conversions that would corrupt them (core.autocrlf=true on Windows).
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
