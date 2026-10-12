@@ -174,6 +174,17 @@ export const payment = {
   ],
 } as const;
 
+/* ── BROCHURE ─────────────────────────────────────────────────────────────── */
+/**
+ * Official event brochure (PDF served from /public). Opens in a new tab.
+ * The file lives at `public/VVIT IGNITE Final Brochure.pdf` — keep this URL
+ * (space-encoded) in sync if the file is ever renamed.
+ */
+export const brochure = {
+  label: "BROCHURE",
+  url: "/VVIT%20IGNITE%20Final%20Brochure.pdf",
+} as const;
+
 /* ── THEMES ───────────────────────────────────────────────────────────────── */
 /** Icon keys are resolved in the Themes component — keep keys from that list. */
 export const themes = [

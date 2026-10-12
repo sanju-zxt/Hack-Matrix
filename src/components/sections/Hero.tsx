@@ -6,8 +6,9 @@
   type CSSProperties,
 } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ChevronRight } from "lucide-react";
+import { ArrowDown, ChevronRight, FileText } from "lucide-react";
 import {
+  brochure,
   event,
   flags,
   registration,
@@ -296,7 +297,7 @@ export function Hero() {
           <motion.div
             variants={item}
             className={cn(
-              "flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4",
+              "flex flex-wrap flex-col gap-3 sm:flex-row sm:items-center sm:gap-4",
               shortLandscape ? "mt-3 gap-2" : "mt-6 sm:mt-9"
             )}
           >
@@ -314,6 +315,20 @@ export function Hero() {
               <ChevronRight
                 size={18}
                 className="transition-transform duration-300 group-hover/btn:translate-x-0.5"
+              />
+            </Button>
+            <Button
+              size={shortLandscape ? "md" : "lg"}
+              variant="outline"
+              className="w-full sm:w-auto"
+              href={brochure.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {brochure.label}
+              <FileText
+                size={18}
+                className="transition-transform duration-300 group-hover/btn:-translate-y-0.5"
               />
             </Button>
           </motion.div>
