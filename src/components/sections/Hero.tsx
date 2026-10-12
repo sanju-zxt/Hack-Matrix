@@ -11,6 +11,7 @@ import {
   brochure,
   event,
   flags,
+  poster,
   registration,
   scheduleDates,
   venue,
@@ -326,6 +327,20 @@ export function Hero() {
               rel="noopener noreferrer"
             >
               {brochure.label}
+              <FileText
+                size={18}
+                className="transition-transform duration-300 group-hover/btn:-translate-y-0.5"
+              />
+            </Button>
+            <Button
+              size={shortLandscape ? "md" : "lg"}
+              variant="outline"
+              className="w-full sm:w-auto"
+              href={poster.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {poster.label}
               <FileText
                 size={18}
                 className="transition-transform duration-300 group-hover/btn:-translate-y-0.5"

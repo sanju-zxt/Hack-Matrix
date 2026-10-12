@@ -12,6 +12,7 @@ import {
   contact,
   event,
   footer,
+  poster,
   registration,
   scheduleDates,
   venue,
@@ -100,6 +101,20 @@ export function Footer() {
                   className="group inline-flex min-h-11 sm:min-h-0 items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-violet-bright"
                 >
                   Brochure
+                  <ArrowUpRight
+                    size={12}
+                    className="opacity-0 transition-opacity group-hover:opacity-100"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={poster.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex min-h-11 sm:min-h-0 items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-violet-bright"
+                >
+                  Poster
                   <ArrowUpRight
                     size={12}
                     className="opacity-0 transition-opacity group-hover:opacity-100"

@@ -185,6 +185,12 @@ export const brochure = {
   url: "/VVIT%20IGNITE%20Final%20Brochure.pdf",
 } as const;
 
+/** Official event poster (PDF served from /public). Opens in a new tab. */
+export const poster = {
+  label: "POSTER",
+  url: "/Ignite%20Poster%20FInal.pdf",
+} as const;
+
 /* ── THEMES ───────────────────────────────────────────────────────────────── */
 /** Icon keys are resolved in the Themes component — keep keys from that list. */
 export const themes = [
