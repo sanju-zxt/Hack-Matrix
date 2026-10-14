@@ -130,9 +130,8 @@ export default function PaymentPage() {
                   <ExternalLink size={16} strokeWidth={2} aria-hidden />
                 </Button>
                 <p className="mt-3 break-words text-xs leading-relaxed text-white/50">
-                  Opens the secure {payment.provider} payment page
-                  ({payment.handle}) in a new tab. Pay by UPI, card or net
-                  banking.
+                  Opens the secure {payment.provider} payment page in a new tab.
+                  Pay by UPI, card or net banking.
                 </p>
               </div>
 

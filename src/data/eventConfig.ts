@@ -164,8 +164,8 @@ export const payment = {
   feePer: registration.feePer,
   provider: "Razorpay",
   /** Public Razorpay payment link. */
-  link: "https://rzp.io/rzp/vVtu55r",
-  handle: "rzp.io",
+  link: "https://razorpay.me/@ignite2026",
+  handle: "razorpay.me/@ignite2026",
   steps: [
     "Register your team through the official registration form",
     "Tap “Pay now” — the secure Razorpay page opens",

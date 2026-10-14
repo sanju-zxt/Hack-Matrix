@@ -1,0 +1,34 @@
+﻿[playwright] Microsoft Edge 155.0.4283.45
+
+Running 56 tests using 1 worker
+
+[1/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ / loads without console/page errors
+[2/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /register loads without console/page errors
+[3/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /rules loads without console/page errors
+[4/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /faq loads without console/page errors
+[5/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /payment loads without console/page errors
+[6/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /team loads without console/page errors
+[7/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /admin loads without console/page errors
+[8/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /about loads without console/page errors
+[9/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /contact loads without console/page errors
+[10/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /legal/privacy-policy loads without console/page errors
+[11/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /legal/terms-conditions loads without console/page errors
+[12/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /legal/refund-cancellation loads without console/page errors
+[13/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /legal/shipping-delivery loads without console/page errors
+[14/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /legal/pricing loads without console/page errors
+[15/56] [chromium] ΓÇ║ tests\site.spec.ts:486:5 ΓÇ║ routes render ΓÇ║ /legal/payment-policy loads without console/page errors
+[16/56] [chromium] ΓÇ║ tests\site.spec.ts:513:3 ΓÇ║ information and policy pages ΓÇ║ footer lists every information and policy page
+[17/56] [chromium] ΓÇ║ tests\site.spec.ts:522:3 ΓÇ║ information and policy pages ΓÇ║ privacy policy is reachable from the footer
+[18/56] [chromium] ΓÇ║ tests\site.spec.ts:532:3 ΓÇ║ information and policy pages ΓÇ║ policy pages link back to home and to each other
+[19/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 320x568 ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[20/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 390x844 ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[21/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 430x932 ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[22/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 740x360 landscape ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[23/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 768x1024 ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[24/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 1023x768 ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[25/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 1024x768 ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[26/56] [chromium] ΓÇ║ tests\site.spec.ts:549:7 ΓÇ║ responsive layout ΓÇ║ 1440x900 desktop ΓÇ║ all routes, hero heading, and countdown stay within the viewport
+[27/56] [chromium] ΓÇ║ tests\site.spec.ts:570:3 ΓÇ║ small-screen essentials ΓÇ║ sticky registration CTA remains visible and tappable
+[28/56] [chromium] ΓÇ║ tests\site.spec.ts:597:3 ΓÇ║ small-screen essentials ΓÇ║ registration heading wraps without losing a tappable CTA
+[29/56] [chromium] ΓÇ║ tests\site.spec.ts:640:3 ΓÇ║ small-screen essentials ΓÇ║ contact controls keep long text and touch targets inside the viewport
+[30/56] [chromium] ΓÇ║ tests\site.spec.ts:702:3 ΓÇ║ navigation ΓÇ║ navbar and register CTA are visible on desktop
