@@ -1,3 +1,0 @@
-﻿[playwright] Microsoft Edge 155.0.4283.45
-
-Running 56 tests using 1 worker
